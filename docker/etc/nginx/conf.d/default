@@ -1,0 +1,8 @@
+server {
+
+	server_name smallshop.local;
+	index index.php;
+	root /SmallShop/public;
+
+
+}

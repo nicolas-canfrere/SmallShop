@@ -1,0 +1,57 @@
+version: '3'
+
+networks:
+  smallshop_nw:
+    driver: bridge
+volumes:
+  smallshop_db_vl:
+    driver: local
+
+services:
+
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    ports:
+      - '80:80'
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock
+    networks:
+      - smallshop_nw
+
+  smallshop_server:
+    image: nginx:latest
+    networks:
+      - smallshop_nw
+    volumes:
+      - ./docker/etc/nginx/conf.d:/etc/nginx/conf.d
+      - ./:/SmallShop
+    environment:
+      - 'VIRTUAL_HOST=smallshop.local'
+
+  smallshop_php:
+    image: nicophp7.2:latest
+    build: ./docker/etc/php/7.2
+    volumes:
+      - ./:/SmallShop
+    networks:
+      - smallshop_nw
+
+  smallshop_db:
+    image: mysql:5.7
+    volumes:
+      - smallshop_db_vl:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=smallshop_db
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=admin
+    ports:
+      - "3307:3306"
+    networks:
+      - smallshop_nw
+
+  mailhog:
+    image: mailhog/mailhog:v1.0.0
+    ports:
+      - "1025:1025"
+      - "8025:8025"
