@@ -25,7 +25,7 @@ Ne pas oublier :
 ```
 $ composer install
 ```
-##Création du schema de base de données
+## Création du schema de base de données
 
 se connecter au container smallshop_php
 
@@ -40,7 +40,7 @@ $ cd /SmallShop
 $ php bin/console doctrine:schema:create
 ```
 
-##Installation des fixtures
+## Installation des fixtures
 
 se connecter au container smallshop_php
 
@@ -55,7 +55,7 @@ $ cd /SmallShop
 $ php bin/console doctrine:fixtures:load
 ```
 
-##Accès à l'appli en local
+## Accès à l'appli en local
 
 front accessible par http://smallshop.local
 
