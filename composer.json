@@ -1,4 +1,10 @@
 {
+    "authors": [
+        {
+            "name": "Nicolas Canfrere",
+            "email": "nico.canfrere@gmail.com"
+        }
+    ],
     "type": "project",
     "license": "proprietary",
     "require": {
