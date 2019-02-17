@@ -2,7 +2,7 @@
 
 Domain Driven Design appliqué en exercice de recherche et de demo sur une base Symfony 4
 
-## installation locale
+## installation local
 
 A la racine :
 
@@ -25,8 +25,40 @@ Ne pas oublier :
 ```
 $ composer install
 ```
+##Création du schema de base de données
 
+se connecter au container smallshop_php
+
+```
+$ docker-compose exec smallshop_php /bin/bash
+```
+
+Dans le container
+
+```
+$ cd /SmallShop
+$ php bin/console doctrine:schema:create
+```
+
+##Installation des fixtures
+
+se connecter au container smallshop_php
+
+```
+$ docker-compose exec smallshop_php /bin/bash
+```
+
+Dans le container
+
+```
+$ cd /SmallShop
+$ php bin/console doctrine:fixtures:load
+```
+
+##Accès à l'appli en local
 
 front accessible par http://smallshop.local
+
 et
+
 admin accessible par http://smallshop.local/back-office
