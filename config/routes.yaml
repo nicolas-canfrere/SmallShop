@@ -1,3 +1,6 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+front.routes:
+  prefix: /
+  resource: './routes/front.yaml'
+admin.routes:
+  prefix: /back-office
+  resource: './routes/admin.yaml'

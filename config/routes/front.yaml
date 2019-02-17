@@ -1,0 +1,23 @@
+front_home:
+  path: /
+  controller: Application\Front\Controller\HomeController::default
+  methods: ['get']
+
+
+front_cart_page:
+  path: /cart
+  controller: Application\Front\Controller\CartPageController::index
+  methods: ['get']
+
+front_cart_add:
+  path: /cart/add
+  controller: Application\Front\Controller\CartController::addToCart
+  methods: ['post']
+front_cart_remove:
+  path: /cart/remove
+  controller: Application\Front\Controller\CartController::removeFromCart
+  methods: ['post']
+front_cart_clear:
+  path: /cart/clear
+  controller: Application\Front\Controller\CartController::clearCart
+  methods: ['post']

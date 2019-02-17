@@ -1,0 +1,82 @@
+{% extends '@front/master.html.twig' %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h2>Votre panier</h2>
+                {% if cart.count > 0 %}
+                    <form action="{{ path('front_cart_clear') }}" method="post">
+                        <button type="submit" class="btn btn-primary">videz votre panier</button>
+                    </form>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Unit Price</th>
+                        <th>Quantity</th>
+                        <th>Sub Total</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for row in cart %}
+                        <tr>
+                            <td>{{ row.productName }}</td>
+                            <td>{{ row.productPrice|format_price }}</td>
+                            <td>
+                                <table>
+                                    <tr>
+                                        <td style="border: none; padding-top: 0;padding-bottom: 0;">
+                                            <form action="{{ path('front_cart_remove') }}" method="post">
+                                                <input type="hidden" name="id" value="{{ row.productId }}">
+                                                <input type="hidden" name="quantity" value="1">
+                                                <button class="btn btn-primary btn-sm"><i class="fas fa-minus"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                        <td style="border: none; padding-top: 0;padding-bottom: 0;">{{ row.count }}</td>
+                                        <td style="border: none; padding-top: 0;padding-bottom: 0;">
+                                            <form action="{{ path('front_cart_add') }}" method="post">
+                                                <input type="hidden" name="id" value="{{ row.productId }}">
+                                                <input type="hidden" name="quantity" value="1">
+                                                <button class="btn btn-primary btn-sm"><i class="fas fa-plus"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td>{{ row.totalPrice|format_price }}</td>
+                            <td>
+                                <form action="{{ path('front_cart_remove') }}" method="post">
+                                    <input type="hidden" name="id" value="{{ row.productId }}">
+                                    <input type="hidden" name="quantity"
+                                           value="{{ constant('\\Domain\\Cart\\Cart::ALL_PRODUCTS_IN_ROW') }}">
+                                    <button class="btn btn-primary btn-sm"><i class="fas fa-trash-alt"></i></button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="5">Votre panier est vide</td>
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <td colspan="2"></td>
+                        <td><strong>Total</strong></td>
+                        <td>{{ cart.totalPrice|format_price }}</td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

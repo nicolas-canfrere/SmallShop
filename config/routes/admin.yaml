@@ -1,0 +1,19 @@
+admin_home:
+  path: /
+  controller: Application\Admin\Controller\HomeController::default
+  methods: ['get']
+
+admin_products_list:
+  path: /products
+  controller: Application\Admin\Controller\ProductController::list
+  methods: ['get']
+admin_products_add:
+  path: /products/add-new
+  controller: Application\Admin\Controller\ProductController::add
+  methods: ['get', 'post']
+admin_products_edit:
+  path: /products/edit/{uuid}
+  controller: Application\Admin\Controller\ProductController::edit
+  methods: ['get', 'post']
+  requirements:
+    uuid: '[a-f0-9]{8,8}-[a-f0-9]{4,4}-[a-f0-9]{4,4}-[a-f0-9]{4,4}-[a-f0-9]{12,12}'

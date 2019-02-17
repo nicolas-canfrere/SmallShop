@@ -1,0 +1,7 @@
+twig:
+  # default_path: '%kernel.project_dir%/templates'
+  paths:
+    '%kernel.project_dir%/templates/front': front
+    '%kernel.project_dir%/templates/admin': admin
+  debug: '%kernel.debug%'
+  strict_variables: '%kernel.debug%'
