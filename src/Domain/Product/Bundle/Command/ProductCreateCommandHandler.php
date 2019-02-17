@@ -14,6 +14,8 @@ use Domain\Core\Urlizer;
 use Domain\Product\Exception\ProductAlreadyExistsException;
 use Domain\Product\Product;
 use Domain\Product\Signature\ProductRepositoryInterface;
+use Domain\Stock\Signature\StockRepositoryInterface;
+use Domain\Stock\Stock;
 
 class ProductCreateCommandHandler implements CommandHandlerInterface
 {
@@ -21,11 +23,19 @@ class ProductCreateCommandHandler implements CommandHandlerInterface
      * @var ProductRepositoryInterface
      */
     private $productRepository;
+    /**
+     * @var StockRepositoryInterface
+     */
+    private $stockRepository;
 
-    public function __construct(ProductRepositoryInterface $productRepository)
+    public function __construct(
+        ProductRepositoryInterface $productRepository,
+        StockRepositoryInterface $stockRepository
+    )
     {
 
         $this->productRepository = $productRepository;
+        $this->stockRepository   = $stockRepository;
     }
 
     public function handle(ProductCreateCommand $command)
@@ -46,6 +56,9 @@ class ProductCreateCommandHandler implements CommandHandlerInterface
             $command->description
         );
         $this->productRepository->save($product);
+
+        $stock = Stock::create($identity);
+        $this->stockRepository->save($stock);
 
         $command->uuid = $identity;
     }

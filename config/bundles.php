@@ -18,5 +18,6 @@ return [
     Domain\Core\Bundle\CoreBundle::class                              => ['all' => true],
     Domain\Product\Bundle\ProductBundle::class                        => ['all' => true],
     Domain\Cart\Bundle\CartBundle::class                              => ['all' => true],
+    Domain\Stock\Bundle\StockBundle::class                            => ['all' => true],
     Knp\Bundle\PaginatorBundle\KnpPaginatorBundle::class              => ['all' => true],
 ];
