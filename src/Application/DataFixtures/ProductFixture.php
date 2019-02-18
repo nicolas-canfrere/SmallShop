@@ -11,7 +11,7 @@ namespace Application\DataFixtures;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
-use Domain\Product\Bundle\Command\ProductCreateCommand;
+use Domain\Product\Command\ProductCreateCommand;
 use League\Tactician\CommandBus;
 use Money\Currency;
 use Money\Money;

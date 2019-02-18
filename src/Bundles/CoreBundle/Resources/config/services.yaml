@@ -1,0 +1,13 @@
+services:
+
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  Bundles\CoreBundle\:
+    resource: '../../../../../src/Bundles/CoreBundle/*'
+    exclude: '../../../../../src/Bundles/CoreBundle/{Resources}'
+
+  Domain\Core\:
+    resource: '../../../../../src/Domain/Core/*'

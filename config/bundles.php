@@ -15,9 +15,9 @@ return [
     Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle::class      => ['dev' => true, 'test' => true],
     League\Tactician\Bundle\TacticianBundle::class                    => ['all' => true],
     Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle::class => ['all' => true],
-    Domain\Core\Bundle\CoreBundle::class                              => ['all' => true],
-    Domain\Product\Bundle\ProductBundle::class                        => ['all' => true],
-    Domain\Cart\Bundle\CartBundle::class                              => ['all' => true],
-    Domain\Stock\Bundle\StockBundle::class                            => ['all' => true],
+    Bundles\CoreBundle\CoreBundle::class                              => ['all' => true],
+    Bundles\ProductBundle\ProductBundle::class                        => ['all' => true],
+    Bundles\CartBundle\CartBundle::class                              => ['all' => true],
+    Bundles\StockBundle\StockBundle::class                            => ['all' => true],
     Knp\Bundle\PaginatorBundle\KnpPaginatorBundle::class              => ['all' => true],
 ];

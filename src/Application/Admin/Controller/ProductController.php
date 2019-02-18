@@ -11,9 +11,9 @@ namespace Application\Admin\Controller;
 
 use Application\Admin\Form\ProductCreateForm;
 use Application\Admin\Form\ProductUpdateForm;
-use Domain\Product\Bundle\Command\ProductCreateCommand;
-use Domain\Product\Bundle\Command\ProductUpdateCommand;
-use Domain\Product\Bundle\Query\PaginatedProductsQuery;
+use Domain\Product\Command\ProductCreateCommand;
+use Domain\Product\Command\ProductUpdateCommand;
+use Domain\Product\Query\PaginatedProductsQuery;
 use Domain\Product\Signature\ProductRepositoryInterface;
 use League\Tactician\CommandBus;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

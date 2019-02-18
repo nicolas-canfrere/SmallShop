@@ -9,9 +9,9 @@
 namespace Application\Front\Controller;
 
 
-use Domain\Cart\Bundle\Command\AddProductToCartCommand;
-use Domain\Cart\Bundle\Command\ClearCartCommand;
-use Domain\Cart\Bundle\Command\RemoveProductFromCartCommand;
+use Domain\Cart\Command\AddProductToCartCommand;
+use Domain\Cart\Command\ClearCartCommand;
+use Domain\Cart\Command\RemoveProductFromCartCommand;
 use League\Tactician\CommandBus;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,7 +29,7 @@ class CartController extends AbstractController
         try {
             $commandBus->handle($addToCartCommand);
         } catch (\Exception $e) {
-
+            die($e->getMessage());
         }
 
         return $this->redirectToRoute('front_cart_page');

@@ -16,6 +16,7 @@ class CartPageController extends AbstractController
 {
     public function index(CartInterface $cart)
     {
+        dump($cart);
         return $this->render('@front/CartPage/index.html.twig', ['cart' => $cart]);
     }
 }

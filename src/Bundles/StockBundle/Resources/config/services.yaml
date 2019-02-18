@@ -1,0 +1,13 @@
+services:
+
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  Bundles\StockBundle\:
+    resource: '../../../../../src/Bundles/StockBundle/*'
+    exclude: '../../../../../src/Bundles/StockBundle/{Resources}'
+
+  Domain\Stock\Signature\StockRepositoryInterface:
+    class: Bundles\StockBundle\Repository\StockRepository

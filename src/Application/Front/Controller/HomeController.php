@@ -9,7 +9,7 @@
 namespace Application\Front\Controller;
 
 
-use Domain\Product\Bundle\Query\FrontPaginatedProductsQuery;
+use Domain\Product\Query\FrontPaginatedProductsQuery;
 use League\Tactician\CommandBus;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;

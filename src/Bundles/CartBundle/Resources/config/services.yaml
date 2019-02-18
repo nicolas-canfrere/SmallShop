@@ -1,0 +1,16 @@
+services:
+
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  Bundles\CartBundle\:
+    resource: '../../../../../src/Bundles/CartBundle/*'
+    exclude: '../../../../../src/Bundles/CartBundle/{Resources}'
+
+  Domain\Cart\:
+    resource: '../../../../../src/Domain/Cart/*'
+
+  Domain\Cart\Signature\CartInterface:
+    class: Bundles\CartBundle\Service\SessionCart

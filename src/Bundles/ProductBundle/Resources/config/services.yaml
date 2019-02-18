@@ -1,0 +1,15 @@
+services:
+
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  Bundles\ProductBundle\:
+    resource: '../../../../../src/Bundles/ProductBundle/*'
+    exclude: '../../../../../src/Bundles/ProductBundle/{Resources}'
+  Domain\Product\:
+    resource: '../../../../../src/Domain/Product/*'
+
+  Domain\Product\Signature\ProductRepositoryInterface:
+    class: Bundles\ProductBundle\Repository\ProductRepository
