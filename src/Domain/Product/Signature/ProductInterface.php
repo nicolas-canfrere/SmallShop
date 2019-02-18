@@ -9,9 +9,10 @@
 namespace Domain\Product\Signature;
 
 
+use Domain\Core\Signature\EntityInterface;
 use Money\Money;
 
-interface ProductInterface
+interface ProductInterface extends EntityInterface
 {
     public function getId(): string;
 

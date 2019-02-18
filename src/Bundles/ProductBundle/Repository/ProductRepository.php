@@ -11,6 +11,7 @@ namespace Bundles\ProductBundle\Repository;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
+use Domain\Core\Signature\EntityInterface;
 use Domain\Product\Product;
 use Domain\Product\Signature\ProductRepositoryInterface;
 use Ramsey\Uuid\Uuid;
@@ -34,7 +35,7 @@ class ProductRepository implements ProductRepositoryInterface
         return Uuid::uuid4()->toString();
     }
 
-    public function save($entity): void
+    public function save(EntityInterface $entity): void
     {
         $this->entityManager->persist($entity);
         $this->entityManager->flush();

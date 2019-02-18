@@ -9,11 +9,10 @@
 namespace Domain\Product;
 
 
-use Domain\Core\Signature\EntityInterface;
 use Domain\Product\Signature\ProductInterface;
 use Money\Money;
 
-class Product implements ProductInterface, EntityInterface
+class Product implements ProductInterface
 {
     /**
      * @var string
