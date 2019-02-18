@@ -51,7 +51,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "App\\Tests\\": "tests/"
+            "Domain\\Tests\\": "tests/Domain/"
         }
     },
     "replace": {
@@ -88,6 +88,7 @@
         "doctrine/doctrine-fixtures-bundle": "^3.1",
         "escapestudios/symfony2-coding-standard": "3.5.2",
         "fzaninotto/faker": "^1.8",
+        "phpunit/phpunit": "^8.0",
         "squizlabs/php_codesniffer": "3.4.0"
     }
 }

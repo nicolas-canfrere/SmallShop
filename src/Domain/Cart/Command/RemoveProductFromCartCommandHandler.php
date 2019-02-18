@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nicolas
- * Date: 17/02/19
- * Time: 08:22
- */
 
 namespace Domain\Cart\Command;
 
@@ -12,9 +6,14 @@ namespace Domain\Cart\Command;
 use Domain\Cart\Cart;
 use Domain\Cart\Signature\CartInterface;
 use Domain\Core\Signature\CommandHandlerInterface;
+use Domain\Product\Exception\ProductNotFoundException;
 use Domain\Product\Signature\ProductRepositoryInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
+/**
+ * Class RemoveProductFromCartCommandHandler
+ * @package Domain\Cart\Command
+ */
 class RemoveProductFromCartCommandHandler implements CommandHandlerInterface
 {
     /**
@@ -30,6 +29,13 @@ class RemoveProductFromCartCommandHandler implements CommandHandlerInterface
      */
     private $cart;
 
+    /**
+     * RemoveProductFromCartCommandHandler constructor.
+     *
+     * @param EventDispatcherInterface $eventDispatcher
+     * @param ProductRepositoryInterface $productRepository
+     * @param CartInterface $cart
+     */
     public function __construct(
         EventDispatcherInterface $eventDispatcher,
         ProductRepositoryInterface $productRepository,
@@ -40,18 +46,25 @@ class RemoveProductFromCartCommandHandler implements CommandHandlerInterface
         $this->cart              = $cart;
     }
 
+    /**
+     * @param RemoveProductFromCartCommand $command
+     *
+     * @throws ProductNotFoundException
+     */
     public function handle(RemoveProductFromCartCommand $command)
     {
         $product = $this->productRepository->oneById($command->productId);
 
         if ( ! $product) {
-            throw new \Exception('unknown product');
+            throw new ProductNotFoundException('product not found');
         }
 
         if ($command->quantity == Cart::ALL_PRODUCTS_IN_ROW) {
             $this->cart->deleteRow($command->productId);
+            // TODO dispatch event !
         } else {
             $this->cart->removeItem($product, $command->quantity);
+            // TODO dispatch event !
         }
     }
 }

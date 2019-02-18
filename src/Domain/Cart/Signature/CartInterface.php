@@ -24,4 +24,6 @@ interface CartInterface
     public function count();
 
     public function clear();
+
+    public function itemIsRegistred(string $id): bool;
 }

@@ -1,19 +1,18 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nicolas
- * Date: 16/02/19
- * Time: 17:49
- */
 
 namespace Domain\Cart\Command;
 
 
 use Domain\Cart\Signature\CartInterface;
 use Domain\Core\Signature\CommandHandlerInterface;
+use Domain\Product\Exception\ProductNotFoundException;
 use Domain\Product\Signature\ProductRepositoryInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
+/**
+ * Class AddProductToCartCommandHandler
+ * @package Domain\Cart\Command
+ */
 class AddProductToCartCommandHandler implements CommandHandlerInterface
 {
     /**
@@ -29,6 +28,13 @@ class AddProductToCartCommandHandler implements CommandHandlerInterface
      */
     private $cart;
 
+    /**
+     * AddProductToCartCommandHandler constructor.
+     *
+     * @param EventDispatcherInterface $eventDispatcher
+     * @param ProductRepositoryInterface $productRepository
+     * @param CartInterface $cart
+     */
     public function __construct(
         EventDispatcherInterface $eventDispatcher,
         ProductRepositoryInterface $productRepository,
@@ -39,17 +45,22 @@ class AddProductToCartCommandHandler implements CommandHandlerInterface
         $this->cart              = $cart;
     }
 
+    /**
+     * @param AddProductToCartCommand $command
+     *
+     * @throws ProductNotFoundException
+     */
     public function handle(AddProductToCartCommand $command)
     {
         $product = $this->productRepository->oneById($command->productId);
 
         if ( ! $product) {
-            throw new \Exception('unknown product');
+            throw new ProductNotFoundException('product not found');
         }
 
-        // add to cart !
-
         $this->cart->addItem($product, $command->quantity);
+
+        // TODO dispatch event !
 
     }
 }

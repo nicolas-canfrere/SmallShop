@@ -13,7 +13,7 @@ interface RepositoryInterface
 {
     public function nextIdentity(): string;
 
-    public function save($entity): void;
+    public function save(EntityInterface $entity): void;
 
     public function oneById(string $id);
 

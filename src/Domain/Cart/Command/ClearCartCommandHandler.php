@@ -35,5 +35,7 @@ class ClearCartCommandHandler implements CommandHandlerInterface
     public function handle(ClearCartCommand $command)
     {
         $this->cart->clear();
+
+        // TODO dispatch event !
     }
 }

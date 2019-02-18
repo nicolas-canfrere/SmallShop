@@ -119,4 +119,16 @@ class Cart implements \Countable, \IteratorAggregate, CartInterface
 
         return $total;
     }
+
+    /**
+     * @param string $id
+     *
+     * @return bool
+     */
+    public function itemIsRegistred(string $id): bool
+    {
+        return array_key_exists($id, $this->rows) && ! empty($this->rows[$id]);
+    }
+
+
 }
