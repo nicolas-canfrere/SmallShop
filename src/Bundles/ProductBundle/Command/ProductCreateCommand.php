@@ -7,11 +7,13 @@ use Domain\Product\Command\ProductCreateCommandInterface;
 use Domain\Product\ValueObject\ProductName;
 use Money\Money;
 use Symfony\Component\Validator\Constraints as Assert;
+use Bundles\ProductBundle\Validator\Constraints as CustomAssert;
 
 class ProductCreateCommand implements ProductCreateCommandInterface
 {
     /**
      * @var ProductName
+     * @CustomAssert\ProductName()
      */
     protected $name;
     /**
@@ -31,7 +33,7 @@ class ProductCreateCommand implements ProductCreateCommandInterface
     /**
      * @return ProductName
      */
-    public function getName(): ProductName
+    public function getName(): ?ProductName
     {
         return $this->name;
     }
@@ -47,7 +49,7 @@ class ProductCreateCommand implements ProductCreateCommandInterface
     /**
      * @return Money
      */
-    public function getPrice(): Money
+    public function getPrice(): ?Money
     {
         return $this->price;
     }
@@ -63,7 +65,7 @@ class ProductCreateCommand implements ProductCreateCommandInterface
     /**
      * @return string
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->description;
     }
@@ -79,7 +81,7 @@ class ProductCreateCommand implements ProductCreateCommandInterface
     /**
      * @return string
      */
-    public function getUuid(): string
+    public function getUuid(): ?string
     {
         return $this->uuid;
     }

@@ -12,7 +12,7 @@ namespace Application\Admin\Controller;
 use Application\Admin\Form\ProductCreateForm;
 use Application\Admin\Form\ProductUpdateForm;
 use Bundles\ProductBundle\Command\ProductCreateCommand;
-use Domain\Product\Command\ProductUpdateCommand;
+use Bundles\ProductBundle\Command\ProductUpdateCommand;
 use Domain\Product\Query\PaginatedProductsQuery;
 use Domain\Product\Signature\ProductRepositoryInterface;
 use League\Tactician\CommandBus;

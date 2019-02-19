@@ -25,7 +25,7 @@ final class ProductName
      *
      * @throws \Exception
      */
-    public function __construct(string $name)
+    public function __construct($name)
     {
         $this->validate($name);
         $this->name = $name;
@@ -35,6 +35,7 @@ final class ProductName
     {
         Assert::stringNotEmpty($name, 'Name can not be empty');
         Assert::minLength($name, 2, 'Name must have at least 2 chars');
+        Assert::maxLength($name, 255, 'Name must have 255 chars maximum');
     }
 
     public function equals(ProductName $productName)
