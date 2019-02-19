@@ -10,12 +10,10 @@ namespace Domain\Tests\Cart;
 
 
 use Domain\Cart\Cart;
-use Domain\Product\Product;
 use Money\Currency;
 use Money\Money;
-use PHPUnit\Framework\TestCase;
 
-class CartTest extends TestCase
+class CartTest extends CartTestCase
 {
     /**
      * @test
@@ -23,13 +21,7 @@ class CartTest extends TestCase
     public function canAddItem()
     {
         $cart    = new Cart();
-        $product = Product::create(
-            'abc',
-            'a product',
-            new Money(1000, new Currency('EUR')),
-            'alias',
-            'description'
-        );
+        $product = $this->createProduct('abc', 'name', 1000);
 
         $cart->addItem($product, 10);
         $this->assertEquals(10, count($cart));
@@ -44,13 +36,7 @@ class CartTest extends TestCase
     public function canRemoveItem()
     {
         $cart    = new Cart();
-        $product = Product::create(
-            'abc',
-            'a product',
-            new Money(1000, new Currency('EUR')),
-            'alias',
-            'description'
-        );
+        $product = $product = $this->createProduct('abc', 'name', 1000);
 
         $cart->addItem($product, 10);
         $this->assertEquals(10, count($cart));
@@ -66,13 +52,7 @@ class CartTest extends TestCase
     public function canDeleteRow()
     {
         $cart    = new Cart();
-        $product = Product::create(
-            'abc',
-            'a product',
-            new Money(1000, new Currency('EUR')),
-            'alias',
-            'description'
-        );
+        $product = $product = $this->createProduct('abc', 'name', 1000);
 
         $cart->addItem($product, 10);
         $this->assertEquals(10, count($cart));
@@ -89,20 +69,9 @@ class CartTest extends TestCase
     public function canBeCleared()
     {
         $cart     = new Cart();
-        $productA = Product::create(
-            'abc',
-            'a product',
-            new Money(1000, new Currency('EUR')),
-            'alias',
-            'description'
-        );
-        $productB = Product::create(
-            'def',
-            'a product',
-            new Money(1000, new Currency('EUR')),
-            'alias',
-            'description'
-        );
+        $productA = $product = $this->createProduct('abc', 'name', 1000);
+        $productB = $product = $this->createProduct('def', 'name', 1000);
+
         $cart->addItem($productA, 10);
         $cart->addItem($productB, 10);
         $this->assertEquals(20, count($cart));
@@ -121,13 +90,7 @@ class CartTest extends TestCase
     public function canCalculateTotalPrice()
     {
         $cart    = new Cart();
-        $product = Product::create(
-            'abc',
-            'a product',
-            new Money(1000, new Currency('EUR')),
-            'alias',
-            'description'
-        );
+        $product = $product = $this->createProduct('abc', 'name', 1000);
 
         $total = new Money(10000, new Currency('EUR'));
 
@@ -135,4 +98,5 @@ class CartTest extends TestCase
 
         $this->assertTrue($total->equals($cart->totalPrice()));
     }
+
 }
