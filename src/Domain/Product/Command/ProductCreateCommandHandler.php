@@ -16,6 +16,7 @@ use Domain\Product\Product;
 use Domain\Product\Signature\ProductRepositoryInterface;
 use Domain\Stock\Signature\StockRepositoryInterface;
 use Domain\Stock\Stock;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class ProductCreateCommandHandler implements CommandHandlerInterface
 {
@@ -27,15 +28,20 @@ class ProductCreateCommandHandler implements CommandHandlerInterface
      * @var StockRepositoryInterface
      */
     private $stockRepository;
+    /**
+     * @var EventDispatcherInterface
+     */
+    private $eventDispatcher;
 
     public function __construct(
         ProductRepositoryInterface $productRepository,
-        StockRepositoryInterface $stockRepository
-    )
-    {
+        StockRepositoryInterface $stockRepository,
+        EventDispatcherInterface $eventDispatcher
+    ) {
 
         $this->productRepository = $productRepository;
         $this->stockRepository   = $stockRepository;
+        $this->eventDispatcher   = $eventDispatcher;
     }
 
     public function handle(ProductCreateCommand $command)

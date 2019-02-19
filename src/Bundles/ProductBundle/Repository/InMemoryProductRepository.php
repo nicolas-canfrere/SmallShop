@@ -13,19 +13,29 @@ use Doctrine\ORM\QueryBuilder;
 use Domain\Core\Signature\EntityInterface;
 use Domain\Product\Product;
 use Domain\Product\Signature\ProductRepositoryInterface;
+use Ramsey\Uuid\Uuid;
 
 class InMemoryProductRepository implements ProductRepositoryInterface
 {
+    /**
+     * @var Product[]
+     */
     protected $products = [];
 
     public function oneByAlias(string $alias): ?Product
     {
-        // TODO: Implement oneByAlias() method.
+        foreach ($this->products as $product) {
+            if ($product->getAlias() === $alias) {
+                return $product;
+            }
+        }
+
+        return null;
     }
 
     public function nextIdentity(): string
     {
-        // TODO: Implement nextIdentity() method.
+        return Uuid::uuid4()->toString();
     }
 
     public function save(EntityInterface $entity): void
