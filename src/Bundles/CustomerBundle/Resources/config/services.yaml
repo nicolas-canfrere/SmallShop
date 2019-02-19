@@ -1,0 +1,12 @@
+services:
+
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  Bundles\CustomerBundle\:
+    resource: '../../../../../src/Bundles/CustomerBundle/*'
+    exclude: '../../../../../src/Bundles/CustomerBundle/{Resources}'
+  Domain\Customer\:
+    resource: '../../../../../src/Domain/Customer/*'
