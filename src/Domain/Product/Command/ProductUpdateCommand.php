@@ -10,12 +10,13 @@ namespace Domain\Product\Command;
 
 
 use Domain\Product\Product;
+use Domain\Product\ValueObject\ProductName;
 use Money\Money;
 
 class ProductUpdateCommand
 {
     /**
-     * @var string
+     * @var ProductName
      */
     public $name;
     /**

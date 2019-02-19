@@ -40,10 +40,10 @@ class ProductCreateCommandHandler implements CommandHandlerInterface
 
     public function handle(ProductCreateCommand $command)
     {
-        $alias   = Urlizer::urlize($command->name);
+        $alias   = Urlizer::urlize($command->name->getName());
         $product = $this->productRepository->oneByAlias($alias);
         if ($product) {
-            throw new ProductAlreadyExistsException('Product named '.$command->name.' already exists!');
+            throw new ProductAlreadyExistsException('Product named '.$command->name->getName().' already exists!');
         }
 
         $identity = $this->productRepository->nextIdentity();
@@ -57,8 +57,8 @@ class ProductCreateCommandHandler implements CommandHandlerInterface
         );
         $this->productRepository->save($product);
 
-        $stock = Stock::create($identity);
-        $this->stockRepository->save($stock);
+        //$stock = Stock::create($identity);
+        //$this->stockRepository->save($stock);
 
         $command->uuid = $identity;
     }

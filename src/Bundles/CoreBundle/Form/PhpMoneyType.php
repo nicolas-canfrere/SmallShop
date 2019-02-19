@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Admin\Form;
+namespace Bundles\CoreBundle\Form;
 
 
 use Money\Currency;

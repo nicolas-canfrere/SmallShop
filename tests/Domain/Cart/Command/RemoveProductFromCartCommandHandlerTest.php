@@ -15,15 +15,12 @@ use Domain\Cart\Command\RemoveProductFromCartCommand;
 use Domain\Cart\Command\RemoveProductFromCartCommandHandler;
 use Domain\Cart\Signature\CartInterface;
 use Domain\Product\Exception\ProductNotFoundException;
-use Domain\Product\Product;
 use Domain\Product\Signature\ProductInterface;
 use Domain\Product\Signature\ProductRepositoryInterface;
-use Money\Currency;
-use Money\Money;
-use PHPUnit\Framework\TestCase;
+use Domain\Tests\Cart\CartTestCase;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
-class RemoveProductFromCartCommandHandlerTest extends TestCase
+class RemoveProductFromCartCommandHandlerTest extends CartTestCase
 {
     /**
      * @var ProductRepositoryInterface
@@ -92,13 +89,7 @@ class RemoveProductFromCartCommandHandlerTest extends TestCase
     protected function setUp(): void
     {
         $this->productRepository = new InMemoryProductRepository();
-        $this->product           = Product::create(
-            'abc',
-            'a product',
-            new Money(1000, new Currency('EUR')),
-            'alias',
-            'description'
-        );
+        $this->product           = $this->createProduct('abc', 'name', 1000);
         $this->productRepository->save($this->product);
         $this->cart = new Cart();
 

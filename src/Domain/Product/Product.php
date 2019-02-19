@@ -10,6 +10,7 @@ namespace Domain\Product;
 
 
 use Domain\Product\Signature\ProductInterface;
+use Domain\Product\ValueObject\ProductName;
 use Money\Money;
 
 class Product implements ProductInterface
@@ -19,7 +20,7 @@ class Product implements ProductInterface
      */
     protected $id;
     /**
-     * @var string
+     * @var ProductName
      */
     protected $name;
     /**
@@ -39,7 +40,7 @@ class Product implements ProductInterface
      */
     protected $onSale = false;
 
-    public static function create(string $id, string $name, Money $price, string $alias, string $description)
+    public static function create(string $id, ProductName $name, Money $price, string $alias, string $description)
     {
         $product              = new static();
         $product->id          = $id;
@@ -51,7 +52,7 @@ class Product implements ProductInterface
         return $product;
     }
 
-    public function update(string $name, Money $price, string $alias, string $description, bool $onSale)
+    public function update(ProductName $name, Money $price, string $alias, string $description, bool $onSale)
     {
         $this->name        = $name;
         $this->alias       = $alias;
@@ -69,9 +70,9 @@ class Product implements ProductInterface
     }
 
     /**
-     * @return string
+     * @return ProductName
      */
-    public function getName(): string
+    public function getName(): ProductName
     {
         return $this->name;
     }

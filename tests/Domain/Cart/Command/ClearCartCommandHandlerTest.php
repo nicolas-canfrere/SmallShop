@@ -13,14 +13,10 @@ use Domain\Cart\Cart;
 use Domain\Cart\Command\ClearCartCommand;
 use Domain\Cart\Command\ClearCartCommandHandler;
 use Domain\Cart\Signature\CartInterface;
-use Domain\Product\Product;
-use Domain\Product\Signature\ProductInterface;
-use Money\Currency;
-use Money\Money;
-use PHPUnit\Framework\TestCase;
+use Domain\Tests\Cart\CartTestCase;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
-class ClearCartCommandHandlerTest extends TestCase
+class ClearCartCommandHandlerTest extends CartTestCase
 {
 
     /**
@@ -50,20 +46,8 @@ class ClearCartCommandHandlerTest extends TestCase
 
     protected function setUp(): void
     {
-        $productA = Product::create(
-            'abc',
-            'a product',
-            new Money(1000, new Currency('EUR')),
-            'alias',
-            'description'
-        );
-        $productB = Product::create(
-            'def',
-            'a product',
-            new Money(1000, new Currency('EUR')),
-            'alias',
-            'description'
-        );
+        $productA = $this->createProduct('abc', 'name', 1000);
+        $productB = $this->createProduct('def', 'name', 1000);
 
         $this->cart = new Cart();
 

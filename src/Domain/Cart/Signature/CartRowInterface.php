@@ -10,6 +10,7 @@ namespace Domain\Cart\Signature;
 
 
 use Domain\Product\Signature\ProductInterface;
+use Domain\Product\ValueObject\ProductName;
 use Money\Money;
 
 interface CartRowInterface
@@ -27,4 +28,10 @@ interface CartRowInterface
     public function getTotalPrice(): Money;
 
     public function toArray(): array;
+
+    public function getProductPrice(): Money;
+
+    public function getProductName(): ProductName;
+
+    public function getProductId(): string;
 }

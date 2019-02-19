@@ -1,20 +1,15 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nicolas
- * Date: 10/02/19
- * Time: 13:45
- */
 
 namespace Domain\Product\Command;
 
 
+use Domain\Product\ValueObject\ProductName;
 use Money\Money;
 
 class ProductCreateCommand
 {
     /**
-     * @var string
+     * @var ProductName
      */
     public $name;
     /**

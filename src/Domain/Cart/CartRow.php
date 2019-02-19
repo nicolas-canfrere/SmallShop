@@ -11,6 +11,7 @@ namespace Domain\Cart;
 
 use Domain\Cart\Signature\CartRowInterface;
 use Domain\Product\Signature\ProductInterface;
+use Domain\Product\ValueObject\ProductName;
 use Money\Currency;
 use Money\Money;
 
@@ -29,7 +30,7 @@ class CartRow implements CartRowInterface
      */
     protected $productId;
     /**
-     * @var string
+     * @var ProductName
      */
     protected $productName;
     /**
@@ -70,7 +71,7 @@ class CartRow implements CartRowInterface
         $row               = new static();
         $row->id           = $array['id'];
         $row->productId    = $array['productId'];
-        $row->productName  = $array['productName'];
+        $row->productName  = new ProductName($array['productName']);
         $row->productPrice = new Money($array['price'], new Currency($array['currency']));
         $row->count        = $array['count'];
         $row->calculTotalPrice();
@@ -83,7 +84,7 @@ class CartRow implements CartRowInterface
         return [
             'id'          => $this->id,
             'productId'   => $this->productId,
-            'productName' => $this->productName,
+            'productName' => $this->productName->getName(),
             'price'       => $this->productPrice->getAmount(),
             'currency'    => $this->productPrice->getCurrency()->getCode(),
             'count'       => $this->count,
@@ -146,9 +147,9 @@ class CartRow implements CartRowInterface
     }
 
     /**
-     * @return string
+     * @return ProductName
      */
-    public function getProductName(): string
+    public function getProductName(): ProductName
     {
         return $this->productName;
     }

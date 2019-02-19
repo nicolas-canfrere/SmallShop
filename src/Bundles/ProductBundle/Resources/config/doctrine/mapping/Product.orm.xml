@@ -10,7 +10,7 @@
         <id name="id" type="guid">
             <generator strategy="NONE"/>
         </id>
-        <field name="name" column="name" type="string" nullable="false" unique="true"/>
+        <field name="name" column="name" type="product_name" nullable="false" unique="true"/>
         <embedded name="price" class="Money\Money"/>
         <field name="alias" column="alias" type="string" nullable="false"/>
         <field name="description" column="description" type="string" nullable="false"/>

@@ -30,14 +30,14 @@ class ProductUpdateCommandHandler implements CommandHandlerInterface
     public function handle(ProductUpdateCommand $command)
     {
         $original = $command->original;
-        $alias    = Urlizer::urlize($command->name);
-        if ($original->getName() != $command->name) {
+        $alias    = Urlizer::urlize($command->name->getName());
+        if ( ! $original->getName()->equals($command->name)) {
 
             $test = $this->productRepository->oneByAlias($alias);
 
             if ($test && $test->getId() !== $original->getId()) {
 
-                throw new ProductAlreadyExistsException('Product named '.$command->name.' already exists!');
+                throw new ProductAlreadyExistsException('Product named '.$command->name->getName().' already exists!');
             }
         }
 
