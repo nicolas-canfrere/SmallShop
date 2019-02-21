@@ -12,7 +12,7 @@ namespace Domain\Tests\Core\Event;
 use Domain\Core\Event\EventInterface;
 use Domain\Core\Event\ListenerInterface;
 
-class TestListener implements ListenerInterface
+class TestListenerTwo implements ListenerInterface
 {
 
     public function handle(EventInterface $event): void
@@ -22,6 +22,6 @@ class TestListener implements ListenerInterface
 
     public function listenTo(): string
     {
-        return TestEvent::class;
+        return TestEventTwo::class;
     }
 }

@@ -14,13 +14,27 @@ class EventBusTest extends TestCase
      */
     public function canDispatch()
     {
-        $this->expectException(\Exception::class);
-        $this->expectExceptionMessage(TestEvent::class . ' dispatched');
+
         $testListener = new TestListener();
         $listenerProvider = new EventListenerProvider();
         $listenerProvider->addListener($testListener);
         $eventBus = new EventBus($listenerProvider);
         $eventBus->dispatch(new TestEvent());
 
+    }
+
+    /**
+     * @test
+     */
+    public function canStopPropagation()
+    {
+        $testListener = new TestListener();
+        $testListenerTwo = new TestListenerTwo();
+        $listenerProvider = new EventListenerProvider();
+        $listenerProvider->addListener($testListener);
+        $listenerProvider->addListener($testListenerTwo);
+        $eventBus = new EventBus($listenerProvider);
+        $eventBus->dispatch(new TestEventTwo());
+        $eventBus->dispatch(new TestEvent());
     }
 }
