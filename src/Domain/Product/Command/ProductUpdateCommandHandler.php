@@ -9,11 +9,12 @@
 namespace Domain\Product\Command;
 
 
+use Domain\Core\Event\EventBusInterface;
 use Domain\Core\Signature\CommandHandlerInterface;
 use Domain\Core\Urlizer;
+use Domain\Product\Event\ProductUpdatedEvent;
 use Domain\Product\Exception\ProductAlreadyExistsException;
 use Domain\Product\Signature\ProductRepositoryInterface;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class ProductUpdateCommandHandler implements CommandHandlerInterface
 {
@@ -22,18 +23,18 @@ class ProductUpdateCommandHandler implements CommandHandlerInterface
      */
     private $productRepository;
     /**
-     * @var EventDispatcherInterface
+     * @var EventBusInterface
      */
-    private $eventDispatcher;
+    private $eventBus;
 
     public function __construct(
         ProductRepositoryInterface $productRepository,
-        EventDispatcherInterface $eventDispatcher
+        EventBusInterface $eventBus
     )
     {
 
         $this->productRepository = $productRepository;
-        $this->eventDispatcher   = $eventDispatcher;
+        $this->eventBus = $eventBus;
     }
 
     public function handle(ProductUpdateCommandInterface $command)
@@ -61,6 +62,6 @@ class ProductUpdateCommandHandler implements CommandHandlerInterface
         );
         $this->productRepository->save($original);
 
-        // TODO dispatch Event
+        $this->eventBus->dispatch(new ProductUpdatedEvent($original));
     }
 }

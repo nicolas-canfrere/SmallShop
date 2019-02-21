@@ -11,3 +11,7 @@ services:
 
   Domain\Core\:
     resource: '../../../../../src/Domain/Core/*'
+  Domain\Core\Event\EventListenerProviderInterface:
+    class: Domain\Core\Event\EventListenerProvider
+  Domain\Core\Event\EventBusInterface:
+    class: Domain\Core\Event\EventBus

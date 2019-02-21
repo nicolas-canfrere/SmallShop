@@ -9,8 +9,10 @@
 namespace Bundles\CoreBundle;
 
 
-use Doctrine\Bundle\DoctrineBundle\DependencyInjection\Compiler\DoctrineOrmMappingsPass;
+use Bundles\CoreBundle\DependencyInjection\Compiler\EventBusPass;
 use Bundles\CoreBundle\DependencyInjection\CoreExtension;
+use Doctrine\Bundle\DoctrineBundle\DependencyInjection\Compiler\DoctrineOrmMappingsPass;
+use Domain\Core\Event\ListenerInterface;
 use Domain\Core\Signature\CommandHandlerInterface;
 use Domain\Core\Signature\QueryHandlerInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -32,6 +34,10 @@ class CoreBundle extends Bundle
                   ->addTag('tactician.handler', ['typehints' => true, 'bus' => 'default']);
         $container->registerForAutoconfiguration(QueryHandlerInterface::class)
                   ->addTag('tactician.handler', ['typehints' => true, 'bus' => 'query']);
+        $container->registerForAutoconfiguration(ListenerInterface::class)
+            ->addTag('eventbus.listener');
+
+        $container->addCompilerPass(new EventBusPass());
 
         $this->addRegisterMappingsPass($container);
 

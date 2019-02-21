@@ -9,14 +9,13 @@
 namespace Domain\Product\Command;
 
 
+use Domain\Core\Event\EventBusInterface;
 use Domain\Core\Signature\CommandHandlerInterface;
 use Domain\Core\Urlizer;
+use Domain\Product\Event\ProductCreatedEvent;
 use Domain\Product\Exception\ProductAlreadyExistsException;
 use Domain\Product\Product;
 use Domain\Product\Signature\ProductRepositoryInterface;
-use Domain\Stock\Signature\StockRepositoryInterface;
-use Domain\Stock\Stock;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class ProductCreateCommandHandler implements CommandHandlerInterface
 {
@@ -25,23 +24,17 @@ class ProductCreateCommandHandler implements CommandHandlerInterface
      */
     private $productRepository;
     /**
-     * @var StockRepositoryInterface
+     * @var EventBusInterface
      */
-    private $stockRepository;
-    /**
-     * @var EventDispatcherInterface
-     */
-    private $eventDispatcher;
+    private $eventBus;
 
     public function __construct(
         ProductRepositoryInterface $productRepository,
-        StockRepositoryInterface $stockRepository,
-        EventDispatcherInterface $eventDispatcher
+        EventBusInterface $eventBus
     ) {
 
         $this->productRepository = $productRepository;
-        $this->stockRepository   = $stockRepository;
-        $this->eventDispatcher   = $eventDispatcher;
+        $this->eventBus = $eventBus;
     }
 
     public function handle(ProductCreateCommandInterface $command)
@@ -63,9 +56,8 @@ class ProductCreateCommandHandler implements CommandHandlerInterface
         );
         $this->productRepository->save($product);
 
-        //$stock = Stock::create($identity);
-        //$this->stockRepository->save($stock);
-
         $command->setUuid($identity);
+
+        $this->eventBus->dispatch(new ProductCreatedEvent($product));
     }
 }

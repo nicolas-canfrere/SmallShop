@@ -11,16 +11,16 @@ namespace Domain\Tests\Product\Command;
 
 use Bundles\ProductBundle\Command\ProductCreateCommand;
 use Bundles\ProductBundle\Repository\InMemoryProductRepository;
+use Domain\Core\Event\EventBus;
+use Domain\Core\Event\EventListenerProvider;
 use Domain\Product\Command\ProductCreateCommandHandler;
 use Domain\Product\Exception\ProductAlreadyExistsException;
 use Domain\Product\Product;
 use Domain\Product\Signature\ProductRepositoryInterface;
 use Domain\Product\ValueObject\ProductName;
-use Domain\Stock\Signature\StockRepositoryInterface;
 use Domain\Tests\Product\ProductTestCase;
 use Money\Currency;
 use Money\Money;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class ProductCreateCommandHandlerTest extends ProductTestCase
 {
@@ -77,10 +77,11 @@ class ProductCreateCommandHandlerTest extends ProductTestCase
     {
         $this->productRepository = new InMemoryProductRepository();
 
+        $eventBus = new EventBus(new EventListenerProvider());
+
         $this->handler = new ProductCreateCommandHandler(
             $this->productRepository,
-            $this->createMock(StockRepositoryInterface::class),
-            $this->createMock(EventDispatcherInterface::class)
+            $eventBus
         );
     }
 

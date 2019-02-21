@@ -11,13 +11,14 @@ namespace Domain\Tests\Product\Command;
 
 use Bundles\ProductBundle\Command\ProductUpdateCommand;
 use Bundles\ProductBundle\Repository\InMemoryProductRepository;
+use Domain\Core\Event\EventBus;
+use Domain\Core\Event\EventListenerProvider;
 use Domain\Product\Command\ProductCreateCommandHandler;
 use Domain\Product\Command\ProductUpdateCommandHandler;
 use Domain\Product\Exception\ProductAlreadyExistsException;
 use Domain\Product\Signature\ProductRepositoryInterface;
 use Domain\Product\ValueObject\ProductName;
 use Domain\Tests\Product\ProductTestCase;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class ProductUpdateCommandHandlerTest extends ProductTestCase
 {
@@ -73,10 +74,10 @@ class ProductUpdateCommandHandlerTest extends ProductTestCase
     protected function setUp(): void
     {
         $this->productRepository = new InMemoryProductRepository();
-
+        $eventBus = new EventBus(new EventListenerProvider());
         $this->handler = new ProductUpdateCommandHandler(
             $this->productRepository,
-            $this->createMock(EventDispatcherInterface::class)
+            $eventBus
         );
     }
 }
