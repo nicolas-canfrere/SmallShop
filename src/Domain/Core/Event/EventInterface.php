@@ -7,7 +7,7 @@ interface EventInterface
 {
     public function getName(): string;
 
-    public function stopPropagation(bool $stop = false);
+    public function stopPropagation(): void;
 
     public function isPropagationStopped(): bool;
 }

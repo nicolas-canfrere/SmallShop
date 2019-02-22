@@ -4,37 +4,57 @@ namespace Domain\Tests\Core\Event;
 
 
 use Domain\Core\Event\EventBus;
+use Domain\Core\Event\EventBusInterface;
 use Domain\Core\Event\EventListenerProvider;
+use Domain\Core\Event\EventListenerProviderInterface;
 use PHPUnit\Framework\TestCase;
 
 class EventBusTest extends TestCase
 {
     /**
-     * @test
+     * @var EventListenerProviderInterface
      */
-    public function canDispatch()
+    protected $provider;
+    /**
+     * @var EventBusInterface
+     */
+    protected $eventBus;
+
+    protected function setUp(): void
     {
-
-        $testListener = new TestListener();
-        $listenerProvider = new EventListenerProvider();
-        $listenerProvider->addListener($testListener);
-        $eventBus = new EventBus($listenerProvider);
-        $eventBus->dispatch(new TestEvent());
-
+        $this->provider = new EventListenerProvider();
+        $this->eventBus = new EventBus($this->provider);
     }
 
     /**
      * @test
      */
+    public function canDispatch()
+    {
+        $event = new EventOne();
+        $listener = $this->getMockBuilder(EventListenerOne::class)
+            ->setMethods(['handle'])
+            ->getMock();
+        $listener->expects($this->once())
+            ->method('handle')
+            ->with($this->equalTo($event));
+        $this->provider->addListener($listener);
+        $this->eventBus->dispatch($event);
+    }
+
+    /**
+     *
+     */
     public function canStopPropagation()
     {
-        $testListener = new TestListener();
-        $testListenerTwo = new TestListenerTwo();
-        $listenerProvider = new EventListenerProvider();
-        $listenerProvider->addListener($testListener);
-        $listenerProvider->addListener($testListenerTwo);
-        $eventBus = new EventBus($listenerProvider);
-        $eventBus->dispatch(new TestEventTwo());
-        $eventBus->dispatch(new TestEvent());
+        $event = new EventOne();
+        $event->stopPropagation();
+        $listener = $this->getMockBuilder(EventListenerOne::class)
+            ->setMethods(['handle'])
+            ->getMock();
+        $listener->expects($this->never())
+            ->method('handle');
+        $this->provider->addListener($listener);
+        $this->eventBus->dispatch($event);
     }
 }

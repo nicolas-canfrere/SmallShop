@@ -14,20 +14,20 @@ class Event implements EventInterface
     /**
      * @var bool
      */
-    protected $stopPropagation;
+    protected $isPropagationStopped = false;
 
     public function getName(): string
     {
         return get_class($this);
     }
 
-    public function stopPropagation(bool $stop = false)
+    public function stopPropagation(): void
     {
-        $this->stopPropagation = $stop;
+        $this->isPropagationStopped = true;
     }
 
     public function isPropagationStopped(): bool
     {
-        return $this->stopPropagation;
+        return $this->isPropagationStopped;
     }
 }

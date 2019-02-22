@@ -24,10 +24,10 @@ class EventBus implements EventBusInterface
         $listeners = $this->listenerProvider->getListenersForEvent($event);
 
         foreach ($listeners as $listener) {
-            call_user_func_array([$listener, 'handle'], [$event]);
             if ($event->isPropagationStopped()) {
                 break;
             }
+            call_user_func_array([$listener, 'handle'], [$event]);
         }
     }
 }

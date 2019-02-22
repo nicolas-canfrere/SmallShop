@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: nicolas
  * Date: 22/02/19
- * Time: 00:14
+ * Time: 09:12
  */
 
 namespace Domain\Tests\Core\Event;
@@ -11,7 +11,7 @@ namespace Domain\Tests\Core\Event;
 
 use Domain\Core\Event\Event;
 
-final class TestEvent extends Event
+class EventOne extends Event
 {
 
 }
