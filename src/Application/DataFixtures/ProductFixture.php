@@ -9,9 +9,9 @@
 namespace Application\DataFixtures;
 
 
+use Bundles\ProductBundle\Command\ProductCreateCommand;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
-use Domain\Product\Command\ProductCreateCommand;
 use Domain\Product\ValueObject\ProductName;
 use League\Tactician\CommandBus;
 use Money\Currency;
@@ -44,9 +44,9 @@ class ProductFixture extends Fixture
 
         for ($i = 1; $i < 51; $i++) {
             $command              = new ProductCreateCommand();
-            $command->name        = new ProductName($faker->words(2, true));
-            $command->price       = new Money(rand(10, 500) * 100, new Currency('EUR'));
-            $command->description = '<p>'.implode('</p><p>', $faker->sentences()).'</p>';
+            $command->setName(new ProductName($faker->words(2, true)));
+            $command->setPrice(new Money(rand(10, 500) * 100, new Currency('EUR')));
+            $command->setDescription('<p>' . implode('</p><p>', $faker->sentences()) . '</p>');
             $this->commandBus->handle($command);
         }
     }
