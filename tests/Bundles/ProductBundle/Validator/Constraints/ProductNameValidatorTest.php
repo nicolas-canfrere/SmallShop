@@ -3,11 +3,10 @@
 namespace Bundles\ProductBundle\Validator\Constraints;
 
 
-use Domain\Product\ValueObject\ProductName as Name;
+use Bundles\ProductBundle\Validator\Constraints\ProductName as ProductNameConstraint;
 use Domain\Tests\Product\ProductTestCase;
 use Symfony\Component\Validator\Context\ExecutionContext;
 use Symfony\Component\Validator\Violation\ConstraintViolationBuilder;
-use Bundles\ProductBundle\Validator\Constraints\ProductName as ProductNameConstraint;
 
 class ProductNameValidatorTest extends ProductTestCase
 {
@@ -24,6 +23,19 @@ class ProductNameValidatorTest extends ProductTestCase
         $validator->validate($product, $constraint);
 
 
+    }
+
+    /**
+     * @test
+     */
+    public function noSpecialCharsMustPass()
+    {
+        $product = $this->createProduct('abc', 'pretty name', 100);
+
+        $constraint = new ProductNameConstraint();
+        $validator = $this->initValidator();
+
+        $validator->validate($product, $constraint);
     }
 
     protected function initValidator($expectedMessage = null)
