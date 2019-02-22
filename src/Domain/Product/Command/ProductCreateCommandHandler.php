@@ -9,6 +9,7 @@
 namespace Domain\Product\Command;
 
 
+use Bundles\ProductBundle\Command\ProductCreateCommand;
 use Domain\Core\Event\EventBusInterface;
 use Domain\Core\Signature\CommandHandlerInterface;
 use Domain\Core\Urlizer;
@@ -37,7 +38,7 @@ class ProductCreateCommandHandler implements CommandHandlerInterface
         $this->eventBus = $eventBus;
     }
 
-    public function handle(ProductCreateCommandInterface $command)
+    public function handle(ProductCreateCommand $command)
     {
         $alias = Urlizer::urlize($command->getName()->getName());
         $product = $this->productRepository->oneByAlias($alias);

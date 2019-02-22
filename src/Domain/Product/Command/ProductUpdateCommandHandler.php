@@ -9,6 +9,7 @@
 namespace Domain\Product\Command;
 
 
+use Bundles\ProductBundle\Command\ProductUpdateCommand;
 use Domain\Core\Event\EventBusInterface;
 use Domain\Core\Signature\CommandHandlerInterface;
 use Domain\Core\Urlizer;
@@ -37,7 +38,7 @@ class ProductUpdateCommandHandler implements CommandHandlerInterface
         $this->eventBus = $eventBus;
     }
 
-    public function handle(ProductUpdateCommandInterface $command)
+    public function handle(ProductUpdateCommand $command)
     {
         $original = $command->getOriginal();
         $alias    = Urlizer::urlize($command->getName()->getName());
