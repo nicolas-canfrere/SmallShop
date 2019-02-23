@@ -3,25 +3,19 @@
 namespace Bundles\CustomerBundle\Repository;
 
 
-use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
 use Domain\Core\Signature\EntityInterface;
+use Domain\Core\Urlizer;
 use Domain\Customer\Signature\CustomerInterface;
 use Domain\Customer\Signature\CustomerRepositoryInterface;
 use Ramsey\Uuid\Uuid;
 
-class ShopUserRepository implements CustomerRepositoryInterface
+class InMemoryCustomerRepository implements CustomerRepositoryInterface
 {
     /**
-     * @var EntityManagerInterface
+     * @var CustomerInterface[]
      */
-    private $entityManager;
-
-    public function __construct(EntityManagerInterface $entityManager)
-    {
-
-        $this->entityManager = $entityManager;
-    }
+    protected $customers = [];
 
     public function nextIdentity(): string
     {
@@ -30,13 +24,16 @@ class ShopUserRepository implements CustomerRepositoryInterface
 
     public function save(EntityInterface $entity): void
     {
-        $this->entityManager->persist($entity);
-        $this->entityManager->flush();
+        $this->customers[$entity->getId()] = $entity;
     }
 
     public function oneById(string $id)
     {
-        // TODO: Implement oneById() method.
+        if (!array_key_exists($id, $this->customers)) {
+            return null;
+        }
+
+        return $this->customers[$id];
     }
 
     public function queryBuilder(): QueryBuilder
@@ -51,11 +48,25 @@ class ShopUserRepository implements CustomerRepositoryInterface
 
     public function oneByUsername(string $username): ?CustomerInterface
     {
-        // TODO: Implement oneByUsername() method.
+        $canonical = Urlizer::urlize($username);
+
+        foreach ($this->customers as $customer) {
+            if ($customer->getCanonicalUsername() === $canonical) {
+                return $customer;
+            }
+        }
+        return null;
     }
 
     public function oneByEmail(string $email): ?CustomerInterface
     {
-        // TODO: Implement oneByEmail() method.
+        $canonical = Urlizer::urlize($email);
+
+        foreach ($this->customers as $customer) {
+            if ($customer->getCanonicalEmail() === $canonical) {
+                return $customer;
+            }
+        }
+        return null;
     }
 }

@@ -11,7 +11,7 @@ use Domain\Customer\Signature\CustomerFactoryInterface;
 class CustomerFactory implements CustomerFactoryInterface
 {
 
-    public static function createFromCommand(string $id, CustomerCreateCommandInterface $command)
+    public function createFromCommand(string $id, CustomerCreateCommandInterface $command)
     {
         return ShopUser::create(
             $id,

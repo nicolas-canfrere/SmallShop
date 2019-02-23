@@ -30,7 +30,7 @@ class ShopUser extends Customer implements UserInterface
             $email,
             $password,
             $canonicalUsername,
-            $canonicalUsername
+            $canonicalEmail
         );
     }
 

@@ -13,5 +13,5 @@ use Domain\Customer\Command\CustomerCreateCommandInterface;
 
 interface CustomerFactoryInterface
 {
-    public static function createFromCommand(string $id, CustomerCreateCommandInterface $command);
+    public function createFromCommand(string $id, CustomerCreateCommandInterface $command);
 }
