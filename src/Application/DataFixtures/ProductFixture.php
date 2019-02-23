@@ -44,7 +44,7 @@ class ProductFixture extends Fixture
 
         for ($i = 1; $i < 51; $i++) {
             $command              = new ProductCreateCommand();
-            $command->setName(new ProductName($faker->words(2, true)));
+            $command->setName(new ProductName($faker->words(2, true) . ' ' . $i));
             $command->setPrice(new Money(rand(10, 500) * 100, new Currency('EUR')));
             $command->setDescription('<p>' . implode('</p><p>', $faker->sentences()) . '</p>');
             $this->commandBus->handle($command);

@@ -22,8 +22,14 @@ class CoreExtension extends Extension
      */
     public function load(array $configs, ContainerBuilder $container)
     {
+        $configuration = $this->getConfiguration($configs, $container);
+        $config = $this->processConfiguration($configuration, $configs);
+
         $loader = new YamlFileLoader($container, new FileLocator(dirname(__DIR__).'/Resources/config'));
         $loader->load('services.yaml');
+
+
+        $container->setParameter('core.commandbus', $config['commandbus']);
     }
 
     /**

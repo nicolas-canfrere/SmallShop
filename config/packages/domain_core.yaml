@@ -1,0 +1,4 @@
+core:
+  commandbus:
+    middlewares:
+    - Domain\Core\CommandBus\CommandHandlerProviderInterface

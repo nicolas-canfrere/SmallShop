@@ -17,5 +17,5 @@ services:
     class: Domain\Core\Event\EventBus
   Domain\Core\CommandBus\CommandHandlerProviderInterface:
     class: Domain\Core\CommandBus\CommandHandlerProvider
-  Domain\Core\CommandBus\CommandBusInterface:
-    class: Domain\Core\CommandBus\CommandBus
+    #Domain\Core\CommandBus\CommandBusInterface:
+    #class: Domain\Core\CommandBus\CommandBus

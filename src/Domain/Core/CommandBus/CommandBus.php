@@ -10,48 +10,36 @@ class CommandBus implements CommandBusInterface
      */
     protected $commandHandlerProvider;
 
+    protected $middlewareChain;
+
     /**
      * CommandBus constructor.
      * @param CommandHandlerProviderInterface $commandHandlerProvider
      */
-    public function __construct(CommandHandlerProviderInterface $commandHandlerProvider)
+    public function __construct($middlewares = [])
     {
-        $this->commandHandlerProvider = $commandHandlerProvider;
+        $this->middlewareChain = $this->createMiddlewareChain($middlewares);
     }
 
 
     public function handle(CommandInterface $command)
     {
-        $handler = $this->commandHandlerProvider->getHandlerForCommand($command);
-
-        $handler->handle($command);
+        $middlewareChain = $this->middlewareChain;
+        return $middlewareChain($command);
     }
 
-    public function process($command)
+    public function createMiddlewareChain($middlewares = [])
     {
-        $middlewares = [
-            function ($command, $next) {
-                $command->text = '"' . $command->text . '"';
-                return $next($command);
-            },
-            function ($command, $next) {
-                $command->text = '<p>' . $command->text . '</p>';
-                return $next($command);
-            },
-            function ($command, $next) {
-                $command->text = '<div>' . $command->text . '</div>';
-                return $command;
-            },
-        ];
+
         $next = function () {
         };
         while ($middleware = array_pop($middlewares)) {
 
             $next = function ($command) use ($middleware, $next) {
-                return $middleware($command, $next);
+                return $middleware->execute($command, $next);
             };
         }
 
-        return $next($command);
+        return $next;
     }
 }
