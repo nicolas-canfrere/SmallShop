@@ -66,3 +66,5 @@ admin accessible par http://smallshop.local/back-office
 ## TODOS
 
 - decoupler le cryptage des mots de passe ( trop lié à Doctrine+Symfony Security)
+- créer le compte utilisateur (login form, customer page, etc)
+- continuer le stock (limite d'alerte - mettre à jour onSale, etc)
