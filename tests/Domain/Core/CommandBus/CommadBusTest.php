@@ -44,4 +44,20 @@ class CommadBusTest extends TestCase
             ->setMethods(['handle'])
             ->getMock();
     }
+
+    /**
+     * @test
+     */
+    public function canProcess()
+    {
+        $commandHandlerProvider = new CommandHandlerProvider();
+        $commandBus = new CommandBus($commandHandlerProvider);
+
+        $command = new \stdClass();
+        $command->text = 'un text';
+
+        $command = $commandBus->process($command);
+
+        var_dump($command->text);
+    }
 }

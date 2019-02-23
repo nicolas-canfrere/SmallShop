@@ -3,7 +3,7 @@
 namespace Domain\Core\CommandBus;
 
 
-class CommandHandlerProvider implements CommandHandlerProviderInterface
+class CommandHandlerProvider implements CommandHandlerProviderInterface, CommandBusMiddlewareInterface
 {
     protected $handlers = [];
 
@@ -26,5 +26,12 @@ class CommandHandlerProvider implements CommandHandlerProviderInterface
         }
 
         return $this->handlers[$key];
+    }
+
+    public function execute(CommandInterface $command, callable $next)
+    {
+        $handler = $this->getHandlerForCommand($command);
+
+        return $handler->handle($command);
     }
 }
