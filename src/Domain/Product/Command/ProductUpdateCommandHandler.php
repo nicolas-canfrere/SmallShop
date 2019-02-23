@@ -38,8 +38,15 @@ class ProductUpdateCommandHandler implements CommandHandlerInterface
         $this->eventBus = $eventBus;
     }
 
+    /**
+     * @param ProductUpdateCommand $command
+     * @throws ProductAlreadyExistsException
+     */
     public function handle(ProductUpdateCommand $command)
     {
+        if (!$command instanceof ProductUpdateCommandInterface) {
+            throw new \InvalidArgumentException('command must implement ' . ProductUpdateCommandInterface::class);
+        }
         $original = $command->getOriginal();
         $alias    = Urlizer::urlize($command->getName()->getName());
         if ( ! $original->getName()->equals($command->getName())) {

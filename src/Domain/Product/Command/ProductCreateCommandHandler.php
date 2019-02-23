@@ -32,14 +32,23 @@ class ProductCreateCommandHandler implements CommandHandlerInterface
     public function __construct(
         ProductRepositoryInterface $productRepository,
         EventBusInterface $eventBus
-    ) {
+    )
+    {
 
         $this->productRepository = $productRepository;
         $this->eventBus = $eventBus;
     }
 
+    /**
+     * @param ProductCreateCommand $command
+     * @throws ProductAlreadyExistsException
+     */
     public function handle(ProductCreateCommand $command)
     {
+        if (!$command instanceof ProductCreateCommandInterface) {
+            throw new \InvalidArgumentException('command must implement ' . ProductCreateCommandInterface::class);
+        }
+
         $alias = Urlizer::urlize($command->getName()->getName());
         $product = $this->productRepository->oneByAlias($alias);
         if ($product) {
