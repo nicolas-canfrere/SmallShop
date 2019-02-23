@@ -15,3 +15,7 @@ services:
     class: Domain\Core\Event\EventListenerProvider
   Domain\Core\Event\EventBusInterface:
     class: Domain\Core\Event\EventBus
+  Domain\Core\CommandBus\CommandHandlerProviderInterface:
+    class: Domain\Core\CommandBus\CommandHandlerProvider
+  Domain\Core\CommandBus\CommandBusInterface:
+    class: Domain\Core\CommandBus\CommandBus

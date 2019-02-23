@@ -10,7 +10,6 @@ namespace Bundles\CoreBundle\DependencyInjection\Compiler;
 
 
 use Domain\Core\Event\EventBusInterface;
-use Domain\Core\Event\EventListenerProvider;
 use Domain\Core\Event\EventListenerProviderInterface;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -28,7 +27,7 @@ class EventBusPass implements CompilerPassInterface
             return;
         }
 
-        $eventListenerProviderDefinition = $container->findDefinition(EventListenerProvider::class);
+        $eventListenerProviderDefinition = $container->findDefinition(EventListenerProviderInterface::class);
 
         $taggedServices = $container->findTaggedServiceIds('eventbus.listener');
 

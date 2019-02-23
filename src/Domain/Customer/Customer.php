@@ -40,6 +40,31 @@ class Customer implements CustomerInterface
      */
     protected $password;
 
+    public static function create(
+        string $id,
+        string $firstname,
+        string $lastname,
+        string $username,
+        string $email,
+        string $password,
+        string $canonicalUsername,
+        string $canonicalEmail
+    )
+    {
+        $static = new static();
+
+        $static->id = $id;
+        $static->firstname = $firstname;
+        $static->lastname = $lastname;
+        $static->username = $username;
+        $static->email = $email;
+        $static->password = $password;
+        $static->canonicalUsername = $canonicalUsername;
+        $static->canonicalEmail = $canonicalEmail;
+
+        return $static;
+    }
+
     /**
      * @return string
      */

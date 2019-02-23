@@ -18,6 +18,7 @@ return [
     Bundles\CoreBundle\CoreBundle::class                              => ['all' => true],
     Bundles\ProductBundle\ProductBundle::class                        => ['all' => true],
     Bundles\CartBundle\CartBundle::class                              => ['all' => true],
+    Bundles\CustomerBundle\CustomerBundle::class => ['all' => true],
     Bundles\StockBundle\StockBundle::class                            => ['all' => true],
     Knp\Bundle\PaginatorBundle\KnpPaginatorBundle::class              => ['all' => true],
 ];

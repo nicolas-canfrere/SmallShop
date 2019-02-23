@@ -2,8 +2,9 @@
 
 namespace Domain\Customer\Signature;
 
+use Domain\Core\Signature\EntityInterface;
 
-interface CustomerInterface
+interface CustomerInterface extends EntityInterface
 {
 
 }

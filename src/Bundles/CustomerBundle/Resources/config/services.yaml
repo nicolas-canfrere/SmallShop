@@ -10,3 +10,8 @@ services:
     exclude: '../../../../../src/Bundles/CustomerBundle/{Resources}'
   Domain\Customer\:
     resource: '../../../../../src/Domain/Customer/*'
+
+  Domain\Customer\Signature\CustomerFactoryInterface:
+    class: Bundles\CustomerBundle\Factory\CustomerFactory
+  Domain\Customer\Signature\CustomerRepositoryInterface:
+    class: Bundles\CustomerBundle\Repository\ShopUserRepository
