@@ -62,3 +62,7 @@ front accessible par http://smallshop.local
 et
 
 admin accessible par http://smallshop.local/back-office
+
+## TODOS
+
+- decoupler le cryptage des mots de passe ( trop lié à Doctrine+Symfony Security)
