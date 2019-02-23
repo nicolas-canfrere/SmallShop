@@ -13,6 +13,7 @@ use Application\Admin\Form\ProductCreateForm;
 use Application\Admin\Form\ProductUpdateForm;
 use Bundles\ProductBundle\Command\ProductCreateCommand;
 use Bundles\ProductBundle\Command\ProductUpdateCommand;
+use Domain\Core\CommandBus\CommandBus as DomainCommandBus;
 use Domain\Product\Query\PaginatedProductsQuery;
 use Domain\Product\Signature\ProductRepositoryInterface;
 use League\Tactician\CommandBus;
@@ -30,7 +31,7 @@ class ProductController extends AbstractController
         return $this->render('@admin/Product/list.html.twig', ['paginatedProducts' => $paginatedProducts]);
     }
 
-    public function add(Request $request, CommandBus $commandBus)
+    public function add(Request $request, DomainCommandBus $commandBus)
     {
         $createProductCommand = new ProductCreateCommand();
         $form                 = $this->createForm(ProductCreateForm::class, $createProductCommand);
@@ -53,7 +54,7 @@ class ProductController extends AbstractController
         string $uuid,
         Request $request,
         ProductRepositoryInterface $productRepository,
-        CommandBus $commandBus
+        DomainCommandBus $commandBus
     ) {
         $product = $productRepository->oneById($uuid);
         if ( ! $product) {

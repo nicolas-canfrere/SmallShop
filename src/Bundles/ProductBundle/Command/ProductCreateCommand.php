@@ -3,11 +3,12 @@
 namespace Bundles\ProductBundle\Command;
 
 
+use Bundles\ProductBundle\Validator\Constraints as CustomAssert;
+use Domain\Product\Command\ProductCreateCommandHandler;
 use Domain\Product\Command\ProductCreateCommandInterface;
 use Domain\Product\ValueObject\ProductName;
 use Money\Money;
 use Symfony\Component\Validator\Constraints as Assert;
-use Bundles\ProductBundle\Validator\Constraints as CustomAssert;
 
 class ProductCreateCommand implements ProductCreateCommandInterface
 {
@@ -94,4 +95,8 @@ class ProductCreateCommand implements ProductCreateCommandInterface
         $this->uuid = $uuid;
     }
 
+    public function handleBy(): string
+    {
+        return ProductCreateCommandHandler::class;
+    }
 }

@@ -9,11 +9,12 @@
 namespace Domain\Product\Command;
 
 
+use Domain\Core\CommandBus\CommandInterface;
 use Domain\Product\Product;
 use Domain\Product\ValueObject\ProductName;
 use Money\Money;
 
-interface ProductUpdateCommandInterface
+interface ProductUpdateCommandInterface extends CommandInterface
 {
     public static function fromProduct(Product $product);
 

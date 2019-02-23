@@ -9,6 +9,7 @@
 namespace Bundles\ProductBundle\Command;
 
 
+use Domain\Product\Command\ProductUpdateCommandHandler;
 use Domain\Product\Command\ProductUpdateCommandInterface;
 use Domain\Product\Product;
 use Domain\Product\ValueObject\ProductName;
@@ -200,4 +201,8 @@ class ProductUpdateCommand implements ProductUpdateCommandInterface
     }
 
 
+    public function handleBy(): string
+    {
+        return ProductUpdateCommandHandler::class;
+    }
 }

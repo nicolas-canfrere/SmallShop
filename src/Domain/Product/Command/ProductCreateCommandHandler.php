@@ -9,9 +9,9 @@
 namespace Domain\Product\Command;
 
 
-use Bundles\ProductBundle\Command\ProductCreateCommand;
+use Domain\Core\CommandBus\CommandHandlerInterface;
+use Domain\Core\CommandBus\CommandInterface;
 use Domain\Core\Event\EventBusInterface;
-use Domain\Core\Signature\CommandHandlerInterface;
 use Domain\Core\Urlizer;
 use Domain\Product\Event\ProductCreatedEvent;
 use Domain\Product\Exception\ProductAlreadyExistsException;
@@ -40,15 +40,11 @@ class ProductCreateCommandHandler implements CommandHandlerInterface
     }
 
     /**
-     * @param ProductCreateCommand $command
+     * @param ProductCreateCommandInterface|CommandInterface $command
      * @throws ProductAlreadyExistsException
      */
-    public function handle(ProductCreateCommand $command)
+    public function handle(CommandInterface $command)
     {
-        if (!$command instanceof ProductCreateCommandInterface) {
-            throw new \InvalidArgumentException('command must implement ' . ProductCreateCommandInterface::class);
-        }
-
         $alias = Urlizer::urlize($command->getName()->getName());
         $product = $this->productRepository->oneByAlias($alias);
         if ($product) {

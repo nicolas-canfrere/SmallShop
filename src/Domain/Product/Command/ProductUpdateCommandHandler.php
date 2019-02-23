@@ -1,17 +1,11 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nicolas
- * Date: 10/02/19
- * Time: 19:37
- */
 
 namespace Domain\Product\Command;
 
 
-use Bundles\ProductBundle\Command\ProductUpdateCommand;
+use Domain\Core\CommandBus\CommandHandlerInterface;
+use Domain\Core\CommandBus\CommandInterface;
 use Domain\Core\Event\EventBusInterface;
-use Domain\Core\Signature\CommandHandlerInterface;
 use Domain\Core\Urlizer;
 use Domain\Product\Event\ProductUpdatedEvent;
 use Domain\Product\Exception\ProductAlreadyExistsException;
@@ -39,14 +33,11 @@ class ProductUpdateCommandHandler implements CommandHandlerInterface
     }
 
     /**
-     * @param ProductUpdateCommand $command
+     * @param CommandInterface|ProductUpdateCommandInterface $command
      * @throws ProductAlreadyExistsException
      */
-    public function handle(ProductUpdateCommand $command)
+    public function handle(CommandInterface $command)
     {
-        if (!$command instanceof ProductUpdateCommandInterface) {
-            throw new \InvalidArgumentException('command must implement ' . ProductUpdateCommandInterface::class);
-        }
         $original = $command->getOriginal();
         $alias    = Urlizer::urlize($command->getName()->getName());
         if ( ! $original->getName()->equals($command->getName())) {
