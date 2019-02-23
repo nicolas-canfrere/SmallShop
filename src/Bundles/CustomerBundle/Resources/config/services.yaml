@@ -11,6 +11,11 @@ services:
   Domain\Customer\:
     resource: '../../../../../src/Domain/Customer/*'
 
+  Bundles\CustomerBundle\Doctrine\CustomerPasswordHashListener:
+    autowire: true
+    tags:
+    - { name: doctrine.event_subscriber }
+
   Domain\Customer\Signature\CustomerFactoryInterface:
     class: Bundles\CustomerBundle\Factory\CustomerFactory
   Domain\Customer\Signature\CustomerRepositoryInterface:

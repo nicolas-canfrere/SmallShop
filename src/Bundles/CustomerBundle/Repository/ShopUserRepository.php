@@ -3,9 +3,11 @@
 namespace Bundles\CustomerBundle\Repository;
 
 
+use Bundles\CustomerBundle\Model\ShopUser;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
 use Domain\Core\Signature\EntityInterface;
+use Domain\Core\Urlizer;
 use Domain\Customer\Signature\CustomerInterface;
 use Domain\Customer\Signature\CustomerRepositoryInterface;
 use Ramsey\Uuid\Uuid;
@@ -41,21 +43,34 @@ class ShopUserRepository implements CustomerRepositoryInterface
 
     public function queryBuilder(): QueryBuilder
     {
-        // TODO: Implement queryBuilder() method.
+        return $this
+            ->entityManager
+            ->createQueryBuilder()
+            ->select('shop_user')->from(ShopUser::class, 'shop_user');
     }
 
     public function all()
     {
-        // TODO: Implement all() method.
+        return $this->queryBuilder()->getQuery()->getResult();
     }
 
     public function oneByUsername(string $username): ?CustomerInterface
     {
-        // TODO: Implement oneByUsername() method.
+        $canonical = Urlizer::urlize($username);
+
+        $qb = $this->queryBuilder();
+        $qb->andWhere('shop_user.canonicalUsername = :canonical')->setParameter('canonical', $canonical);
+
+        return $qb->getQuery()->getOneOrNullResult();
     }
 
     public function oneByEmail(string $email): ?CustomerInterface
     {
-        // TODO: Implement oneByEmail() method.
+        $canonical = Urlizer::urlize($email);
+
+        $qb = $this->queryBuilder();
+        $qb->andWhere('shop_user.canonicalEmail = :canonical')->setParameter('canonical', $canonical);
+
+        return $qb->getQuery()->getOneOrNullResult();
     }
 }

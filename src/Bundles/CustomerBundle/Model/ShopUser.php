@@ -11,6 +11,7 @@ class ShopUser extends Customer implements UserInterface
 
     protected $roles = [ShopUser::ROLE];
 
+
     public static function create(
         string $id,
         string $firstname,

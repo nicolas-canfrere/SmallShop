@@ -39,6 +39,10 @@ class Customer implements CustomerInterface
      * @var string
      */
     protected $password;
+    /**
+     * @var string
+     */
+    protected $plainPassword;
 
     public static function create(
         string $id,
@@ -58,7 +62,7 @@ class Customer implements CustomerInterface
         $static->lastname = $lastname;
         $static->username = $username;
         $static->email = $email;
-        $static->password = $password;
+        $static->plainPassword = $password;
         $static->canonicalUsername = $canonicalUsername;
         $static->canonicalEmail = $canonicalEmail;
 
@@ -127,5 +131,23 @@ class Customer implements CustomerInterface
     public function getPassword(): string
     {
         return $this->password;
+    }
+
+    /**
+     * @param string $password
+     * @return Customer
+     */
+    public function setPassword(string $password): Customer
+    {
+        $this->password = $password;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPlainPassword(): string
+    {
+        return $this->plainPassword;
     }
 }

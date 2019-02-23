@@ -3,6 +3,11 @@ admin_home:
   controller: Application\Admin\Controller\HomeController::default
   methods: ['get']
 
+admin_customers_list:
+  path: /customers
+  controller: Application\Admin\Controller\CustomerController::list
+  methods: ['get']
+
 admin_products_list:
   path: /products
   controller: Application\Admin\Controller\ProductController::list

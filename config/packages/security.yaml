@@ -1,4 +1,6 @@
 security:
+  encoders:
+    Bundles\CustomerBundle\Model\ShopUser: bcrypt
   # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
   providers:
     in_memory: { memory: ~ }

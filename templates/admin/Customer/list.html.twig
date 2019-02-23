@@ -1,0 +1,52 @@
+{% extends '@admin/master.html.twig' %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h2>Customers list</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p>
+                    <a href="" class="btn btn-success"><i class="fas fa-plus"></i> Add new</a>
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Firstname</th>
+                        <th>Lastname</th>
+                        <th>Email</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for customer in customers %}
+                        <tr>
+                            <td>{{ customer.firstname }}</td>
+                            <td>{{ customer.lastname }}</td>
+                            <td>{{ customer.email }}</td>
+
+                            <td>
+                                <a href="" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i> edit</a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <div class="navigation">
+                    {{ knp_pagination_render(customers) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
