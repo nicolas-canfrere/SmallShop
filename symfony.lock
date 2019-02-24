@@ -146,6 +146,9 @@
     "league/tactician-logger": {
         "version": "v0.10.0"
     },
+    "maglnet/composer-require-checker": {
+        "version": "1.1.0"
+    },
     "moneyphp/money": {
         "version": "v3.2.1"
     },
@@ -535,6 +538,12 @@
     },
     "webmozart/assert": {
         "version": "1.4.0"
+    },
+    "webmozart/glob": {
+        "version": "4.1.0"
+    },
+    "webmozart/path-util": {
+        "version": "2.3.0"
     },
     "zendframework/zend-code": {
         "version": "3.3.1"
