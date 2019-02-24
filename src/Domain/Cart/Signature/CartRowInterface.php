@@ -8,7 +8,7 @@ use Money\Money;
 
 interface CartRowInterface
 {
-    public static function FromArray(array $array): CartRowInterface;
+    public static function fromArray(array $array): CartRowInterface;
 
     public function add(int $numberOfItem);
 

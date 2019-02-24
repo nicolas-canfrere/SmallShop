@@ -1,4 +1,4 @@
-.PHONY: help clear_cache fixtures schema_update schema_create db_drop db_create db_reset_dev test security_check phpcsfixer
+.PHONY: help clear_cache fixtures schema_update schema_create db_drop db_create db_reset_dev test security_check phpcsfixer messdetector
 .DEFAULT_GOAL=help
 VBIN=./vendor/bin
 CBIN=./bin
@@ -43,3 +43,6 @@ phpcsfixer_dry: ## php-cs-fixer en dry-run
 
 phpcsfixer_fix: ## php-cs-fixer en dry-run
 	$(PHP) $(VBIN)/php-cs-fixer fix ./src --format=txt --rules=@Symfony,@PSR2,-no_extra_blank_lines --verbose --show-progress=dots
+
+messdetector:
+	$(PHP) $(VBIN)/phpmd ./src/ html cleancode,codesize,controversial,design,naming,unusedcode --reportfile phpmd.html

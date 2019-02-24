@@ -8,11 +8,8 @@ class CommandHandlerProvider implements CommandHandlerProviderInterface, Command
 
     public function registerHandler(CommandHandlerInterface $handler, ?string $customId = '')
     {
-        if ($customId) {
-            $this->handlers[$customId] = $handler;
-        } else {
-            $this->handlers[get_class($handler)] = $handler;
-        }
+        $key                  = $customId ? $customId : get_class($handler);
+        $this->handlers[$key] = $handler;
     }
 
     public function getHandlerForCommand(CommandInterface $command): CommandHandlerInterface

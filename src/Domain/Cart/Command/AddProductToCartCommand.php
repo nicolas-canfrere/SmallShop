@@ -17,7 +17,7 @@ class AddProductToCartCommand
      */
     public $quantity;
 
-    public static function FromArray(array $params)
+    public static function fromArray(array $params)
     {
         $command            = new static();
         $command->productId = $params['id'];
