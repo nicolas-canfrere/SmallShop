@@ -9,7 +9,7 @@ use Domain\Core\CommandBus\CommandHandlerProvider;
 use Domain\Core\CommandBus\CommandInterface;
 use PHPUnit\Framework\TestCase;
 
-class CommadBusTest extends TestCase
+class CommandBusTest extends TestCase
 {
     /**
      * @test
@@ -33,7 +33,7 @@ class CommadBusTest extends TestCase
         $commandHandlerProvider->registerHandler($handlerOne, 'handler:one');
         $commandHandlerProvider->registerHandler($handlerTwo, 'handler:two');
 
-        $commandBus = new CommandBus($commandHandlerProvider);
+        $commandBus = new CommandBus([$commandHandlerProvider]);
 
         $commandBus->handle($command);
     }
@@ -43,21 +43,5 @@ class CommadBusTest extends TestCase
         return $this->getMockBuilder(CommandHandlerInterface::class)
             ->setMethods(['handle'])
             ->getMock();
-    }
-
-    /**
-     * @test
-     */
-    public function canProcess()
-    {
-        $commandHandlerProvider = new CommandHandlerProvider();
-        $commandBus = new CommandBus($commandHandlerProvider);
-
-        $command = new \stdClass();
-        $command->text = 'un text';
-
-        $command = $commandBus->process($command);
-
-        var_dump($command->text);
     }
 }
