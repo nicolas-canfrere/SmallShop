@@ -3,13 +3,13 @@
 namespace Domain\Core\CommandBus;
 
 /**
- * Interface CommandBusMiddlewareInterface
+ * Interface CommandBusMiddlewareInterface.
  */
 interface CommandBusMiddlewareInterface
 {
     /**
      * @param CommandInterface $command
-     * @param callable $next
+     * @param callable         $next
      *
      * @return mixed
      */

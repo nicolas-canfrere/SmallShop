@@ -5,7 +5,7 @@ namespace Domain\Core\CommandBus\Exception;
 use Throwable;
 
 /**
- * Class NoHandlerForCommandException
+ * Class NoHandlerForCommandException.
  */
 class NoHandlerForCommandException extends \Exception
 {
@@ -17,13 +17,12 @@ class NoHandlerForCommandException extends \Exception
     /**
      * NoHandlerForCommandException constructor.
      *
-     * @param string $message
-     * @param int $code
+     * @param string         $message
+     * @param int            $code
      * @param Throwable|null $previous
      */
-    public function __construct(string $message = "", int $code = 0, Throwable $previous = null)
+    public function __construct(string $message = '', int $code = 0, Throwable $previous = null)
     {
         parent::__construct(sprintf($this->format, $message), $code, $previous);
     }
-
 }

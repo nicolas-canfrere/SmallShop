@@ -3,7 +3,7 @@
 namespace Domain\Core\CommandBus;
 
 /**
- * Class CommandBus
+ * Class CommandBus.
  */
 class CommandBus implements CommandBusInterface
 {

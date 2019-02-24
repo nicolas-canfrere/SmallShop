@@ -2,6 +2,9 @@
 
 namespace Domain\Core\Event;
 
+/**
+ * Class EventBus.
+ */
 class EventBus implements EventBusInterface
 {
     /**
@@ -19,6 +22,9 @@ class EventBus implements EventBusInterface
         $this->listenerProvider = $listenerProvider;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function dispatch(EventInterface $event)
     {
         $listeners = $this->listenerProvider->getListenersForEvent($event);

@@ -5,7 +5,7 @@ namespace Domain\Core\CommandBus;
 use Domain\Core\CommandBus\Exception\NoHandlerForCommandException;
 
 /**
- * Class CommandHandlerProvider
+ * Class CommandHandlerProvider.
  */
 class CommandHandlerProvider implements CommandHandlerProviderInterface, CommandBusMiddlewareInterface
 {
