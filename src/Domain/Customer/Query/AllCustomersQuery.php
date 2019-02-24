@@ -17,7 +17,7 @@ class AllCustomersQuery
     /**
      * PaginatedProductsQuery constructor.
      *
-     * @param int $page
+     * @param int      $page
      * @param int|null $limit
      */
     public function __construct(int $page, ?int $limit = 10)

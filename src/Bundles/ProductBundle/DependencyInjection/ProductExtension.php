@@ -12,7 +12,7 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 class ProductExtension extends Extension implements PrependExtensionInterface
 {
     /**
-     * @param array $configs
+     * @param array            $configs
      * @param ContainerBuilder $container
      *
      * @throws \Exception

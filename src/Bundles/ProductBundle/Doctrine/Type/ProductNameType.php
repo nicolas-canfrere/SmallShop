@@ -14,18 +14,18 @@ class ProductNameType extends Type
     const NAME = 'product_name';
 
     /**
-     * @param ProductName $value
+     * @param ProductName      $value
      * @param AbstractPlatform $platform
      *
      * @return mixed|string
      */
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
-        return (string)$value;
+        return (string) $value;
     }
 
     /**
-     * @param string $value
+     * @param string           $value
      * @param AbstractPlatform $platform
      *
      * @return ProductName
@@ -38,7 +38,7 @@ class ProductNameType extends Type
     }
 
     /**
-     * @param array $fieldDeclaration
+     * @param array            $fieldDeclaration
      * @param AbstractPlatform $platform
      *
      * @return string

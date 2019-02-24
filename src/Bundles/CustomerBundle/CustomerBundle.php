@@ -28,7 +28,7 @@ class CustomerBundle extends Bundle
     private function addRegisterMappingsPass(ContainerBuilder $container)
     {
         $mappings = [
-            realpath(__DIR__.'/Resources/config/doctrine/model')   => 'Bundles\CustomerBundle\Model',
+            realpath(__DIR__.'/Resources/config/doctrine/model') => 'Bundles\CustomerBundle\Model',
             realpath(__DIR__.'/Resources/config/doctrine/mapping') => 'Domain\Customer',
         ];
         if (class_exists('Doctrine\Bundle\DoctrineBundle\DependencyInjection\Compiler\DoctrineOrmMappingsPass')) {

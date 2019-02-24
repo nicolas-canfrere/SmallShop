@@ -45,52 +45,61 @@ class CartRow implements CartRowInterface
      */
     protected $totalPrice;
 
-    public static function create(string $id, ProductInterface $product, int $count = 1)
+    /**
+     * {@inheritdoc}
+     */
+    public static function create(string $id, ProductInterface $product, int $count = 1): CartRowInterface
     {
-        $row               = new static();
-        $row->id           = $id;
-        $row->product      = $product;
-        $row->productId    = $product->getId();
-        $row->productName  = $product->getName();
+        $row = new static();
+        $row->id = $id;
+        $row->product = $product;
+        $row->productId = $product->getId();
+        $row->productName = $product->getName();
         $row->productPrice = $product->getPrice();
-        $row->count        = $count;
+        $row->count = $count;
         $row->calculTotalPrice();
 
         return $row;
     }
 
-    protected function calculTotalPrice()
+    protected function calculTotalPrice(): void
     {
         $this->totalPrice = $this->productPrice->multiply($this->count);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public static function fromArray(array $array): CartRowInterface
     {
-        $row               = new static();
-        $row->id           = $array['id'];
-        $row->productId    = $array['productId'];
-        $row->productName  = new ProductName($array['productName']);
+        $row = new static();
+        $row->id = $array['id'];
+        $row->productId = $array['productId'];
+        $row->productName = new ProductName($array['productName']);
         $row->productPrice = new Money($array['price'], new Currency($array['currency']));
-        $row->count        = $array['count'];
+        $row->count = $array['count'];
         $row->calculTotalPrice();
 
         return $row;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function toArray(): array
     {
         return [
-            'id'          => $this->id,
-            'productId'   => $this->productId,
+            'id' => $this->id,
+            'productId' => $this->productId,
             'productName' => $this->productName->getName(),
-            'price'       => $this->productPrice->getAmount(),
-            'currency'    => $this->productPrice->getCurrency()->getCode(),
-            'count'       => $this->count,
+            'price' => $this->productPrice->getAmount(),
+            'currency' => $this->productPrice->getCurrency()->getCode(),
+            'count' => $this->count,
         ];
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getId(): string
     {
@@ -98,7 +107,7 @@ class CartRow implements CartRowInterface
     }
 
     /**
-     * @return ProductInterface
+     * {@inheritdoc}
      */
     public function getProduct(): ProductInterface
     {
@@ -106,20 +115,26 @@ class CartRow implements CartRowInterface
     }
 
     /**
-     * @return int
+     * {@inheritdoc}
      */
     public function getCount(): int
     {
         return $this->count;
     }
 
-    public function add(int $numberOfItem)
+    /**
+     * {@inheritdoc}
+     */
+    public function add(int $numberOfItem): void
     {
         $this->count += $numberOfItem;
         $this->calculTotalPrice();
     }
 
-    public function remove(int $numberOfItem)
+    /**
+     * {@inheritdoc}
+     */
+    public function remove(int $numberOfItem): void
     {
         $this->count -= $numberOfItem;
         if ($this->count < 0) {
@@ -129,7 +144,7 @@ class CartRow implements CartRowInterface
     }
 
     /**
-     * @return Money
+     * {@inheritdoc}
      */
     public function getTotalPrice(): Money
     {
@@ -137,7 +152,7 @@ class CartRow implements CartRowInterface
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getProductId(): string
     {
@@ -145,7 +160,7 @@ class CartRow implements CartRowInterface
     }
 
     /**
-     * @return ProductName
+     * {@inheritdoc}
      */
     public function getProductName(): ProductName
     {
@@ -153,7 +168,7 @@ class CartRow implements CartRowInterface
     }
 
     /**
-     * @return Money
+     * {@inheritdoc}
      */
     public function getProductPrice(): Money
     {

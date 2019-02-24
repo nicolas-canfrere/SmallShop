@@ -3,7 +3,7 @@
 namespace Domain\Cart\Command;
 
 /**
- * Class ClearCartCommand
+ * Class ClearCartCommand.
  */
 class ClearCartCommand
 {

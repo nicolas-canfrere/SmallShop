@@ -3,7 +3,7 @@
 namespace Domain\Cart\Exception;
 
 /**
- * Class CartException
+ * Class CartException.
  */
 class CartException extends \Exception
 {

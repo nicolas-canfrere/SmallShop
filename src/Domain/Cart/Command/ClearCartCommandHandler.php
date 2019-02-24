@@ -7,7 +7,7 @@ use Domain\Core\Signature\CommandHandlerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
- * Class ClearCartCommandHandler
+ * Class ClearCartCommandHandler.
  */
 class ClearCartCommandHandler implements CommandHandlerInterface
 {
@@ -25,14 +25,14 @@ class ClearCartCommandHandler implements CommandHandlerInterface
      * ClearCartCommandHandler constructor.
      *
      * @param EventDispatcherInterface $eventDispatcher
-     * @param CartInterface $cart
+     * @param CartInterface            $cart
      */
     public function __construct(
         EventDispatcherInterface $eventDispatcher,
         CartInterface $cart
     ) {
         $this->eventDispatcher = $eventDispatcher;
-        $this->cart            = $cart;
+        $this->cart = $cart;
     }
 
     /**

@@ -36,7 +36,7 @@ class StockRepository implements StockRepositoryInterface
         $qb = $this->entityManager->createQueryBuilder()->select('stockRow')->from(StockRow::class, 'stockRow');
         $qb->andWhere('stockRow.id = :id')->setParameter('id', $id);
         $qb->addOrderBy('stockRow.recordOn', 'ASC');
-        $rows   = $qb->getQuery()->getResult();
+        $rows = $qb->getQuery()->getResult();
         $events = [];
         foreach ($rows as $row) {
             $events[] = $row->getPayload();

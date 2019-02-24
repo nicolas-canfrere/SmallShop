@@ -7,13 +7,13 @@ use Domain\Product\Signature\ProductInterface;
 use Money\Money;
 
 /**
- * Interface CartInterface
+ * Interface CartInterface.
  */
 interface CartInterface
 {
     /**
      * @param ProductInterface $product
-     * @param int $count
+     * @param int              $count
      *
      * @throws CartException
      */
@@ -21,7 +21,7 @@ interface CartInterface
 
     /**
      * @param ProductInterface $product
-     * @param int $count
+     * @param int              $count
      *
      * @throws CartException
      */

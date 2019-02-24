@@ -13,7 +13,7 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 class CoreExtension extends Extension
 {
     /**
-     * @param array $configs
+     * @param array            $configs
      * @param ContainerBuilder $container
      *
      * @throws \Exception

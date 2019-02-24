@@ -31,9 +31,9 @@ class CustomerCreateCommandHandler implements CommandHandlerInterface
     /**
      * CustomerCreateCommandHandler constructor.
      *
-     * @param CustomerFactoryInterface $customerFactory
+     * @param CustomerFactoryInterface    $customerFactory
      * @param CustomerRepositoryInterface $customerRepository
-     * @param EventBus $eventBus
+     * @param EventBus                    $eventBus
      */
     public function __construct(
         CustomerFactoryInterface $customerFactory,

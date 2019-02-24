@@ -21,7 +21,7 @@ class FrontPaginatedProductsQueryHandler implements QueryHandlerInterface
     public function __construct(ProductRepositoryInterface $productRepository, PaginatorInterface $paginator)
     {
         $this->productRepository = $productRepository;
-        $this->paginator         = $paginator;
+        $this->paginator = $paginator;
     }
 
     public function handle(FrontPaginatedProductsQuery $query)

@@ -38,7 +38,7 @@ class InMemoryProductRepository implements ProductRepositoryInterface
 
     public function oneById(string $id)
     {
-        if ( ! array_key_exists($id, $this->products)) {
+        if (!array_key_exists($id, $this->products)) {
             return null;
         }
 

@@ -12,11 +12,11 @@ class ProductNameValidator extends ConstraintValidator
 {
     /**
      * @param ProductName $value
-     * @param Constraint $constraint
+     * @param Constraint  $constraint
      */
     public function validate($value, Constraint $constraint)
     {
-        if ( ! $constraint instanceof ProductNameConstraint) {
+        if (!$constraint instanceof ProductNameConstraint) {
             throw new UnexpectedTypeException($constraint, __NAMESPACE__.'\ProductName');
         }
 

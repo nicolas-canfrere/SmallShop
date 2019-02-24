@@ -22,7 +22,7 @@ class AllCustomersQueryHandler implements QueryHandlerInterface
      * AllCustomersQueryHandler constructor.
      *
      * @param CustomerRepositoryInterface $customerRepository
-     * @param PaginatorInterface $paginator
+     * @param PaginatorInterface          $paginator
      */
     public function __construct(CustomerRepositoryInterface $customerRepository, PaginatorInterface $paginator)
     {

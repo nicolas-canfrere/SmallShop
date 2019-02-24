@@ -16,7 +16,7 @@ class CartController extends AbstractController
 {
     public function addToCart(Request $request, CommandBus $commandBus)
     {
-        $params           = $request->request->all();
+        $params = $request->request->all();
         $addToCartCommand = AddProductToCartCommand::fromArray($params);
         try {
             $commandBus->handle($addToCartCommand);
@@ -31,7 +31,7 @@ class CartController extends AbstractController
 
     public function removeFromCart(Request $request, CommandBus $commandBus)
     {
-        $params                = $request->request->all();
+        $params = $request->request->all();
         $removeFromCartCommand = RemoveProductFromCartCommand::fromArray($params);
         try {
             $commandBus->handle($removeFromCartCommand);

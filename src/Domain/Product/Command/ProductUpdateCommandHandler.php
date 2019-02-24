@@ -38,8 +38,8 @@ class ProductUpdateCommandHandler implements CommandHandlerInterface
     public function handle(CommandInterface $command)
     {
         $original = $command->getOriginal();
-        $alias    = Urlizer::urlize($command->getName()->getName());
-        if ( ! $original->getName()->equals($command->getName())) {
+        $alias = Urlizer::urlize($command->getName()->getName());
+        if (!$original->getName()->equals($command->getName())) {
             $test = $this->productRepository->oneByAlias($alias);
 
             if ($test && $test->getId() !== $original->getId()) {

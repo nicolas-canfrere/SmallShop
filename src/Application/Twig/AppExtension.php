@@ -21,9 +21,9 @@ class AppExtension extends \Twig_Extension
 
     public function formatPriceFilter(Money $price, $iso = 'fr_FR')
     {
-        $currencies      = new ISOCurrencies();
+        $currencies = new ISOCurrencies();
         $numberFormatter = new NumberFormatter($iso, NumberFormatter::CURRENCY);
-        $moneyFormatter  = new IntlMoneyFormatter($numberFormatter, $currencies);
+        $moneyFormatter = new IntlMoneyFormatter($numberFormatter, $currencies);
 
         return $moneyFormatter->format($price);
     }

@@ -39,14 +39,14 @@ class Cart implements \Countable, \IteratorAggregate, CartInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function addItem(ProductInterface $product, int $count = 1): void
     {
         if ($count < 1) {
             throw new CartException('Can not add negative number of items');
         }
-        if ( ! array_key_exists($product->getId(), $this->rows)) {
+        if (!array_key_exists($product->getId(), $this->rows)) {
             $this->rows[$product->getId()] = CartRow::create(Uuid::uuid4()->toString(), $product, $count);
         } else {
             $row = $this->rows[$product->getId()];
@@ -55,11 +55,11 @@ class Cart implements \Countable, \IteratorAggregate, CartInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function removeItem(ProductInterface $product, int $count = 1): void
     {
-        if ( ! array_key_exists($product->getId(), $this->rows)) {
+        if (!array_key_exists($product->getId(), $this->rows)) {
             throw new CartException('Product not in cart');
         }
         if ($count < 1) {
@@ -74,7 +74,7 @@ class Cart implements \Countable, \IteratorAggregate, CartInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function deleteRow(string $id): void
     {
@@ -84,7 +84,7 @@ class Cart implements \Countable, \IteratorAggregate, CartInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function clear(): void
     {
@@ -100,7 +100,7 @@ class Cart implements \Countable, \IteratorAggregate, CartInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function totalPrice(): Money
     {
@@ -109,7 +109,7 @@ class Cart implements \Countable, \IteratorAggregate, CartInterface
             return array_reduce(
                 $this->rows,
                 function (Money $accumulateur, CartRowInterface $item) {
-                    $current      = $item->getTotalPrice();
+                    $current = $item->getTotalPrice();
                     $accumulateur = $accumulateur->add($current);
 
                     return $accumulateur;
@@ -122,7 +122,7 @@ class Cart implements \Countable, \IteratorAggregate, CartInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function count(): int
     {
@@ -135,10 +135,10 @@ class Cart implements \Countable, \IteratorAggregate, CartInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function itemIsRegistred(string $id): bool
     {
-        return array_key_exists($id, $this->rows) && ! empty($this->rows[$id]);
+        return array_key_exists($id, $this->rows) && !empty($this->rows[$id]);
     }
 }

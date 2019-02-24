@@ -9,7 +9,7 @@ use Domain\Product\Signature\ProductInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /**
- * Class SessionCart
+ * Class SessionCart.
  */
 class SessionCart extends Cart
 {
@@ -27,8 +27,8 @@ class SessionCart extends Cart
      * SessionCart constructor.
      *
      * @param SessionInterface $session
-     * @param string $defaultCurrency
-     * @param string|null $sessioKey
+     * @param string           $defaultCurrency
+     * @param string|null      $sessioKey
      */
     public function __construct(SessionInterface $session, string $defaultCurrency = 'EUR', ?string $sessioKey = '')
     {
@@ -52,7 +52,7 @@ class SessionCart extends Cart
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function addItem(ProductInterface $product, int $count = 1): void
     {
@@ -60,9 +60,7 @@ class SessionCart extends Cart
         $this->persist();
     }
 
-    /**
-     *
-     */
+
     public function persist(): void
     {
         $this->session->set($this->sessionKey, $this->serialize());
@@ -82,7 +80,7 @@ class SessionCart extends Cart
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function removeItem(ProductInterface $product, int $count = 1): void
     {
@@ -91,7 +89,7 @@ class SessionCart extends Cart
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function deleteRow(string $id): void
     {
@@ -100,7 +98,7 @@ class SessionCart extends Cart
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function clear(): void
     {

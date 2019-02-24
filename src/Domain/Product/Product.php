@@ -40,11 +40,11 @@ class Product implements ProductInterface
 
     public static function create(string $id, ProductName $name, Money $price, string $alias, string $description)
     {
-        $product              = new static();
-        $product->id          = $id;
-        $product->name        = $name;
-        $product->price       = $price;
-        $product->alias       = $alias;
+        $product = new static();
+        $product->id = $id;
+        $product->name = $name;
+        $product->price = $price;
+        $product->alias = $alias;
         $product->description = $description;
 
         return $product;
@@ -52,11 +52,11 @@ class Product implements ProductInterface
 
     public function update(ProductName $name, Money $price, string $alias, string $description, bool $onSale)
     {
-        $this->name        = $name;
-        $this->alias       = $alias;
-        $this->price       = $price;
+        $this->name = $name;
+        $this->alias = $alias;
+        $this->price = $price;
         $this->description = $description;
-        $this->onSale      = $onSale;
+        $this->onSale = $onSale;
     }
 
     /**

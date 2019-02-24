@@ -22,15 +22,15 @@ class StockRow
     /**
      * StockRow constructor.
      *
-     * @param string $id
+     * @param string    $id
      * @param \DateTime $recordOn
-     * @param mixed $payload
+     * @param mixed     $payload
      */
     public function __construct(string $id, \DateTime $recordOn, $payload)
     {
-        $this->id       = $id;
+        $this->id = $id;
         $this->recordOn = $recordOn;
-        $this->payload  = $payload;
+        $this->payload = $payload;
     }
 
     /**

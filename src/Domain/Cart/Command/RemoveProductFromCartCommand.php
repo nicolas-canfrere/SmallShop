@@ -3,7 +3,7 @@
 namespace Domain\Cart\Command;
 
 /**
- * Class RemoveProductFromCartCommand
+ * Class RemoveProductFromCartCommand.
  */
 class RemoveProductFromCartCommand
 {
@@ -24,9 +24,9 @@ class RemoveProductFromCartCommand
      */
     public static function fromArray(array $params)
     {
-        $command            = new static();
+        $command = new static();
         $command->productId = $params['id'];
-        $command->quantity  = $params['quantity'];
+        $command->quantity = $params['quantity'];
 
         return $command;
     }

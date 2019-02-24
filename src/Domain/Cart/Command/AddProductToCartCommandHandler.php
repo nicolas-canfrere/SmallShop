@@ -31,18 +31,18 @@ class AddProductToCartCommandHandler implements CommandHandlerInterface
     /**
      * AddProductToCartCommandHandler constructor.
      *
-     * @param EventDispatcherInterface $eventDispatcher
+     * @param EventDispatcherInterface   $eventDispatcher
      * @param ProductRepositoryInterface $productRepository
-     * @param CartInterface $cart
+     * @param CartInterface              $cart
      */
     public function __construct(
         EventDispatcherInterface $eventDispatcher,
         ProductRepositoryInterface $productRepository,
         CartInterface $cart
     ) {
-        $this->eventDispatcher   = $eventDispatcher;
+        $this->eventDispatcher = $eventDispatcher;
         $this->productRepository = $productRepository;
-        $this->cart              = $cart;
+        $this->cart = $cart;
     }
 
     /**
@@ -54,7 +54,7 @@ class AddProductToCartCommandHandler implements CommandHandlerInterface
     {
         $product = $this->productRepository->oneById($command->productId);
 
-        if ( ! $product) {
+        if (!$product) {
             throw new ProductNotFoundException('product not found');
         }
 

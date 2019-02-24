@@ -27,7 +27,7 @@ class ProductController extends AbstractController
     public function add(Request $request, DomainCommandBus $commandBus)
     {
         $createProductCommand = new ProductCreateCommand();
-        $form                 = $this->createForm(ProductCreateForm::class, $createProductCommand);
+        $form = $this->createForm(ProductCreateForm::class, $createProductCommand);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             try {
@@ -50,13 +50,13 @@ class ProductController extends AbstractController
         DomainCommandBus $commandBus
     ) {
         $product = $productRepository->oneById($uuid);
-        if ( ! $product) {
+        if (!$product) {
             $this->addFlash('danger', 'product not found!');
 
             return $this->redirectToRoute('admin_products_list');
         }
         $updateCommand = ProductUpdateCommand::fromProduct($product);
-        $form          = $this->createForm(ProductUpdateForm::class, $updateCommand);
+        $form = $this->createForm(ProductUpdateForm::class, $updateCommand);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             try {

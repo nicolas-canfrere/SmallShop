@@ -28,8 +28,8 @@ abstract class AbstractAggregate implements AggregateInterface
     public function handle($event)
     {
         $classParts = explode('\\', get_class($event));
-        $method     = 'apply'.end($classParts);
-        if ( ! method_exists($this, $method)) {
+        $method = 'apply'.end($classParts);
+        if (!method_exists($this, $method)) {
             return;
         }
         $this->$method($event);
@@ -37,7 +37,7 @@ abstract class AbstractAggregate implements AggregateInterface
 
     public function getUncommittedEvents(): EventStream
     {
-        $uncommittedEvents       = $this->uncommittedEvents;
+        $uncommittedEvents = $this->uncommittedEvents;
         $this->uncommittedEvents = [];
 
         return new EventStream($uncommittedEvents);

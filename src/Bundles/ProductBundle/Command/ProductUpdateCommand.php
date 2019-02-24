@@ -47,14 +47,14 @@ class ProductUpdateCommand implements ProductUpdateCommandInterface
 
     public static function fromProduct(Product $product)
     {
-        $static              = new static();
-        $static->price       = $product->getPrice();
-        $static->name        = $product->getName();
+        $static = new static();
+        $static->price = $product->getPrice();
+        $static->name = $product->getName();
         $static->description = $product->getDescription();
-        $static->uuid        = $product->getId();
-        $static->alias       = $product->getAlias();
-        $static->onSale      = $product->isOnSale();
-        $static->original    = $product;
+        $static->uuid = $product->getId();
+        $static->alias = $product->getAlias();
+        $static->onSale = $product->isOnSale();
+        $static->original = $product;
 
         return $static;
     }
