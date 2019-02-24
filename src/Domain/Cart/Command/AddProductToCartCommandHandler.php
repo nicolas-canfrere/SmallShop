@@ -49,6 +49,7 @@ class AddProductToCartCommandHandler implements CommandHandlerInterface
      * @param AddProductToCartCommand $command
      *
      * @throws ProductNotFoundException
+     * @throws \Domain\Cart\Exception\CartException
      */
     public function handle(AddProductToCartCommand $command)
     {

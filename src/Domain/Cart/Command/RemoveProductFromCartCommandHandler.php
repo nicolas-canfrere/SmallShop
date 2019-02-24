@@ -50,6 +50,7 @@ class RemoveProductFromCartCommandHandler implements CommandHandlerInterface
      * @param RemoveProductFromCartCommand $command
      *
      * @throws ProductNotFoundException
+     * @throws \Domain\Cart\Exception\CartException
      */
     public function handle(RemoveProductFromCartCommand $command)
     {

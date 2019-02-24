@@ -2,6 +2,9 @@
 
 namespace Domain\Core\CommandBus;
 
+/**
+ * Class CommandBus
+ */
 class CommandBus implements CommandBusInterface
 {
     /**
@@ -9,18 +12,24 @@ class CommandBus implements CommandBusInterface
      */
     protected $commandHandlerProvider;
 
+    /**
+     * @var \Closure
+     */
     protected $middlewareChain;
 
     /**
      * CommandBus constructor.
      *
-     * @param CommandHandlerProviderInterface $commandHandlerProvider
+     * @param array $middlewares
      */
     public function __construct($middlewares = [])
     {
         $this->middlewareChain = $this->createMiddlewareChain($middlewares);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function handle(CommandInterface $command)
     {
         $middlewareChain = $this->middlewareChain;
@@ -28,7 +37,12 @@ class CommandBus implements CommandBusInterface
         return $middlewareChain($command);
     }
 
-    public function createMiddlewareChain($middlewares = [])
+    /**
+     * @param array $middlewares
+     *
+     * @return \Closure
+     */
+    public function createMiddlewareChain($middlewares = []): \Closure
     {
         $next = function () {
         };
