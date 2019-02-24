@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nicolas
- * Date: 10/02/19
- * Time: 18:37
- */
 
 namespace Application\Admin\Form;
-
 
 use Bundles\CoreBundle\Form\PhpMoneyType;
 use Bundles\ProductBundle\Command\ProductCreateCommand;
@@ -33,5 +26,4 @@ class ProductCreateForm extends AbstractType
     {
         $resolver->setDefaults(['data_class' => ProductCreateCommand::class]);
     }
-
 }

@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nicolas
- * Date: 17/02/19
- * Time: 08:22
- */
 
 namespace Domain\Cart\Command;
-
 
 class RemoveProductFromCartCommand
 {
@@ -15,6 +8,7 @@ class RemoveProductFromCartCommand
      * @var string
      */
     public $productId;
+
     /**
      * @var int|string
      */

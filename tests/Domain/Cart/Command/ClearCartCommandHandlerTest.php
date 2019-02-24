@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nicolas
- * Date: 18/02/19
- * Time: 21:58
- */
 
 namespace Domain\Tests\Cart\Command;
-
 
 use Domain\Cart\Cart;
 use Domain\Cart\Command\ClearCartCommand;
@@ -18,7 +11,6 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class ClearCartCommandHandlerTest extends CartTestCase
 {
-
     /**
      * @var CartInterface
      */

@@ -2,7 +2,6 @@
 
 namespace Domain\Tests\Core\CommandBus;
 
-
 use Domain\Core\CommandBus\CommandBus;
 use Domain\Core\CommandBus\CommandHandlerInterface;
 use Domain\Core\CommandBus\CommandHandlerProvider;

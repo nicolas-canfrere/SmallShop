@@ -2,7 +2,6 @@
 
 namespace Domain\Customer\Command;
 
-
 use Domain\Core\CommandBus\CommandInterface;
 
 interface CustomerCreateCommandInterface extends CommandInterface

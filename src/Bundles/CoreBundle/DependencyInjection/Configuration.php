@@ -2,13 +2,11 @@
 
 namespace Bundles\CoreBundle\DependencyInjection;
 
-
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 class Configuration implements ConfigurationInterface
 {
-
     /**
      * Generates the configuration tree builder.
      *
@@ -31,7 +29,6 @@ class Configuration implements ConfigurationInterface
             ->end()
             ->end()
             ->end();
-
 
         return $treeBuilder;
     }

@@ -2,7 +2,6 @@
 
 namespace Domain\Cart\Command;
 
-
 use Domain\Cart\Signature\CartInterface;
 use Domain\Core\Signature\CommandHandlerInterface;
 use Domain\Product\Exception\ProductNotFoundException;
@@ -10,8 +9,7 @@ use Domain\Product\Signature\ProductRepositoryInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
- * Class AddProductToCartCommandHandler
- * @package Domain\Cart\Command
+ * Class AddProductToCartCommandHandler.
  */
 class AddProductToCartCommandHandler implements CommandHandlerInterface
 {
@@ -19,10 +17,12 @@ class AddProductToCartCommandHandler implements CommandHandlerInterface
      * @var EventDispatcherInterface
      */
     private $eventDispatcher;
+
     /**
      * @var ProductRepositoryInterface
      */
     private $productRepository;
+
     /**
      * @var CartInterface
      */
@@ -61,6 +61,5 @@ class AddProductToCartCommandHandler implements CommandHandlerInterface
         $this->cart->addItem($product, $command->quantity);
 
         // TODO dispatch event !
-
     }
 }

@@ -2,7 +2,6 @@
 
 namespace Bundles\CustomerBundle\Repository;
 
-
 use Doctrine\ORM\QueryBuilder;
 use Domain\Core\Signature\EntityInterface;
 use Domain\Core\Urlizer;
@@ -55,6 +54,7 @@ class InMemoryCustomerRepository implements CustomerRepositoryInterface
                 return $customer;
             }
         }
+
         return null;
     }
 
@@ -67,6 +67,7 @@ class InMemoryCustomerRepository implements CustomerRepositoryInterface
                 return $customer;
             }
         }
+
         return null;
     }
 }

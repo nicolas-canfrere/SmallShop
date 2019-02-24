@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nicolas
- * Date: 10/02/19
- * Time: 13:45
- */
 
 namespace Domain\Product\Command;
-
 
 use Domain\Core\CommandBus\CommandHandlerInterface;
 use Domain\Core\CommandBus\CommandInterface;
@@ -24,6 +17,7 @@ class ProductCreateCommandHandler implements CommandHandlerInterface
      * @var ProductRepositoryInterface
      */
     private $productRepository;
+
     /**
      * @var EventBusInterface
      */
@@ -32,15 +26,14 @@ class ProductCreateCommandHandler implements CommandHandlerInterface
     public function __construct(
         ProductRepositoryInterface $productRepository,
         EventBusInterface $eventBus
-    )
-    {
-
+    ) {
         $this->productRepository = $productRepository;
         $this->eventBus = $eventBus;
     }
 
     /**
      * @param ProductCreateCommandInterface|CommandInterface $command
+     *
      * @throws ProductAlreadyExistsException
      */
     public function handle(CommandInterface $command)
@@ -48,7 +41,7 @@ class ProductCreateCommandHandler implements CommandHandlerInterface
         $alias = Urlizer::urlize($command->getName()->getName());
         $product = $this->productRepository->oneByAlias($alias);
         if ($product) {
-            throw new ProductAlreadyExistsException('Product named ' . $command->getName()->getName() . ' already exists!');
+            throw new ProductAlreadyExistsException('Product named '.$command->getName()->getName().' already exists!');
         }
 
         $identity = $this->productRepository->nextIdentity();

@@ -2,7 +2,6 @@
 
 namespace Domain\Tests\Customer\Command;
 
-
 use Bundles\CustomerBundle\Command\CustomerCreateCommand;
 use Bundles\CustomerBundle\Factory\CustomerFactory;
 use Bundles\CustomerBundle\Model\ShopUser;

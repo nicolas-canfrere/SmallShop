@@ -2,7 +2,6 @@
 
 namespace Domain\Customer\Query;
 
-
 use Domain\Core\Signature\QueryHandlerInterface;
 use Domain\Customer\Signature\CustomerRepositoryInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -13,6 +12,7 @@ class AllCustomersQueryHandler implements QueryHandlerInterface
      * @var CustomerRepositoryInterface
      */
     protected $customerRepository;
+
     /**
      * @var PaginatorInterface
      */
@@ -20,6 +20,7 @@ class AllCustomersQueryHandler implements QueryHandlerInterface
 
     /**
      * AllCustomersQueryHandler constructor.
+     *
      * @param CustomerRepositoryInterface $customerRepository
      * @param PaginatorInterface $paginator
      */
@@ -28,7 +29,6 @@ class AllCustomersQueryHandler implements QueryHandlerInterface
         $this->customerRepository = $customerRepository;
         $this->paginator = $paginator;
     }
-
 
     public function handle(AllCustomersQuery $query)
     {

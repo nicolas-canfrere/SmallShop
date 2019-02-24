@@ -2,7 +2,6 @@
 
 namespace Domain\Core\Event;
 
-
 class EventBus implements EventBusInterface
 {
     /**
@@ -12,6 +11,7 @@ class EventBus implements EventBusInterface
 
     /**
      * EventBus constructor.
+     *
      * @param EventListenerProviderInterface $listenerProvider
      */
     public function __construct(EventListenerProviderInterface $listenerProvider)

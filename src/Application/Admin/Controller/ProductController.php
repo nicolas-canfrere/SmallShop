@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nicolas
- * Date: 10/02/19
- * Time: 13:27
- */
 
 namespace Application\Admin\Controller;
-
 
 use Application\Admin\Form\ProductCreateForm;
 use Application\Admin\Form\ProductUpdateForm;
@@ -39,7 +32,7 @@ class ProductController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             try {
                 $commandBus->handle($createProductCommand);
-                $this->addFlash('success', $createProductCommand->getName() . ' created!');
+                $this->addFlash('success', $createProductCommand->getName().' created!');
 
                 return $this->redirectToRoute('admin_products_list');
             } catch (\Exception $e) {

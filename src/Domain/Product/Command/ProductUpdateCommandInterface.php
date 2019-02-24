@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nicolas
- * Date: 19/02/19
- * Time: 19:15
- */
 
 namespace Domain\Product\Command;
-
 
 use Domain\Core\CommandBus\CommandInterface;
 use Domain\Product\Product;

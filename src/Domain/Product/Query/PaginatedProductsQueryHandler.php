@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nicolas
- * Date: 17/02/19
- * Time: 20:19
- */
 
 namespace Domain\Product\Query;
-
 
 use Domain\Core\Signature\QueryHandlerInterface;
 use Domain\Product\Signature\ProductRepositoryInterface;
@@ -19,6 +12,7 @@ class PaginatedProductsQueryHandler implements QueryHandlerInterface
      * @var ProductRepositoryInterface
      */
     private $productRepository;
+
     /**
      * @var PaginatorInterface
      */
@@ -26,7 +20,6 @@ class PaginatedProductsQueryHandler implements QueryHandlerInterface
 
     public function __construct(ProductRepositoryInterface $productRepository, PaginatorInterface $paginator)
     {
-
         $this->productRepository = $productRepository;
         $this->paginator         = $paginator;
     }

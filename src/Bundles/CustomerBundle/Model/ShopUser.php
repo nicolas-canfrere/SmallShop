@@ -7,10 +7,9 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 class ShopUser extends Customer implements UserInterface
 {
-    const ROLE = "ROLE_CUSTOMER";
+    const ROLE = 'ROLE_CUSTOMER';
 
     protected $roles = [ShopUser::ROLE];
-
 
     public static function create(
         string $id,
@@ -21,8 +20,7 @@ class ShopUser extends Customer implements UserInterface
         string $password,
         string $canonicalUsername,
         string $canonicalEmail
-    )
-    {
+    ) {
         return parent::create(
             $id,
             $firstname,

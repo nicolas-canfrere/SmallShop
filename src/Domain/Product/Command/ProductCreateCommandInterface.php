@@ -2,7 +2,6 @@
 
 namespace Domain\Product\Command;
 
-
 use Domain\Core\CommandBus\CommandInterface;
 use Domain\Product\ValueObject\ProductName;
 use Money\Money;

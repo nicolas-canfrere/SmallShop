@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nicolas
- * Date: 10/02/19
- * Time: 11:33
- */
 
 namespace Bundles\ProductBundle\Repository;
-
 
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
@@ -18,7 +11,6 @@ use Ramsey\Uuid\Uuid;
 
 class ProductRepository implements ProductRepositoryInterface
 {
-
     /**
      * @var EntityManagerInterface
      */
@@ -26,7 +18,6 @@ class ProductRepository implements ProductRepositoryInterface
 
     public function __construct(EntityManagerInterface $entityManager)
     {
-
         $this->entityManager = $entityManager;
     }
 

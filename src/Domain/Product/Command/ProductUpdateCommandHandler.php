@@ -2,7 +2,6 @@
 
 namespace Domain\Product\Command;
 
-
 use Domain\Core\CommandBus\CommandHandlerInterface;
 use Domain\Core\CommandBus\CommandInterface;
 use Domain\Core\Event\EventBusInterface;
@@ -17,6 +16,7 @@ class ProductUpdateCommandHandler implements CommandHandlerInterface
      * @var ProductRepositoryInterface
      */
     private $productRepository;
+
     /**
      * @var EventBusInterface
      */
@@ -25,15 +25,14 @@ class ProductUpdateCommandHandler implements CommandHandlerInterface
     public function __construct(
         ProductRepositoryInterface $productRepository,
         EventBusInterface $eventBus
-    )
-    {
-
+    ) {
         $this->productRepository = $productRepository;
         $this->eventBus = $eventBus;
     }
 
     /**
      * @param CommandInterface|ProductUpdateCommandInterface $command
+     *
      * @throws ProductAlreadyExistsException
      */
     public function handle(CommandInterface $command)
@@ -41,11 +40,9 @@ class ProductUpdateCommandHandler implements CommandHandlerInterface
         $original = $command->getOriginal();
         $alias    = Urlizer::urlize($command->getName()->getName());
         if ( ! $original->getName()->equals($command->getName())) {
-
             $test = $this->productRepository->oneByAlias($alias);
 
             if ($test && $test->getId() !== $original->getId()) {
-
                 throw new ProductAlreadyExistsException(
                     'Product named '.$command->getName()->getName().' already exists!'
                 );

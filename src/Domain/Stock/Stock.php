@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nicolas
- * Date: 17/02/19
- * Time: 21:17
- */
 
 namespace Domain\Stock;
 
@@ -13,7 +7,6 @@ use Domain\Stock\ES\Event\CreatedEvent;
 
 class Stock extends AbstractAggregate
 {
-
     /**
      * @var string
      */
@@ -36,6 +29,4 @@ class Stock extends AbstractAggregate
     {
         $this->id = $event->getId();
     }
-
-
 }

@@ -2,7 +2,6 @@
 
 namespace Bundles\ProductBundle\Validator\Constraints;
 
-
 use Bundles\ProductBundle\Validator\Constraints\ProductName as ProductNameConstraint;
 use Domain\Tests\Product\ProductTestCase;
 use Symfony\Component\Validator\Context\ExecutionContext;
@@ -21,8 +20,6 @@ class ProductNameValidatorTest extends ProductTestCase
         $validator  = $this->initValidator($constraint->forbiddenChars);
 
         $validator->validate($product, $constraint);
-
-
     }
 
     /**

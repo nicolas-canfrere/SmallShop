@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nicolas
- * Date: 18/02/19
- * Time: 21:12
- */
 
 namespace Bundles\ProductBundle\Repository;
-
 
 use Doctrine\ORM\QueryBuilder;
 use Domain\Core\Signature\EntityInterface;

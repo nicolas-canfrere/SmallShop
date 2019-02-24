@@ -2,12 +2,10 @@
 
 namespace Domain\Core;
 
-
 use Behat\Transliterator\Transliterator;
 
 /**
- * Class Urlizer
- * @package Domain\Core
+ * Class Urlizer.
  */
 class Urlizer
 {

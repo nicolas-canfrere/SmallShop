@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nicolas
- * Date: 16/02/19
- * Time: 18:32
- */
 
 namespace Domain\Cart\Signature;
-
 
 use Domain\Product\Signature\ProductInterface;
 

@@ -2,7 +2,6 @@
 
 namespace Bundles\ProductBundle\Form;
 
-
 use Domain\Product\ValueObject\ProductName;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\DataMapperInterface;
@@ -23,20 +22,18 @@ class ProductNameType extends AbstractType implements DataMapperInterface
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(
-            array(
+            [
                 'data_class' => ProductName::class,
                 'empty_data' => null,
-            )
+            ]
         );
     }
-
 
     public function mapDataToForms($data, $forms)
     {
         $forms = iterator_to_array($forms);
         $forms['name']->setData($data ? $data->getName() : '');
     }
-
 
     public function mapFormsToData($forms, &$data)
     {
@@ -46,6 +43,5 @@ class ProductNameType extends AbstractType implements DataMapperInterface
         } catch (\Exception $e) {
             $forms['name']->addError(new FormError($e->getMessage()));
         }
-
     }
 }

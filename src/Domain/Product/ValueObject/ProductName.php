@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nicolas
- * Date: 18/02/19
- * Time: 22:44
- */
 
 namespace Domain\Product\ValueObject;
-
 
 use Webmozart\Assert\Assert;
 
@@ -16,7 +9,7 @@ final class ProductName
     /**
      * @var string
      */
-    protected $name;
+    private $name;
 
     /**
      * ProductName constructor.
@@ -55,5 +48,4 @@ final class ProductName
     {
         return $this->name;
     }
-
 }

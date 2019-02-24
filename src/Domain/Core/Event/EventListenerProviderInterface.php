@@ -2,7 +2,6 @@
 
 namespace Domain\Core\Event;
 
-
 interface EventListenerProviderInterface
 {
     public function addListener(ListenerInterface $listener);

@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nicolas
- * Date: 10/02/19
- * Time: 11:27
- */
 
 namespace Bundles\ProductBundle;
-
 
 use Bundles\ProductBundle\DependencyInjection\ProductExtension;
 use Doctrine\Bundle\DoctrineBundle\DependencyInjection\Compiler\DoctrineOrmMappingsPass;
@@ -26,20 +19,17 @@ class ProductBundle extends Bundle
     {
         parent::build($container);
 
-
         $container->registerForAutoconfiguration(CommandHandlerInterface::class)
                   ->addTag('tactician.handler', ['typehints' => true, 'bus' => 'default']);
 
         $this->addRegisterMappingsPass($container);
-
-
     }
 
     private function addRegisterMappingsPass(ContainerBuilder $container)
     {
-        $mappings = array(
+        $mappings = [
             realpath(__DIR__.'/Resources/config/doctrine/mapping') => 'Domain\Product',
-        );
+        ];
         if (class_exists('Doctrine\Bundle\DoctrineBundle\DependencyInjection\Compiler\DoctrineOrmMappingsPass')) {
             $container->addCompilerPass(DoctrineOrmMappingsPass::createXmlMappingDriver($mappings, [], false));
         }

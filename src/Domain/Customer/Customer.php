@@ -2,7 +2,6 @@
 
 namespace Domain\Customer;
 
-
 use Domain\Customer\Signature\CustomerInterface;
 
 class Customer implements CustomerInterface
@@ -11,34 +10,42 @@ class Customer implements CustomerInterface
      * @var string
      */
     protected $id;
+
     /**
      * @var string
      */
     protected $firstname;
+
     /**
      * @var string
      */
     protected $lastname;
+
     /**
      * @var string
      */
     protected $username;
+
     /**
      * @var string
      */
     protected $email;
+
     /**
      * @var string
      */
     protected $canonicalEmail;
+
     /**
      * @var string
      */
     protected $canonicalUsername;
+
     /**
      * @var string
      */
     protected $password;
+
     /**
      * @var string
      */
@@ -53,8 +60,7 @@ class Customer implements CustomerInterface
         string $password,
         string $canonicalUsername,
         string $canonicalEmail
-    )
-    {
+    ) {
         $static = new static();
 
         $static->id = $id;
@@ -135,11 +141,13 @@ class Customer implements CustomerInterface
 
     /**
      * @param string $password
+     *
      * @return Customer
      */
     public function setPassword(string $password): Customer
     {
         $this->password = $password;
+
         return $this;
     }
 

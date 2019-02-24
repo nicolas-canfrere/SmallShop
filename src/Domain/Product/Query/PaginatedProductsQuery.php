@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nicolas
- * Date: 17/02/19
- * Time: 20:19
- */
 
 namespace Domain\Product\Query;
-
 
 class PaginatedProductsQuery
 {
@@ -15,6 +8,7 @@ class PaginatedProductsQuery
      * @var int
      */
     public $page;
+
     /**
      * @var int|null
      */
@@ -31,6 +25,4 @@ class PaginatedProductsQuery
         $this->page  = $page;
         $this->limit = $limit;
     }
-
-
 }

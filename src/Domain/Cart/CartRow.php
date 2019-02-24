@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nicolas
- * Date: 16/02/19
- * Time: 11:57
- */
 
 namespace Domain\Cart;
-
 
 use Domain\Cart\Signature\CartRowInterface;
 use Domain\Product\Signature\ProductInterface;
@@ -21,26 +14,32 @@ class CartRow implements CartRowInterface
      * @var string
      */
     protected $id;
+
     /**
      * @var ProductInterface
      */
     protected $product;
+
     /**
      * @var string
      */
     protected $productId;
+
     /**
      * @var ProductName
      */
     protected $productName;
+
     /**
      * @var Money
      */
     protected $productPrice;
+
     /**
      * @var int
      */
     protected $count = 0;
+
     /**
      * @var Money
      */
@@ -58,7 +57,6 @@ class CartRow implements CartRowInterface
         $row->calculTotalPrice();
 
         return $row;
-
     }
 
     protected function calculTotalPrice()
@@ -161,6 +159,4 @@ class CartRow implements CartRowInterface
     {
         return $this->productPrice;
     }
-
-
 }

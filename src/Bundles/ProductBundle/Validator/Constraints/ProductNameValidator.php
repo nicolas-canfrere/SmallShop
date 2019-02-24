@@ -2,7 +2,6 @@
 
 namespace Bundles\ProductBundle\Validator\Constraints;
 
-
 use Bundles\ProductBundle\Validator\Constraints\ProductName as ProductNameConstraint;
 use Domain\Product\ValueObject\ProductName;
 use Symfony\Component\Validator\Constraint;
@@ -11,7 +10,6 @@ use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
 class ProductNameValidator extends ConstraintValidator
 {
-
     /**
      * @param ProductName $value
      * @param Constraint $constraint

@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nicolas
- * Date: 23/02/19
- * Time: 15:41
- */
 
 namespace Domain\Customer\Event;
-
 
 use Domain\Core\Event\Event;
 use Domain\Customer\Signature\CustomerInterface;
@@ -21,6 +14,7 @@ class CustomerCreatedEvent extends Event
 
     /**
      * CustomerCreatedEvent constructor.
+     *
      * @param CustomerInterface $customer
      */
     public function __construct(CustomerInterface $customer)

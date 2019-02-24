@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nicolas
- * Date: 17/02/19
- * Time: 20:31
- */
 
 namespace Domain\Product\Query;
-
 
 class FrontPaginatedProductsQuery
 {
@@ -15,6 +8,7 @@ class FrontPaginatedProductsQuery
      * @var int
      */
     public $page;
+
     /**
      * @var int|null
      */

@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nicolas
- * Date: 17/02/19
- * Time: 23:08
- */
 
 namespace Bundles\StockBundle\Repository;
-
 
 use Doctrine\ORM\EntityManagerInterface;
 use Domain\EventSourcing\AggregateInterface;
@@ -25,7 +18,6 @@ class StockRepository implements StockRepositoryInterface
 
     public function __construct(EntityManagerInterface $entityManager)
     {
-
         $this->entityManager = $entityManager;
     }
 
@@ -35,7 +27,6 @@ class StockRepository implements StockRepositoryInterface
         foreach ($events as $event) {
             $row = new StockRow($aggregate->getId(), new \DateTime(), $event);
             $this->entityManager->persist($row);
-
         }
         $this->entityManager->flush();
     }
@@ -52,6 +43,5 @@ class StockRepository implements StockRepositoryInterface
         }
 
         return Stock::initialize(new EventStream($events));
-
     }
 }

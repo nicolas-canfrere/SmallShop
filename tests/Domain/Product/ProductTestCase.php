@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nicolas
- * Date: 19/02/19
- * Time: 01:21
- */
 
 namespace Domain\Tests\Product;
-
 
 use Domain\Product\Product;
 use Domain\Product\ValueObject\ProductName;

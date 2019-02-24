@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nicolas
- * Date: 17/02/19
- * Time: 20:31
- */
 
 namespace Domain\Product\Query;
-
 
 use Domain\Core\Signature\QueryHandlerInterface;
 use Domain\Product\Signature\ProductRepositoryInterface;
@@ -19,6 +12,7 @@ class FrontPaginatedProductsQueryHandler implements QueryHandlerInterface
      * @var ProductRepositoryInterface
      */
     private $productRepository;
+
     /**
      * @var PaginatorInterface
      */

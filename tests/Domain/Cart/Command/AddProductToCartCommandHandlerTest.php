@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nicolas
- * Date: 18/02/19
- * Time: 20:59
- */
 
 namespace Domain\Tests\Cart\Command;
-
 
 use Bundles\ProductBundle\Repository\InMemoryProductRepository;
 use Domain\Cart\Cart;

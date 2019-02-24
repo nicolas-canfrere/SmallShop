@@ -2,7 +2,6 @@
 
 namespace Domain\Customer\Command;
 
-
 use Domain\Core\CommandBus\CommandHandlerInterface;
 use Domain\Core\CommandBus\CommandInterface;
 use Domain\Core\Event\EventBus;
@@ -18,10 +17,12 @@ class CustomerCreateCommandHandler implements CommandHandlerInterface
      * @var CustomerRepositoryInterface
      */
     protected $customerRepository;
+
     /**
      * @var CustomerFactoryInterface
      */
     private $customerFactory;
+
     /**
      * @var EventBus
      */
@@ -29,6 +30,7 @@ class CustomerCreateCommandHandler implements CommandHandlerInterface
 
     /**
      * CustomerCreateCommandHandler constructor.
+     *
      * @param CustomerFactoryInterface $customerFactory
      * @param CustomerRepositoryInterface $customerRepository
      * @param EventBus $eventBus
@@ -37,16 +39,15 @@ class CustomerCreateCommandHandler implements CommandHandlerInterface
         CustomerFactoryInterface $customerFactory,
         CustomerRepositoryInterface $customerRepository,
         EventBus $eventBus
-    )
-    {
+    ) {
         $this->customerRepository = $customerRepository;
         $this->customerFactory = $customerFactory;
         $this->eventBus = $eventBus;
     }
 
-
     /**
      * @param CommandInterface|CustomerCreateCommandInterface $command
+     *
      * @throws NonUniqueCustomerEmailException
      * @throws NonUniqueCustomerUsernameException
      */
@@ -65,7 +66,6 @@ class CustomerCreateCommandHandler implements CommandHandlerInterface
         if ($customer) {
             throw new NonUniqueCustomerUsernameException($command->getUsername());
         }
-
 
         $identity = $this->customerRepository->nextIdentity();
 

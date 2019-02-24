@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nicolas
- * Date: 16/02/19
- * Time: 17:38
- */
 
 namespace Application\Front\Controller;
-
 
 use Domain\Cart\Command\AddProductToCartCommand;
 use Domain\Cart\Command\ClearCartCommand;
@@ -17,8 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Class CartController
- * @package Application\Front\Controller
+ * Class CartController.
  */
 class CartController extends AbstractController
 {
@@ -42,7 +34,6 @@ class CartController extends AbstractController
         try {
             $commandBus->handle($removeFromCartCommand);
         } catch (\Exception $e) {
-
         }
 
         return $this->redirectToRoute('front_cart_page');
@@ -54,6 +45,4 @@ class CartController extends AbstractController
 
         return $this->redirectToRoute('front_cart_page');
     }
-
-
 }

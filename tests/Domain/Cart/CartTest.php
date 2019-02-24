@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nicolas
- * Date: 18/02/19
- * Time: 22:06
- */
 
 namespace Domain\Tests\Cart;
-
 
 use Domain\Cart\Cart;
 use Money\Currency;
@@ -98,5 +91,4 @@ class CartTest extends CartTestCase
 
         $this->assertTrue($total->equals($cart->totalPrice()));
     }
-
 }

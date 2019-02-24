@@ -2,7 +2,6 @@
 
 namespace Bundles\ProductBundle\Command;
 
-
 use Bundles\ProductBundle\Validator\Constraints as CustomAssert;
 use Domain\Product\Command\ProductCreateCommandHandler;
 use Domain\Product\Command\ProductCreateCommandInterface;
@@ -17,15 +16,18 @@ class ProductCreateCommand implements ProductCreateCommandInterface
      * @CustomAssert\ProductName()
      */
     protected $name;
+
     /**
      * @var Money
      */
     protected $price;
+
     /**
      * @var string
      * @Assert\NotBlank(message="champ requis")
      */
     protected $description;
+
     /**
      * @var string
      */

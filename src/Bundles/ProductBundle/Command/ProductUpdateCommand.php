@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nicolas
- * Date: 19/02/19
- * Time: 19:15
- */
 
 namespace Bundles\ProductBundle\Command;
-
 
 use Domain\Product\Command\ProductUpdateCommandHandler;
 use Domain\Product\Command\ProductUpdateCommandInterface;
@@ -21,26 +14,32 @@ class ProductUpdateCommand implements ProductUpdateCommandInterface
      * @var ProductName
      */
     public $name;
+
     /**
      * @var Money
      */
     public $price;
+
     /**
      * @var string
      */
     public $description;
+
     /**
      * @var string
      */
     public $uuid;
+
     /**
      * @var string
      */
     public $alias;
+
     /**
      * @var bool
      */
     public $onSale;
+
     /**
      * @var Product|null
      */
@@ -199,7 +198,6 @@ class ProductUpdateCommand implements ProductUpdateCommandInterface
 
         return $this;
     }
-
 
     public function handleBy(): string
     {

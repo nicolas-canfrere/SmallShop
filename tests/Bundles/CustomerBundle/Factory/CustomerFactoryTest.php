@@ -20,7 +20,7 @@ class CustomerFactoryTest extends TestCase
             ->setLastname('a')
             ->setUsername('a')
             ->setPassword('a');
-        $shopuser = (new CustomerFactory)->createFromCommand('id', $command);
+        $shopuser = (new CustomerFactory())->createFromCommand('id', $command);
 
         $this->assertInstanceOf(ShopUser::class, $shopuser);
     }

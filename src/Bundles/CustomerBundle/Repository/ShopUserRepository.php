@@ -2,7 +2,6 @@
 
 namespace Bundles\CustomerBundle\Repository;
 
-
 use Bundles\CustomerBundle\Model\ShopUser;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
@@ -21,7 +20,6 @@ class ShopUserRepository implements CustomerRepositoryInterface
 
     public function __construct(EntityManagerInterface $entityManager)
     {
-
         $this->entityManager = $entityManager;
     }
 

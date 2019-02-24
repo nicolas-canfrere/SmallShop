@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nicolas
- * Date: 23/02/19
- * Time: 15:11
- */
 
 namespace Bundles\CustomerBundle\Doctrine;
-
 
 use Bundles\CustomerBundle\Model\ShopUser;
 use Doctrine\Common\EventSubscriber;
@@ -16,7 +9,6 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class CustomerPasswordHashListener implements EventSubscriber
 {
-
     /**
      * @var UserPasswordEncoderInterface
      */
@@ -29,7 +21,6 @@ class CustomerPasswordHashListener implements EventSubscriber
      */
     public function __construct(UserPasswordEncoderInterface $userPasswordEncoder)
     {
-
         $this->userPasswordEncoder = $userPasswordEncoder;
     }
 
@@ -55,7 +46,6 @@ class CustomerPasswordHashListener implements EventSubscriber
 
         $this->encodePassword($entity);
     }
-
 
     private function encodePassword(ShopUser $customer)
     {

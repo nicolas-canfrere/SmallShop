@@ -2,7 +2,6 @@
 
 namespace Domain\Product\Event;
 
-
 use Domain\Core\Event\Event;
 use Domain\Product\Signature\ProductInterface;
 
@@ -15,6 +14,7 @@ final class ProductUpdatedEvent extends Event
 
     /**
      * ProductCreatedEvent constructor.
+     *
      * @param $product
      */
     public function __construct(ProductInterface $product)

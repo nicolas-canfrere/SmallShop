@@ -2,7 +2,6 @@
 
 namespace Domain\Core\CommandBus;
 
-
 class CommandHandlerProvider implements CommandHandlerProviderInterface, CommandBusMiddlewareInterface
 {
     protected $handlers = [];
@@ -14,7 +13,6 @@ class CommandHandlerProvider implements CommandHandlerProviderInterface, Command
         } else {
             $this->handlers[get_class($handler)] = $handler;
         }
-
     }
 
     public function getHandlerForCommand(CommandInterface $command): CommandHandlerInterface

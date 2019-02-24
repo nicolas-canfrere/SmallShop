@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nicolas
- * Date: 17/02/19
- * Time: 23:16
- */
 
 namespace Domain\Stock;
-
 
 class StockRow
 {
@@ -15,10 +8,12 @@ class StockRow
      * @var string
      */
     protected $id;
+
     /**
      * @var \DateTime
      */
     protected $recordOn;
+
     /**
      * @var mixed
      */
@@ -61,6 +56,4 @@ class StockRow
     {
         return $this->payload;
     }
-
-
 }

@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nicolas
- * Date: 10/02/19
- * Time: 10:47
- */
 
 namespace Application\Front\Controller;
-
 
 use Domain\Product\Query\FrontPaginatedProductsQuery;
 use League\Tactician\CommandBus;

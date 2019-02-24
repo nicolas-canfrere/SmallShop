@@ -2,7 +2,6 @@
 
 namespace Domain\Core\Event;
 
-
 class EventListenerProvider implements EventListenerProviderInterface
 {
     protected $listeners = [];
@@ -21,6 +20,7 @@ class EventListenerProvider implements EventListenerProviderInterface
         if (array_key_exists($event->getName(), $this->listeners)) {
             return $this->listeners[$event->getName()];
         }
+
         return [];
     }
 }

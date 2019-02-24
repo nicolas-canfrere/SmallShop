@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nicolas
- * Date: 16/02/19
- * Time: 18:05
- */
 
 namespace Bundles\CartBundle\Service;
-
 
 use Domain\Cart\Cart;
 use Domain\Cart\CartRow;
@@ -21,6 +14,7 @@ class SessionCart extends Cart
      * @var SessionInterface
      */
     private $session;
+
     /**
      * @var string|null
      */

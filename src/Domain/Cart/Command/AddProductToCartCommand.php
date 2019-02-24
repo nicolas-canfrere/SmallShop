@@ -1,17 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nicolas
- * Date: 16/02/19
- * Time: 17:49
- */
 
 namespace Domain\Cart\Command;
 
 /**
- * Class AddProductToCartCommand
- *
- * @package Domain\Cart\Bundle\Command
+ * Class AddProductToCartCommand.
  */
 class AddProductToCartCommand
 {
@@ -19,6 +11,7 @@ class AddProductToCartCommand
      * @var string
      */
     public $productId;
+
     /**
      * @var int
      */

@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nicolas
- * Date: 10/02/19
- * Time: 11:14
- */
 
 namespace Bundles\CoreBundle;
-
 
 use Bundles\CoreBundle\DependencyInjection\Compiler\CommandBusPass;
 use Bundles\CoreBundle\DependencyInjection\Compiler\EventBusPass;
@@ -31,7 +24,6 @@ class CoreBundle extends Bundle
     {
         parent::build($container);
 
-
         $container->registerForAutoconfiguration(CommandHandlerInterface::class)
             ->addTag('tactician.handler', ['typehints' => true, 'bus' => 'default']);
         $container->registerForAutoconfiguration(QueryHandlerInterface::class)
@@ -46,15 +38,13 @@ class CoreBundle extends Bundle
         $container->addCompilerPass(new CommandBusPass());
 
         $this->addRegisterMappingsPass($container);
-
-
     }
 
     private function addRegisterMappingsPass(ContainerBuilder $container)
     {
-        $mappings = array(
+        $mappings = [
             realpath(__DIR__.'/Resources/config/doctrine/money') => 'Money',
-        );
+        ];
         if (class_exists('Doctrine\Bundle\DoctrineBundle\DependencyInjection\Compiler\DoctrineOrmMappingsPass')) {
             $container->addCompilerPass(DoctrineOrmMappingsPass::createXmlMappingDriver($mappings, [], false));
         }

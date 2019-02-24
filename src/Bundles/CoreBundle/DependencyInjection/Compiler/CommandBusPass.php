@@ -2,7 +2,6 @@
 
 namespace Bundles\CoreBundle\DependencyInjection\Compiler;
 
-
 use Domain\Core\CommandBus\CommandBus;
 use Domain\Core\CommandBus\CommandHandlerProviderInterface;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
@@ -12,7 +11,6 @@ use Symfony\Component\DependencyInjection\Reference;
 
 class CommandBusPass implements CompilerPassInterface
 {
-
     public function process(ContainerBuilder $container)
     {
         if (
@@ -32,7 +30,6 @@ class CommandBusPass implements CompilerPassInterface
 
         $commandBusConfig = $container->getParameter('core.commandbus');
 
-
         $container
             ->setDefinition(
                 CommandBus::class,
@@ -44,7 +41,7 @@ class CommandBusPass implements CompilerPassInterface
                                 return new Reference($id);
                             },
                             $commandBusConfig['middlewares']
-                        )
+                        ),
                     ]
                 )
             );

@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nicolas
- * Date: 17/02/19
- * Time: 22:16
- */
 
 namespace Domain\EventSourcing;
-
 
 abstract class AbstractAggregate implements AggregateInterface
 {
@@ -49,5 +42,4 @@ abstract class AbstractAggregate implements AggregateInterface
 
         return new EventStream($uncommittedEvents);
     }
-
 }

@@ -2,14 +2,12 @@
 
 namespace Bundles\ProductBundle\Doctrine\Type;
 
-
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\Type;
 use Domain\Product\ValueObject\ProductName;
 
 /**
- * Class ProductNameType
- * @package Bundles\ProductBundle\Doctrine\Type
+ * Class ProductNameType.
  */
 class ProductNameType extends Type
 {
@@ -31,6 +29,7 @@ class ProductNameType extends Type
      * @param AbstractPlatform $platform
      *
      * @return ProductName
+     *
      * @throws \Exception
      */
     public function convertToPHPValue($value, AbstractPlatform $platform)

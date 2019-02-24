@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nicolas
- * Date: 19/02/19
- * Time: 19:22
- */
 
 namespace Domain\Tests\Product\Command;
-
 
 use Bundles\ProductBundle\Command\ProductUpdateCommand;
 use Bundles\ProductBundle\Repository\InMemoryProductRepository;
@@ -49,8 +42,6 @@ class ProductUpdateCommandHandlerTest extends ProductTestCase
         $command->setName($productB->getName());
 
         $this->handler->handle($command);
-
-
     }
 
     /**

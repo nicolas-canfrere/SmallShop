@@ -2,13 +2,13 @@
 
 namespace Domain\Customer\Query;
 
-
 class AllCustomersQuery
 {
     /**
      * @var int
      */
     public $page;
+
     /**
      * @var int|null
      */

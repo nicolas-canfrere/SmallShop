@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nicolas
- * Date: 16/02/19
- * Time: 11:50
- */
 
 namespace Domain\Cart;
-
 
 use Domain\Cart\Signature\CartInterface;
 use Domain\Cart\Signature\CartRowInterface;
@@ -18,16 +11,17 @@ use Ramsey\Uuid\Uuid;
 use Traversable;
 
 /**
- * Class Cart
- * @package Domain\Cart
+ * Class Cart.
  */
 class Cart implements \Countable, \IteratorAggregate, CartInterface
 {
-    const ALL_PRODUCTS_IN_ROW = "all";
+    const ALL_PRODUCTS_IN_ROW = 'all';
+
     /**
      * @var CartRow[]
      */
     protected $rows = [];
+
     /**
      * @var string
      */
@@ -35,7 +29,6 @@ class Cart implements \Countable, \IteratorAggregate, CartInterface
 
     public function __construct(string $defaultCurrency = 'EUR')
     {
-
         $this->defaultCurrency = $defaultCurrency;
     }
 
@@ -129,6 +122,4 @@ class Cart implements \Countable, \IteratorAggregate, CartInterface
     {
         return array_key_exists($id, $this->rows) && ! empty($this->rows[$id]);
     }
-
-
 }

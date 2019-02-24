@@ -2,7 +2,6 @@
 
 namespace Bundles\CustomerBundle\Command;
 
-
 use Domain\Customer\Command\CustomerCreateCommandHandler;
 use Domain\Customer\Command\CustomerCreateCommandInterface;
 
@@ -12,18 +11,22 @@ class CustomerCreateCommand implements CustomerCreateCommandInterface
      * @var string
      */
     private $firstname;
+
     /**
      * @var string
      */
     private $lastname;
+
     /**
      * @var string
      */
     private $email;
+
     /**
      * @var string
      */
     private $username;
+
     /**
      * @var string
      */
@@ -39,11 +42,13 @@ class CustomerCreateCommand implements CustomerCreateCommandInterface
 
     /**
      * @param string $firstname
+     *
      * @return CustomerCreateCommand
      */
     public function setFirstname(string $firstname): CustomerCreateCommandInterface
     {
         $this->firstname = $firstname;
+
         return $this;
     }
 
@@ -57,11 +62,13 @@ class CustomerCreateCommand implements CustomerCreateCommandInterface
 
     /**
      * @param string $lastname
+     *
      * @return CustomerCreateCommand
      */
     public function setLastname(string $lastname): CustomerCreateCommandInterface
     {
         $this->lastname = $lastname;
+
         return $this;
     }
 
@@ -75,11 +82,13 @@ class CustomerCreateCommand implements CustomerCreateCommandInterface
 
     /**
      * @param string $email
+     *
      * @return CustomerCreateCommand
      */
     public function setEmail(string $email): CustomerCreateCommandInterface
     {
         $this->email = $email;
+
         return $this;
     }
 
@@ -93,11 +102,13 @@ class CustomerCreateCommand implements CustomerCreateCommandInterface
 
     /**
      * @param string $username
+     *
      * @return CustomerCreateCommand
      */
     public function setUsername(string $username): CustomerCreateCommandInterface
     {
         $this->username = $username;
+
         return $this;
     }
 
@@ -111,11 +122,13 @@ class CustomerCreateCommand implements CustomerCreateCommandInterface
 
     /**
      * @param string $password
+     *
      * @return CustomerCreateCommand
      */
     public function setPassword(string $password): CustomerCreateCommandInterface
     {
         $this->password = $password;
+
         return $this;
     }
 

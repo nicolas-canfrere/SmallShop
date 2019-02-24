@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nicolas
- * Date: 17/02/19
- * Time: 08:36
- */
 
 namespace Domain\Cart\Command;
-
 
 use Domain\Cart\Signature\CartInterface;
 use Domain\Core\Signature\CommandHandlerInterface;
@@ -19,6 +12,7 @@ class ClearCartCommandHandler implements CommandHandlerInterface
      * @var EventDispatcherInterface
      */
     private $eventDispatcher;
+
     /**
      * @var CartInterface
      */

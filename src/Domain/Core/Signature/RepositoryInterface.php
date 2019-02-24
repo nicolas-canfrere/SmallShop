@@ -2,12 +2,10 @@
 
 namespace Domain\Core\Signature;
 
-
 use Doctrine\ORM\QueryBuilder;
 
 /**
- * Interface RepositoryInterface
- * @package Domain\Core\Signature
+ * Interface RepositoryInterface.
  */
 interface RepositoryInterface
 {

@@ -2,7 +2,6 @@
 
 namespace Bundles\CoreBundle\Form;
 
-
 use Money\Currency;
 use Money\Money;
 use Symfony\Component\Form\AbstractType;
@@ -10,15 +9,13 @@ use Symfony\Component\Form\DataMapperInterface;
 use Symfony\Component\Form\Exception;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Intl\Intl;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class MoneyType
- * @package Application\Form
+ * Class MoneyType.
  */
 class PhpMoneyType extends AbstractType implements DataMapperInterface
 {

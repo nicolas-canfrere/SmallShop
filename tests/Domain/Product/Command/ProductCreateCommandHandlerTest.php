@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nicolas
- * Date: 19/02/19
- * Time: 01:21
- */
 
 namespace Domain\Tests\Product\Command;
-
 
 use Bundles\ProductBundle\Command\ProductCreateCommand;
 use Bundles\ProductBundle\Repository\InMemoryProductRepository;
@@ -44,14 +37,12 @@ class ProductCreateCommandHandlerTest extends ProductTestCase
         $productA = $this->createProduct('abc', 'a name', 100, 'a-name');
         $this->productRepository->save($productA);
 
-        $command              = new ProductCreateCommand();
+        $command = new ProductCreateCommand();
         $command->setName(new ProductName('a name'));
         $command->setPrice(new Money(1000, new Currency('EUR')));
         $command->setDescription('description');
 
         $this->handler->handle($command);
-
-
     }
 
     /**
@@ -59,7 +50,7 @@ class ProductCreateCommandHandlerTest extends ProductTestCase
      */
     public function productIsRegistred()
     {
-        $command              = new ProductCreateCommand();
+        $command = new ProductCreateCommand();
         $command->setName(new ProductName('a name'));
         $command->setPrice(new Money(1000, new Currency('EUR')));
         $command->setDescription('description');
@@ -84,6 +75,4 @@ class ProductCreateCommandHandlerTest extends ProductTestCase
             $eventBus
         );
     }
-
-
 }

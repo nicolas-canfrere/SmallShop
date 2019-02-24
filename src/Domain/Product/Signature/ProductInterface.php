@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nicolas
- * Date: 16/02/19
- * Time: 11:56
- */
 
 namespace Domain\Product\Signature;
-
 
 use Domain\Core\Signature\EntityInterface;
 use Domain\Product\ValueObject\ProductName;

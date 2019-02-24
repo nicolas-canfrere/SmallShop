@@ -3,11 +3,10 @@
  * Created by PhpStorm.
  * User: nicolas
  * Date: 16/02/19
- * Time: 18:45
+ * Time: 18:45.
  */
 
 namespace Bundles\CartBundle\Twig;
-
 
 use Domain\Cart\Signature\CartInterface;
 
@@ -34,6 +33,4 @@ class CartExtension extends \Twig_Extension
     {
         return $this->cart->count();
     }
-
-
 }

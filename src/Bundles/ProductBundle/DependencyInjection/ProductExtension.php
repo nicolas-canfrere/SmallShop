@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nicolas
- * Date: 10/02/19
- * Time: 11:28
- */
 
 namespace Bundles\ProductBundle\DependencyInjection;
-
 
 use Bundles\ProductBundle\Doctrine\Type\ProductNameType;
 use Symfony\Component\Config\FileLocator;

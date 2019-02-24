@@ -2,7 +2,6 @@
 
 namespace Domain\Tests\Core\Event;
 
-
 use Domain\Core\Event\EventBus;
 use Domain\Core\Event\EventBusInterface;
 use Domain\Core\Event\EventListenerProvider;
@@ -42,9 +41,6 @@ class EventBusTest extends TestCase
         $this->eventBus->dispatch($event);
     }
 
-    /**
-     *
-     */
     public function canStopPropagation()
     {
         $event = new EventOne();

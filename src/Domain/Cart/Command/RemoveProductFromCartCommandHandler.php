@@ -2,7 +2,6 @@
 
 namespace Domain\Cart\Command;
 
-
 use Domain\Cart\Cart;
 use Domain\Cart\Signature\CartInterface;
 use Domain\Core\Signature\CommandHandlerInterface;
@@ -11,8 +10,7 @@ use Domain\Product\Signature\ProductRepositoryInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
- * Class RemoveProductFromCartCommandHandler
- * @package Domain\Cart\Command
+ * Class RemoveProductFromCartCommandHandler.
  */
 class RemoveProductFromCartCommandHandler implements CommandHandlerInterface
 {
@@ -20,10 +18,12 @@ class RemoveProductFromCartCommandHandler implements CommandHandlerInterface
      * @var EventDispatcherInterface
      */
     private $eventDispatcher;
+
     /**
      * @var ProductRepositoryInterface
      */
     private $productRepository;
+
     /**
      * @var CartInterface
      */
@@ -59,7 +59,7 @@ class RemoveProductFromCartCommandHandler implements CommandHandlerInterface
             throw new ProductNotFoundException('product not found');
         }
 
-        if ($command->quantity == Cart::ALL_PRODUCTS_IN_ROW) {
+        if (Cart::ALL_PRODUCTS_IN_ROW == $command->quantity) {
             $this->cart->deleteRow($command->productId);
             // TODO dispatch event !
         } else {

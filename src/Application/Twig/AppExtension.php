@@ -2,15 +2,13 @@
 
 namespace Application\Twig;
 
-
 use Money\Currencies\ISOCurrencies;
 use Money\Formatter\IntlMoneyFormatter;
 use Money\Money;
 use NumberFormatter;
 
 /**
- * Class AppExtension
- * @package Application\Twig
+ * Class AppExtension.
  */
 class AppExtension extends \Twig_Extension
 {
@@ -29,6 +27,4 @@ class AppExtension extends \Twig_Extension
 
         return $moneyFormatter->format($price);
     }
-
-
 }

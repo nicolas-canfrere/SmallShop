@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nicolas
- * Date: 10/02/19
- * Time: 11:11
- */
 
 namespace Domain\Product;
-
 
 use Domain\Product\Signature\ProductInterface;
 use Domain\Product\ValueObject\ProductName;
@@ -19,22 +12,27 @@ class Product implements ProductInterface
      * @var string
      */
     protected $id;
+
     /**
      * @var ProductName
      */
     protected $name;
+
     /**
      * @var Money
      */
     protected $price;
+
     /**
      * @var string
      */
     protected $alias;
+
     /**
      * @var string
      */
     protected $description;
+
     /**
      * @var bool
      */
@@ -108,6 +106,4 @@ class Product implements ProductInterface
     {
         return $this->onSale;
     }
-
-
 }
