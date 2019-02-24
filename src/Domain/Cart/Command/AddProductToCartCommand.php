@@ -17,6 +17,11 @@ class AddProductToCartCommand
      */
     public $quantity;
 
+    /**
+     * @param array $params
+     *
+     * @return AddProductToCartCommand
+     */
     public static function fromArray(array $params)
     {
         $command            = new static();

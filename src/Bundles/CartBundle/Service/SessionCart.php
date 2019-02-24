@@ -8,6 +8,9 @@ use Domain\Cart\Signature\CartRowInterface;
 use Domain\Product\Signature\ProductInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
+/**
+ * Class SessionCart
+ */
 class SessionCart extends Cart
 {
     /**
@@ -20,6 +23,13 @@ class SessionCart extends Cart
      */
     private $sessionKey = '__cart__';
 
+    /**
+     * SessionCart constructor.
+     *
+     * @param SessionInterface $session
+     * @param string $defaultCurrency
+     * @param string|null $sessioKey
+     */
     public function __construct(SessionInterface $session, string $defaultCurrency = 'EUR', ?string $sessioKey = '')
     {
         parent::__construct($defaultCurrency);
@@ -31,25 +41,37 @@ class SessionCart extends Cart
         $this->unserialize($sessionCart);
     }
 
-    public function unserialize(?array $serialized = [])
+    /**
+     * @param array|null $serialized
+     */
+    public function unserialize(?array $serialized = []): void
     {
         foreach ($serialized as $array) {
             $this->rows[$array['productId']] = CartRow::fromArray($array);
         }
     }
 
-    public function addItem(ProductInterface $product, int $count = 1)
+    /**
+     * @inheritdoc
+     */
+    public function addItem(ProductInterface $product, int $count = 1): void
     {
         parent::addItem($product, $count);
         $this->persist();
     }
 
-    public function persist()
+    /**
+     *
+     */
+    public function persist(): void
     {
         $this->session->set($this->sessionKey, $this->serialize());
     }
 
-    public function serialize()
+    /**
+     * @return array
+     */
+    public function serialize(): array
     {
         return array_map(
             function (CartRowInterface $row) {
@@ -59,19 +81,28 @@ class SessionCart extends Cart
         );
     }
 
-    public function removeItem(ProductInterface $product, int $count = 1)
+    /**
+     * @inheritdoc
+     */
+    public function removeItem(ProductInterface $product, int $count = 1): void
     {
         parent::removeItem($product, $count);
         $this->persist();
     }
 
-    public function deleteRow(string $id)
+    /**
+     * @inheritdoc
+     */
+    public function deleteRow(string $id): void
     {
         parent::deleteRow($id);
         $this->persist();
     }
 
-    public function clear()
+    /**
+     * @inheritdoc
+     */
+    public function clear(): void
     {
         parent::clear();
         $this->persist();

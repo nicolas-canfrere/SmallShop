@@ -2,21 +2,52 @@
 
 namespace Domain\Cart\Signature;
 
+use Domain\Cart\Exception\CartException;
 use Domain\Product\Signature\ProductInterface;
+use Money\Money;
 
+/**
+ * Interface CartInterface
+ */
 interface CartInterface
 {
-    public function addItem(ProductInterface $product, int $count = 1);
+    /**
+     * @param ProductInterface $product
+     * @param int $count
+     *
+     * @throws CartException
+     */
+    public function addItem(ProductInterface $product, int $count = 1): void;
 
-    public function removeItem(ProductInterface $product, int $count = 1);
+    /**
+     * @param ProductInterface $product
+     * @param int $count
+     *
+     * @throws CartException
+     */
+    public function removeItem(ProductInterface $product, int $count = 1): void;
 
-    public function deleteRow(string $id);
+    /**
+     * @param string $id
+     */
+    public function deleteRow(string $id): void;
 
-    public function totalPrice();
+    /**
+     * @return Money
+     */
+    public function totalPrice(): Money;
 
-    public function count();
+    /**
+     * @return int
+     */
+    public function count(): int;
 
-    public function clear();
+    public function clear(): void;
 
+    /**
+     * @param string $id
+     *
+     * @return bool
+     */
     public function itemIsRegistred(string $id): bool;
 }

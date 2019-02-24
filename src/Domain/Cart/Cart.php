@@ -2,6 +2,7 @@
 
 namespace Domain\Cart;
 
+use Domain\Cart\Exception\CartException;
 use Domain\Cart\Signature\CartInterface;
 use Domain\Cart\Signature\CartRowInterface;
 use Domain\Product\Signature\ProductInterface;
@@ -27,15 +28,23 @@ class Cart implements \Countable, \IteratorAggregate, CartInterface
      */
     protected $defaultCurrency;
 
+    /**
+     * Cart constructor.
+     *
+     * @param string $defaultCurrency
+     */
     public function __construct(string $defaultCurrency = 'EUR')
     {
         $this->defaultCurrency = $defaultCurrency;
     }
 
-    public function addItem(ProductInterface $product, int $count = 1)
+    /**
+     * @inheritdoc
+     */
+    public function addItem(ProductInterface $product, int $count = 1): void
     {
         if ($count < 1) {
-            throw new \Exception('Can not add negative number of items');
+            throw new CartException('Can not add negative number of items');
         }
         if ( ! array_key_exists($product->getId(), $this->rows)) {
             $this->rows[$product->getId()] = CartRow::create(Uuid::uuid4()->toString(), $product, $count);
@@ -45,13 +54,16 @@ class Cart implements \Countable, \IteratorAggregate, CartInterface
         }
     }
 
-    public function removeItem(ProductInterface $product, int $count = 1)
+    /**
+     * @inheritdoc
+     */
+    public function removeItem(ProductInterface $product, int $count = 1): void
     {
         if ( ! array_key_exists($product->getId(), $this->rows)) {
-            throw new \Exception('Product not in cart');
+            throw new CartException('Product not in cart');
         }
         if ($count < 1) {
-            throw new \Exception('Can not remove negative number of items');
+            throw new CartException('Can not remove negative number of items');
         }
         $row = $this->rows[$product->getId()];
         $row->remove($count);
@@ -61,14 +73,20 @@ class Cart implements \Countable, \IteratorAggregate, CartInterface
         }
     }
 
-    public function deleteRow(string $id)
+    /**
+     * @inheritdoc
+     */
+    public function deleteRow(string $id): void
     {
         if (array_key_exists($id, $this->rows)) {
             unset($this->rows[$id]);
         }
     }
 
-    public function clear()
+    /**
+     * @inheritdoc
+     */
+    public function clear(): void
     {
         $this->rows = [];
     }
@@ -81,7 +99,10 @@ class Cart implements \Countable, \IteratorAggregate, CartInterface
         return new \ArrayIterator($this->rows);
     }
 
-    public function totalPrice()
+    /**
+     * @inheritdoc
+     */
+    public function totalPrice(): Money
     {
         $accumulateur = new Money(0, new Currency($this->defaultCurrency));
         if ($this->count()) {
@@ -101,9 +122,9 @@ class Cart implements \Countable, \IteratorAggregate, CartInterface
     }
 
     /**
-     * @return int
+     * @inheritdoc
      */
-    public function count()
+    public function count(): int
     {
         $total = 0;
         foreach ($this as $row) {
@@ -114,9 +135,7 @@ class Cart implements \Countable, \IteratorAggregate, CartInterface
     }
 
     /**
-     * @param string $id
-     *
-     * @return bool
+     * @inheritdoc
      */
     public function itemIsRegistred(string $id): bool
     {

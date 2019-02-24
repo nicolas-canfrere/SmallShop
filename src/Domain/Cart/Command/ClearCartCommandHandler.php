@@ -6,6 +6,9 @@ use Domain\Cart\Signature\CartInterface;
 use Domain\Core\Signature\CommandHandlerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
+/**
+ * Class ClearCartCommandHandler
+ */
 class ClearCartCommandHandler implements CommandHandlerInterface
 {
     /**
@@ -18,6 +21,12 @@ class ClearCartCommandHandler implements CommandHandlerInterface
      */
     private $cart;
 
+    /**
+     * ClearCartCommandHandler constructor.
+     *
+     * @param EventDispatcherInterface $eventDispatcher
+     * @param CartInterface $cart
+     */
     public function __construct(
         EventDispatcherInterface $eventDispatcher,
         CartInterface $cart
@@ -26,6 +35,9 @@ class ClearCartCommandHandler implements CommandHandlerInterface
         $this->cart            = $cart;
     }
 
+    /**
+     * @param ClearCartCommand $command
+     */
     public function handle(ClearCartCommand $command)
     {
         $this->cart->clear();
