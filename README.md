@@ -99,12 +99,24 @@ admin accessible par http://smallshop.local/back-office
 
 ## TODOS
 
+### Poursuivre
+
+- traductions
+- continuer le compte utilisateur (login form, customer page, etc)
+
+### Important
+
+- modifier code + database => pour connexion Oauth => seule l'email de l'utilisateur peut-être founie !!
+- du panier à la commande
+- créer les admin users
+- sécuriser l'admin
+
+### moins
+
 - decoupler le cryptage des mots de passe ( trop lié à Doctrine+Symfony Security)
-- créer le compte utilisateur (login form, customer page, etc)
 - continuer le stock (limite d'alerte - mettre à jour onSale, etc)
 - ~~pouvoir ajouter des middlewares au CommandBus~~
 - créer un QueryBus interne sur le modèle du CommandBus ( et se libérer de Tactician )
-- créer les admin users
-- sécuriser l'admin
-- traductions
-- du panier à la commande
+
+
+
