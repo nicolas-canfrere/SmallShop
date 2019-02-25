@@ -71,4 +71,15 @@ class ShopUserRepository implements CustomerRepositoryInterface
 
         return $qb->getQuery()->getOneOrNullResult();
     }
+
+    public function oneByUsernameOrEmail(string $username): ?CustomerInterface
+    {
+        $canonical = Urlizer::urlize($username);
+        $qb = $this->queryBuilder();
+        $qb->andWhere('shop_user.canonicalEmail = :canonical');
+        $qb->orWhere('shop_user.canonicalUsername = :canonical');
+        $qb->setParameter('canonical', $canonical);
+
+        return $qb->getQuery()->getOneOrNullResult();
+    }
 }

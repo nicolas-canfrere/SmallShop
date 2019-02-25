@@ -9,4 +9,6 @@ interface CustomerRepositoryInterface extends RepositoryInterface
     public function oneByUsername(string $username): ?CustomerInterface;
 
     public function oneByEmail(string $email): ?CustomerInterface;
+
+    public function oneByUsernameOrEmail(string $username): ?CustomerInterface;
 }

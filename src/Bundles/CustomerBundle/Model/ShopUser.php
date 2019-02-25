@@ -3,9 +3,10 @@
 namespace Bundles\CustomerBundle\Model;
 
 use Domain\Customer\Customer;
+use Symfony\Component\Security\Core\User\EquatableInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-class ShopUser extends Customer implements UserInterface
+class ShopUser extends Customer implements UserInterface, \Serializable, EquatableInterface
 {
     const ROLE = 'ROLE_CUSTOMER';
 
@@ -45,6 +46,53 @@ class ShopUser extends Customer implements UserInterface
 
     public function eraseCredentials()
     {
-        $this->password = '';
+    }
+
+    /**
+     * @return string
+     */
+    public function serialize()
+    {
+        return serialize(
+            [
+                $this->id,
+                $this->username,
+                $this->password,
+            ]
+        );
+    }
+
+    /**
+     * @param string $serialized
+     */
+    public function unserialize($serialized)
+    {
+        list(
+            $this->id,
+            $this->username,
+            $this->password
+            ) = unserialize($serialized);
+    }
+
+    /**
+     * @param UserInterface $user
+     *
+     * @return bool
+     */
+    public function isEqualTo(UserInterface $user)
+    {
+        if ($this->getPassword() !== $user->getPassword()) {
+            return false;
+        }
+
+        if ($this->getSalt() !== $user->getSalt()) {
+            return false;
+        }
+
+        if ($this->getUsername() !== $user->getUsername()) {
+            return false;
+        }
+
+        return true;
     }
 }

@@ -25,7 +25,18 @@ front_cart_clear:
   controller: Application\Front\Controller\CartController::clearCart
   methods: ['post']
 
+####### security
+front_security_login:
+  path: /connexion
+  controller: Application\Front\Controller\SecurityController::login
+  methods: ['get','post']
 
+front_security_logout:
+  path: /deconnexion
+  controller: Application\Front\Controller\SecurityController::logout
+  methods: ['get']
+
+########## customer account
 front_customer_index:
   path:
     fr: /{_locale}/votre-compte

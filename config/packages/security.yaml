@@ -3,13 +3,30 @@ security:
     Bundles\CustomerBundle\Model\ShopUser: bcrypt
   # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
   providers:
-    in_memory: { memory: ~ }
+    shopuser:
+      id: Bundles\CustomerBundle\Doctrine\ShopUserProvider
   firewalls:
     dev:
       pattern: ^/(_(profiler|wdt)|css|images|js)/
       security: false
     main:
       anonymous: true
+      switch_user: ~
+      provider: shopuser
+      entry_point:  Application\Front\Security\LoginFormAuthenticator
+      guard:
+        authenticators:
+          - Application\Front\Security\LoginFormAuthenticator
+          # - Application\Front\Security\GoogleConnectAuthenticator
+      remember_me:
+        secret: '%kernel.secret%'
+        lifetime: 2592000 # 1 mois
+        path: /
+        secure: false
+        httponly: true
+      logout:
+        path: /deconnexion
+        target: /
 
       # activate different ways to authenticate
 
@@ -22,5 +39,6 @@ security:
   # Easy way to control access for large sections of your site
   # Note: Only the *first* access control that matches will be used
   access_control:
-  # - { path: ^/admin, roles: ROLE_ADMIN }
+    - { path: ^/fr/votre-compte, roles: ROLE_CUSTOMER }
+    - { path: ^/en/your-account, roles: ROLE_CUSTOMER }
   # - { path: ^/profile, roles: ROLE_USER }

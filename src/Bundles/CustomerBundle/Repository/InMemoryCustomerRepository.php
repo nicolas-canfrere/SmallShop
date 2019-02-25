@@ -70,4 +70,9 @@ class InMemoryCustomerRepository implements CustomerRepositoryInterface
 
         return null;
     }
+
+    public function oneByUsernameOrEmail(string $username): ?CustomerInterface
+    {
+        // TODO: Implement oneByUsernameOrEmail() method.
+    }
 }

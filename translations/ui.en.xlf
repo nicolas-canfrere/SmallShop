@@ -10,6 +10,10 @@
                 <source>link-create-account</source>
                 <target>create account</target>
             </trans-unit>
+            <trans-unit id="link-my-account">
+                <source>link-my-account</source>
+                <target>your account</target>
+            </trans-unit>
             <trans-unit id="link-sign-in">
                 <source>link-sign-in</source>
                 <target>Sign in</target>

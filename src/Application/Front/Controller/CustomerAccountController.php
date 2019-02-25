@@ -10,6 +10,8 @@ class CustomerAccountController extends AbstractController
 {
     public function index(Request $request)
     {
+        $customer = $this->getUser();
+
         return $this->render('@front/CustomerAccount/index.html.twig');
     }
 }
