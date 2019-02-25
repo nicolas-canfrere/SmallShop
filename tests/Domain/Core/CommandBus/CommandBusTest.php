@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\Tests\Core\CommandBus;
+namespace Tests\Domain\Core\CommandBus;
 
 use Domain\Core\CommandBus\CommandBus;
 use Domain\Core\CommandBus\CommandHandlerInterface;

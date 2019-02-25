@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\Tests\Product;
+namespace Tests\Domain\Product;
 
 use Domain\Product\Product;
 use Domain\Product\ValueObject\ProductName;

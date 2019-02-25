@@ -1,11 +1,12 @@
 <?php
 
-namespace Bundles\ProductBundle\Validator\Constraints;
+namespace Tests\Bundles\ProductBundle\Validator\Constraints;
 
 use Bundles\ProductBundle\Validator\Constraints\ProductName as ProductNameConstraint;
-use Domain\Tests\Product\ProductTestCase;
+use Bundles\ProductBundle\Validator\Constraints\ProductNameValidator;
 use Symfony\Component\Validator\Context\ExecutionContext;
 use Symfony\Component\Validator\Violation\ConstraintViolationBuilder;
+use Tests\Domain\Product\ProductTestCase;
 
 class ProductNameValidatorTest extends ProductTestCase
 {

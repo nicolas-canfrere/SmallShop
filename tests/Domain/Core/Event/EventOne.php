@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\Tests\Core\Event;
+namespace Tests\Domain\Core\Event;
 
 use Domain\Core\Event\Event;
 

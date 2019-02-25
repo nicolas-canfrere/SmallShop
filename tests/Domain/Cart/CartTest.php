@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\Tests\Cart;
+namespace Tests\Domain\Cart;
 
 use Domain\Cart\Cart;
 use Money\Currency;

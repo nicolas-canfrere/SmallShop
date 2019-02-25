@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\Tests\Customer\Command;
+namespace Tests\Domain\Customer\Command;
 
 use Bundles\CustomerBundle\Command\CustomerCreateCommand;
 use Bundles\CustomerBundle\Factory\CustomerFactory;

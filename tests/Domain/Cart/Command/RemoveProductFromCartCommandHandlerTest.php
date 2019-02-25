@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\Tests\Cart\Command;
+namespace Tests\Domain\Cart\Command;
 
 use Bundles\ProductBundle\Repository\InMemoryProductRepository;
 use Domain\Cart\Cart;
@@ -10,8 +10,8 @@ use Domain\Cart\Signature\CartInterface;
 use Domain\Product\Exception\ProductNotFoundException;
 use Domain\Product\Signature\ProductInterface;
 use Domain\Product\Signature\ProductRepositoryInterface;
-use Domain\Tests\Cart\CartTestCase;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Tests\Domain\Cart\CartTestCase;
 
 class RemoveProductFromCartCommandHandlerTest extends CartTestCase
 {

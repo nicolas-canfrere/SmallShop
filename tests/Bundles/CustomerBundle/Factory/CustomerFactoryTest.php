@@ -1,8 +1,9 @@
 <?php
 
-namespace Bundles\CustomerBundle\Factory;
+namespace Tests\Bundles\CustomerBundle\Factory;
 
 use Bundles\CustomerBundle\Command\CustomerCreateCommand;
+use Bundles\CustomerBundle\Factory\CustomerFactory;
 use Bundles\CustomerBundle\Model\ShopUser;
 use PHPUnit\Framework\TestCase;
 

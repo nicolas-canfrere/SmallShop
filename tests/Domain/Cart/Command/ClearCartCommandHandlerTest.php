@@ -1,13 +1,13 @@
 <?php
 
-namespace Domain\Tests\Cart\Command;
+namespace Tests\Domain\Cart\Command;
 
 use Domain\Cart\Cart;
 use Domain\Cart\Command\ClearCartCommand;
 use Domain\Cart\Command\ClearCartCommandHandler;
 use Domain\Cart\Signature\CartInterface;
-use Domain\Tests\Cart\CartTestCase;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Tests\Domain\Cart\CartTestCase;
 
 class ClearCartCommandHandlerTest extends CartTestCase
 {

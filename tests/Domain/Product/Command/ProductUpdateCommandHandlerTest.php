@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\Tests\Product\Command;
+namespace Tests\Domain\Product\Command;
 
 use Bundles\ProductBundle\Command\ProductUpdateCommand;
 use Bundles\ProductBundle\Repository\InMemoryProductRepository;
@@ -11,7 +11,7 @@ use Domain\Product\Command\ProductUpdateCommandHandler;
 use Domain\Product\Exception\ProductAlreadyExistsException;
 use Domain\Product\Signature\ProductRepositoryInterface;
 use Domain\Product\ValueObject\ProductName;
-use Domain\Tests\Product\ProductTestCase;
+use Tests\Domain\Product\ProductTestCase;
 
 class ProductUpdateCommandHandlerTest extends ProductTestCase
 {

@@ -55,6 +55,9 @@
                 <li class="nav-item">
                     <a href="" class="nav-link">{% trans from 'ui' %}link-sign-out{% endtrans %}</a>
                 </li>
+                <li class="nav-item">
+                    {{ lang_switch(app.request.locale) }}
+                </li>
             </ul>
             {#<form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="text" placeholder="Search">
