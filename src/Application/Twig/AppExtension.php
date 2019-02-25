@@ -33,10 +33,9 @@ class AppExtension extends \Twig_Extension
     public function getFunctions()
     {
         return [
-            new \Twig_SimpleFunction('lang_switch', [$this, 'langSwitch'], ['is_safe'=>['html']]),
+            new \Twig_SimpleFunction('lang_switch', [$this, 'langSwitch'], ['is_safe' => ['html']]),
         ];
     }
-
 
     public function formatPriceFilter(Money $price, $iso = 'fr_FR')
     {
@@ -50,9 +49,9 @@ class AppExtension extends \Twig_Extension
     public function langSwitch(string $locale = 'fr')
     {
         $allowedLangs = ['fr', 'en'];
-        $locale = in_array($locale, $allowedLangs) ? $locale :'fr';
+        $locale = in_array($locale, $allowedLangs) ? $locale : 'fr';
         $locale = array_values(array_diff($allowedLangs, [$locale]))[0];
-        $url = $this->router->generate('front_home', ['_locale'=>$locale]);
+        $url = $this->router->generate('front_home', ['_locale' => $locale]);
         $link = sprintf('<a href="%s" class="nav-link"><i class="fas fa-flag"></i> %s</a>', $url, strtoupper($locale));
 
         return $link;

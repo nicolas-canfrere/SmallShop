@@ -2,7 +2,6 @@
 
 namespace Application\Front\Controller;
 
-
 use Application\Front\Form\ShopUserLoginForm;
 use Bundles\CustomerBundle\Model\ShopUser;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,7 +14,7 @@ class SecurityController extends AbstractController
         if ($this->isGranted(ShopUser::ROLE)) {
             return $this->redirectToRoute('front_customer_index');
         }
-        $error        = $authenticationUtils->getLastAuthenticationError();
+        $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
 
         $form = $this->createForm(ShopUserLoginForm::class, ['_username' => $lastUsername]);
@@ -23,7 +22,7 @@ class SecurityController extends AbstractController
         return $this->render(
             '@front/Security/login.html.twig',
             array(
-                'form'  => $form->createView(),
+                'form' => $form->createView(),
                 'error' => $error,
             )
         );

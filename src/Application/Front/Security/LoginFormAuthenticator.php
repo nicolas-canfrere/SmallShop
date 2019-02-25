@@ -2,7 +2,6 @@
 
 namespace Application\Front\Security;
 
-
 use Application\Front\Form\ShopUserLoginForm;
 use Bundles\CustomerBundle\Model\ShopUser;
 use Doctrine\ORM\EntityManagerInterface;
@@ -19,11 +18,10 @@ use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticator;
 
 /**
- * Class LoginFormAuthenticator
+ * Class LoginFormAuthenticator.
  */
 class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
 {
-
     /**
      * @var RouterInterface
      */
@@ -47,9 +45,8 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
         UserPasswordEncoderInterface $passwordEncoder,
         EntityManagerInterface $entityManager
     ) {
-
-        $this->router          = $router;
-        $this->formFactory     = $formFactory;
+        $this->router = $router;
+        $this->formFactory = $formFactory;
         $this->passwordEncoder = $passwordEncoder;
         $this->entityManager = $entityManager;
     }
@@ -75,8 +72,9 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
 
         return $isLoginFormSubmission;*/
 
-        $isLoginFormSubmission = $request->attributes->get('_route') === 'front_security_login'
+        $isLoginFormSubmission = 'front_security_login' === $request->attributes->get('_route')
                && $request->isMethod('POST');
+
         return $isLoginFormSubmission;
     }
 
@@ -100,7 +98,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
     }
 
     /**
-     * @param mixed $credentials
+     * @param mixed                 $credentials
      * @param UserProviderInterface $userProvider
      *
      * @return UserInterface|null
@@ -109,13 +107,13 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
     {
         $username = $credentials['_username'];
 
-        ##return $userProvider->loadUserByUsername($username);
+        //#return $userProvider->loadUserByUsername($username);
 
         return $this->entityManager->getRepository(ShopUser::class)->oneByUsernameOrEmail($username);
     }
 
     /**
-     * @param mixed $credentials
+     * @param mixed         $credentials
      * @param UserInterface $user
      *
      * @return bool
@@ -128,14 +126,14 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
     }
 
     /**
-     * @param Request $request
+     * @param Request        $request
      * @param TokenInterface $token
-     * @param string $providerKey
+     * @param string         $providerKey
      *
      * @return RedirectResponse|Response|null
      */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
-        return new RedirectResponse($this->router->generate('front_customer_index', ['_locale'=>$request->getLocale()]));
+        return new RedirectResponse($this->router->generate('front_customer_index', ['_locale' => $request->getLocale()]));
     }
 }
