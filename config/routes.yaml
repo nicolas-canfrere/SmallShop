@@ -1,6 +1,10 @@
 front.routes:
   prefix: /
   resource: './routes/front.yaml'
+  requirements:
+    _locale: fr|en
+  defaults: { _locale: fr }
+
 admin.routes:
   prefix: /back-office
   resource: './routes/admin.yaml'

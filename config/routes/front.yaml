@@ -1,11 +1,14 @@
 front_home:
-  path: /
+  path: /{_locale}
   controller: Application\Front\Controller\HomeController::default
   methods: ['get']
 
 
+
 front_cart_page:
-  path: /cart
+  path:
+    fr: /{_locale}/votre-panier
+    en: /{_locale}/cart
   controller: Application\Front\Controller\CartPageController::index
   methods: ['get']
 
@@ -21,3 +24,11 @@ front_cart_clear:
   path: /cart/clear
   controller: Application\Front\Controller\CartController::clearCart
   methods: ['post']
+
+
+front_customer_index:
+  path:
+    fr: /{_locale}/votre-compte
+    en: /{_locale}/your-account
+  controller: Application\Front\Controller\CustomerAccountController::index
+  methods: ['get']

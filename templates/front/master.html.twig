@@ -28,7 +28,7 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('front_home') }}">Home</a>
+                    <a class="nav-link" href="{{ path('front_home') }}">{% trans from 'ui' %}link-home{% endtrans %}</a>
                 </li>
                 {#<li class="nav-item">
                     <a class="nav-link" href="#">Features</a>
@@ -46,13 +46,14 @@
                         ({{ cart_counter() }})</a>
                 </li>
                 <li class="nav-item">
-                    <a href="" class="nav-link">Create account</a>
+                    <a href="" class="nav-link">{% trans from 'ui' %}link-create-account{% endtrans %}</a>
                 </li>
                 <li class="nav-item">
-                    <a href="" class="nav-link">Sign in</a>
+                    <a href="{{ path('front_customer_index') }}"
+                       class="nav-link">{% trans from 'ui' %}link-sign-in{% endtrans %}</a>
                 </li>
                 <li class="nav-item">
-                    <a href="" class="nav-link">Sign out</a>
+                    <a href="" class="nav-link">{% trans from 'ui' %}link-sign-out{% endtrans %}</a>
                 </li>
             </ul>
             {#<form class="form-inline my-2 my-lg-0">

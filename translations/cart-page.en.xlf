@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="cart-page-title">
+                <source>cart-page-title</source>
+                <target>Your cart</target>
+            </trans-unit>
+            <trans-unit id="cart-page-product-name">
+                <source>cart-page-product-name</source>
+                <target>Product names</target>
+            </trans-unit>
+            <trans-unit id="cart-page-unit-price">
+                <source>cart-page-unit-price</source>
+                <target>Unit Price</target>
+            </trans-unit>
+            <trans-unit id="cart-page-quantity">
+                <source>cart-page-quantity</source>
+                <target>Quantity</target>
+            </trans-unit>
+            <trans-unit id="cart-page-sub-total">
+                <source>cart-page-sub-total</source>
+                <target>Sub Total</target>
+            </trans-unit>
+            <trans-unit id="cart-page-total">
+                <source>cart-page-total</source>
+                <target>Total</target>
+            </trans-unit>
+            <trans-unit id="cart-page-empty-cart">
+                <source>cart-page-empty-cart</source>
+                <target>Your cart is empty</target>
+            </trans-unit>
+            <trans-unit id="cart-page-link-empty-cart">
+                <source>cart-page-link-empty-cart</source>
+                <target>empty your cart</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

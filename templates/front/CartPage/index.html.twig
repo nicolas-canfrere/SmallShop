@@ -4,10 +4,11 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <h2>Votre panier</h2>
+                <h2>{% trans from 'cart-page' %}cart-page-title{% endtrans %}</h2>
                 {% if cart.count > 0 %}
                     <form action="{{ path('front_cart_clear') }}" method="post">
-                        <button type="submit" class="btn btn-primary">videz votre panier</button>
+                        <button type="submit"
+                                class="btn btn-primary">{% trans from 'cart-page' %}cart-page-link-empty-cart{% endtrans %}</button>
                     </form>
                 {% endif %}
             </div>
@@ -18,10 +19,10 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Unit Price</th>
-                        <th>Quantity</th>
-                        <th>Sub Total</th>
+                        <th>{% trans from 'cart-page' %}cart-page-product-name{% endtrans %}</th>
+                        <th>{% trans from 'cart-page' %}cart-page-unit-price{% endtrans %}</th>
+                        <th>{% trans from 'cart-page' %}cart-page-quantity{% endtrans %}</th>
+                        <th>{% trans from 'cart-page' %}cart-page-sub-total{% endtrans %}</th>
                         <th></th>
                     </tr>
                     </thead>
@@ -65,12 +66,12 @@
                         </tr>
                     {% else %}
                         <tr>
-                            <td colspan="5">Votre panier est vide</td>
+                            <td colspan="5">{% trans from 'cart-page' %}cart-page-empty-cart{% endtrans %}</td>
                         </tr>
                     {% endfor %}
                     <tr>
                         <td colspan="2"></td>
-                        <td><strong>Total</strong></td>
+                        <td><strong>{% trans from 'cart-page' %}cart-page-total{% endtrans %}</strong></td>
                         <td>{{ cart.totalPrice|format_price }}</td>
                         <td></td>
                     </tr>
