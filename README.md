@@ -40,6 +40,13 @@ $ cd /SmallShop
 $ php bin/console doctrine:schema:create
 ```
 
+ou utiliser le Makefile
+
+```
+$ cd /SmallShop
+$ make schema_create
+```
+
 ## Installation des fixtures
 
 se connecter au container smallshop_php
@@ -53,6 +60,33 @@ Dans le container
 ```
 $ cd /SmallShop
 $ php bin/console doctrine:fixtures:load
+```
+
+ou utiliser le Makefile
+
+```
+$ cd /SmallShop
+$ make fixtures
+```
+
+## Lancement des tests en ligne de commande
+
+```
+$ make test
+```
+
+## Makefile
+
+obtenir l'aide dans le terminal (à la racine du projet) : listing des actions
+
+```
+$ make help
+```
+
+ou simplement 
+
+```
+$ make
 ```
 
 ## Accès à l'appli en local
