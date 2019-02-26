@@ -6,6 +6,7 @@ use Bundles\CustomerBundle\Command\CustomerCreateCommand;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Domain\Core\CommandBus\CommandBusInterface;
+use Domain\Customer\ValueObject\Civility;
 
 class CustomerFixtures extends Fixture
 {
@@ -31,6 +32,7 @@ class CustomerFixtures extends Fixture
         for ($i = 0; $i < 10; ++$i) {
             $command = new CustomerCreateCommand();
             $command
+                ->setCivility(new Civility(Civility::DEFAULT))
                 ->setFirstname($faker->firstName)
                 ->setLastname($faker->lastName)
                 ->setEmail($faker->safeEmail)

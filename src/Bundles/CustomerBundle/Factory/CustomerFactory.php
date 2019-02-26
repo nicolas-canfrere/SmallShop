@@ -27,6 +27,7 @@ class CustomerFactory implements CustomerFactoryInterface
             $id,
             $command->getEmail(),
             Urlizer::urlize($command->getEmail()),
+            $command->getCivility(),
             $command->getFirstname(),
             $command->getLastname(),
             $username,

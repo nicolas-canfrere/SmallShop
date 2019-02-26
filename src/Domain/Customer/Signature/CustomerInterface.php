@@ -3,12 +3,18 @@
 namespace Domain\Customer\Signature;
 
 use Domain\Core\Signature\EntityInterface;
+use Domain\Customer\ValueObject\Civility;
 
 /**
  * Interface CustomerInterface
  */
 interface CustomerInterface extends EntityInterface
 {
+    /**
+     * @return Civility
+     */
+    public function getCivility(): Civility;
+
     /**
      * @return string|null
      */

@@ -5,6 +5,7 @@ namespace Tests\Bundles\CustomerBundle\Factory;
 use Bundles\CustomerBundle\Command\CustomerCreateCommand;
 use Bundles\CustomerBundle\Factory\CustomerFactory;
 use Bundles\CustomerBundle\Model\ShopUser;
+use Domain\Customer\ValueObject\Civility;
 use PHPUnit\Framework\TestCase;
 
 class CustomerFactoryTest extends TestCase
@@ -17,6 +18,7 @@ class CustomerFactoryTest extends TestCase
         $command = new CustomerCreateCommand();
         $command
             ->setEmail('a')
+            ->setCivility(new Civility(Civility::DEFAULT))
             ->setFirstname('a')
             ->setLastname('a')
             ->setUsername('a')
@@ -33,7 +35,7 @@ class CustomerFactoryTest extends TestCase
     {
         $command = new CustomerCreateCommand();
         $command
-            ->setEmail('a');
+            ->setEmail('a')->setCivility(new Civility(Civility::DEFAULT));
         $shopuser = (new CustomerFactory())->createFromCommand('id', $command);
 
         $this->assertInstanceOf(ShopUser::class, $shopuser);
@@ -56,7 +58,7 @@ class CustomerFactoryTest extends TestCase
     {
         $command = new CustomerCreateCommand();
         $command
-            ->setEmail('abc@example.org');
+            ->setEmail('abc@example.org')->setCivility(new Civility(Civility::DEFAULT));
         $shopuser = (new CustomerFactory())->createFromCommand('id', $command);
 
         $this->assertInstanceOf(ShopUser::class, $shopuser);

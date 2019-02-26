@@ -3,6 +3,7 @@
 namespace Bundles\CustomerBundle\Model;
 
 use Domain\Customer\Customer;
+use Domain\Customer\ValueObject\Civility;
 use Symfony\Component\Security\Core\User\EquatableInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -25,6 +26,7 @@ class ShopUser extends Customer implements UserInterface, \Serializable, Equatab
      * @param string $id
      * @param string $email
      * @param string $canonicalEmail
+     * @param Civility $civility
      * @param string|null $firstname
      * @param string|null $lastname
      * @param string|null $username
@@ -37,6 +39,7 @@ class ShopUser extends Customer implements UserInterface, \Serializable, Equatab
         string $id,
         string $email,
         string $canonicalEmail,
+        Civility $civility,
         ?string $firstname = '',
         ?string $lastname = '',
         ?string $username = '',
@@ -47,6 +50,7 @@ class ShopUser extends Customer implements UserInterface, \Serializable, Equatab
             $id,
             $email,
             $canonicalEmail,
+            $civility,
             $firstname,
             $lastname,
             $username,

@@ -13,6 +13,7 @@ use Domain\Customer\Command\CustomerCreateCommandHandler;
 use Domain\Customer\Exception\NonUniqueCustomerEmailException;
 use Domain\Customer\Exception\NonUniqueCustomerUsernameException;
 use Domain\Customer\Signature\CustomerRepositoryInterface;
+use Domain\Customer\ValueObject\Civility;
 use PHPUnit\Framework\TestCase;
 
 class CustomerCreateCommandHandlerTest extends TestCase
@@ -36,6 +37,7 @@ class CustomerCreateCommandHandlerTest extends TestCase
         $command = new CustomerCreateCommand();
         $command
             ->setUsername($username)
+            ->setCivility(new Civility(Civility::DEFAULT))
             ->setFirstname('firstname')
             ->setLastname('lastname')
             ->setEmail('email@example.org')
@@ -60,6 +62,7 @@ class CustomerCreateCommandHandlerTest extends TestCase
         $command = new CustomerCreateCommand();
         $command
             ->setUsername('username2')
+            ->setCivility(new Civility(Civility::DEFAULT))
             ->setFirstname('firstname')
             ->setLastname('lastname')
             ->setEmail('email@example.org')
@@ -79,6 +82,7 @@ class CustomerCreateCommandHandlerTest extends TestCase
         $command = new CustomerCreateCommand();
         $command
             ->setUsername('username1')
+            ->setCivility(new Civility(Civility::DEFAULT))
             ->setFirstname('firstname')
             ->setLastname('lastname')
             ->setEmail('email2@example.org')
@@ -90,8 +94,9 @@ class CustomerCreateCommandHandlerTest extends TestCase
     {
         $canonicalEmail = Urlizer::urlize($email);
         $canonicalUsername = Urlizer::urlize($username);
+        $civility = new Civility(Civility::DEFAULT);
 
-        return ShopUser::create($id, $email, $canonicalEmail, $firstname, $lastname, $username, $password, $canonicalUsername);
+        return ShopUser::create($id, $email, $canonicalEmail, $civility, $firstname, $lastname, $username, $password, $canonicalUsername);
     }
 
     protected function setUp(): void

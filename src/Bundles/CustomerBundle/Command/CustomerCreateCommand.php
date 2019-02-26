@@ -4,12 +4,18 @@ namespace Bundles\CustomerBundle\Command;
 
 use Domain\Customer\Command\CustomerCreateCommandHandler;
 use Domain\Customer\Command\CustomerCreateCommandInterface;
+use Domain\Customer\ValueObject\Civility;
 
 /**
  * Class CustomerCreateCommand
  */
 class CustomerCreateCommand implements CustomerCreateCommandInterface
 {
+    /**
+     * @var Civility
+     */
+    private $civility;
+
     /**
      * @var string|null
      */
@@ -36,7 +42,7 @@ class CustomerCreateCommand implements CustomerCreateCommandInterface
     private $password;
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getFirstname(): ?string
     {
@@ -44,9 +50,7 @@ class CustomerCreateCommand implements CustomerCreateCommandInterface
     }
 
     /**
-     * @param string $firstname
-     *
-     * @return CustomerCreateCommand
+     * {@inheritdoc}
      */
     public function setFirstname(?string $firstname = ''): CustomerCreateCommandInterface
     {
@@ -56,7 +60,7 @@ class CustomerCreateCommand implements CustomerCreateCommandInterface
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getLastname(): ?string
     {
@@ -64,9 +68,7 @@ class CustomerCreateCommand implements CustomerCreateCommandInterface
     }
 
     /**
-     * @param string $lastname
-     *
-     * @return CustomerCreateCommand
+     * {@inheritdoc}
      */
     public function setLastname(?string $lastname = ''): CustomerCreateCommandInterface
     {
@@ -76,7 +78,7 @@ class CustomerCreateCommand implements CustomerCreateCommandInterface
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getEmail(): string
     {
@@ -84,9 +86,7 @@ class CustomerCreateCommand implements CustomerCreateCommandInterface
     }
 
     /**
-     * @param string $email
-     *
-     * @return CustomerCreateCommand
+     * {@inheritdoc}
      */
     public function setEmail(string $email): CustomerCreateCommandInterface
     {
@@ -96,7 +96,7 @@ class CustomerCreateCommand implements CustomerCreateCommandInterface
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getUsername(): ?string
     {
@@ -104,9 +104,7 @@ class CustomerCreateCommand implements CustomerCreateCommandInterface
     }
 
     /**
-     * @param string $username
-     *
-     * @return CustomerCreateCommand
+     * {@inheritdoc}
      */
     public function setUsername(?string $username = ''): CustomerCreateCommandInterface
     {
@@ -116,7 +114,7 @@ class CustomerCreateCommand implements CustomerCreateCommandInterface
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getPassword(): ?string
     {
@@ -124,9 +122,7 @@ class CustomerCreateCommand implements CustomerCreateCommandInterface
     }
 
     /**
-     * @param string $password
-     *
-     * @return CustomerCreateCommand
+     * {@inheritdoc}
      */
     public function setPassword(?string $password = ''): CustomerCreateCommandInterface
     {
@@ -141,5 +137,23 @@ class CustomerCreateCommand implements CustomerCreateCommandInterface
     public function handleBy(): string
     {
         return CustomerCreateCommandHandler::class;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getCivility(): Civility
+    {
+        return $this->civility;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setCivility(Civility $civility): CustomerCreateCommandInterface
+    {
+        $this->civility = $civility;
+
+        return $this;
     }
 }

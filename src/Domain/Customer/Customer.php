@@ -3,6 +3,7 @@
 namespace Domain\Customer;
 
 use Domain\Customer\Signature\CustomerInterface;
+use Domain\Customer\ValueObject\Civility;
 
 class Customer implements CustomerInterface
 {
@@ -10,6 +11,11 @@ class Customer implements CustomerInterface
      * @var string
      */
     protected $id;
+
+    /**
+     * @var Civility
+     */
+    protected $civility;
 
     /**
      * @var string|null
@@ -55,6 +61,7 @@ class Customer implements CustomerInterface
         string $id,
         string $email,
         string $canonicalEmail,
+        Civility $civility,
         ?string $firstname = '',
         ?string $lastname = '',
         ?string $username = '',
@@ -64,6 +71,7 @@ class Customer implements CustomerInterface
         $static = new static();
 
         $static->id = $id;
+        $static->civility = $civility;
         $static->firstname = $firstname;
         $static->lastname = $lastname;
         $static->username = $username;
@@ -82,6 +90,15 @@ class Customer implements CustomerInterface
     {
         return $this->id;
     }
+
+    /**
+     * @return Civility
+     */
+    public function getCivility(): Civility
+    {
+        return $this->civility;
+    }
+
 
     /**
      * @return string|null

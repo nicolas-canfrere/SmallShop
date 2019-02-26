@@ -8,6 +8,7 @@
         <id name="id" type="guid">
             <generator strategy="NONE"/>
         </id>
+        <field name="civility" type="civility" column="civility"/>
         <field name="firstname" type="string" column="firstname" nullable="true"/>
         <field name="lastname" type="string" column="lastname" nullable="true"/>
         <field name="username" type="string" column="username" nullable="true"/>
