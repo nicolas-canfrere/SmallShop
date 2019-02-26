@@ -5,15 +5,18 @@ namespace Bundles\CustomerBundle\Command;
 use Domain\Customer\Command\CustomerCreateCommandHandler;
 use Domain\Customer\Command\CustomerCreateCommandInterface;
 
+/**
+ * Class CustomerCreateCommand
+ */
 class CustomerCreateCommand implements CustomerCreateCommandInterface
 {
     /**
-     * @var string
+     * @var string|null
      */
     private $firstname;
 
     /**
-     * @var string
+     * @var string|null
      */
     private $lastname;
 
@@ -23,19 +26,19 @@ class CustomerCreateCommand implements CustomerCreateCommandInterface
     private $email;
 
     /**
-     * @var string
+     * @var string|null
      */
     private $username;
 
     /**
-     * @var string
+     * @var string|null
      */
     private $password;
 
     /**
      * @return string
      */
-    public function getFirstname(): string
+    public function getFirstname(): ?string
     {
         return $this->firstname;
     }
@@ -45,7 +48,7 @@ class CustomerCreateCommand implements CustomerCreateCommandInterface
      *
      * @return CustomerCreateCommand
      */
-    public function setFirstname(string $firstname): CustomerCreateCommandInterface
+    public function setFirstname(?string $firstname = ''): CustomerCreateCommandInterface
     {
         $this->firstname = $firstname;
 
@@ -55,7 +58,7 @@ class CustomerCreateCommand implements CustomerCreateCommandInterface
     /**
      * @return string
      */
-    public function getLastname(): string
+    public function getLastname(): ?string
     {
         return $this->lastname;
     }
@@ -65,7 +68,7 @@ class CustomerCreateCommand implements CustomerCreateCommandInterface
      *
      * @return CustomerCreateCommand
      */
-    public function setLastname(string $lastname): CustomerCreateCommandInterface
+    public function setLastname(?string $lastname = ''): CustomerCreateCommandInterface
     {
         $this->lastname = $lastname;
 
@@ -95,7 +98,7 @@ class CustomerCreateCommand implements CustomerCreateCommandInterface
     /**
      * @return string
      */
-    public function getUsername(): string
+    public function getUsername(): ?string
     {
         return $this->username;
     }
@@ -105,7 +108,7 @@ class CustomerCreateCommand implements CustomerCreateCommandInterface
      *
      * @return CustomerCreateCommand
      */
-    public function setUsername(string $username): CustomerCreateCommandInterface
+    public function setUsername(?string $username = ''): CustomerCreateCommandInterface
     {
         $this->username = $username;
 
@@ -115,7 +118,7 @@ class CustomerCreateCommand implements CustomerCreateCommandInterface
     /**
      * @return string
      */
-    public function getPassword(): string
+    public function getPassword(): ?string
     {
         return $this->password;
     }
@@ -125,13 +128,16 @@ class CustomerCreateCommand implements CustomerCreateCommandInterface
      *
      * @return CustomerCreateCommand
      */
-    public function setPassword(string $password): CustomerCreateCommandInterface
+    public function setPassword(?string $password = ''): CustomerCreateCommandInterface
     {
         $this->password = $password;
 
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function handleBy(): string
     {
         return CustomerCreateCommandHandler::class;

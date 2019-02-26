@@ -6,44 +6,74 @@ use Domain\Customer\Customer;
 use Symfony\Component\Security\Core\User\EquatableInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+/**
+ * Class ShopUser
+ */
 class ShopUser extends Customer implements UserInterface, \Serializable, EquatableInterface
 {
+    /**
+     *
+     */
     const ROLE = 'ROLE_CUSTOMER';
 
+    /**
+     * @var array
+     */
     protected $roles = [ShopUser::ROLE];
 
+    /**
+     * @param string $id
+     * @param string $email
+     * @param string $canonicalEmail
+     * @param string|null $firstname
+     * @param string|null $lastname
+     * @param string|null $username
+     * @param string|null $password
+     * @param string|null $canonicalUsername
+     *
+     * @return Customer
+     */
     public static function create(
         string $id,
-        string $firstname,
-        string $lastname,
-        string $username,
         string $email,
-        string $password,
-        string $canonicalUsername,
-        string $canonicalEmail
+        string $canonicalEmail,
+        ?string $firstname = '',
+        ?string $lastname = '',
+        ?string $username = '',
+        ?string $password = '',
+        ?string $canonicalUsername = ''
     ) {
         return parent::create(
             $id,
+            $email,
+            $canonicalEmail,
             $firstname,
             $lastname,
             $username,
-            $email,
             $password,
-            $canonicalUsername,
-            $canonicalEmail
+            $canonicalUsername
         );
     }
 
+    /**
+     * @return array
+     */
     public function getRoles()
     {
         return $this->roles;
     }
 
+    /**
+     * @return string|null
+     */
     public function getSalt()
     {
         return null;
     }
 
+    /**
+     *
+     */
     public function eraseCredentials()
     {
     }
@@ -56,7 +86,7 @@ class ShopUser extends Customer implements UserInterface, \Serializable, Equatab
         return serialize(
             [
                 $this->id,
-                $this->username,
+                $this->email,
                 $this->password,
             ]
         );
@@ -69,7 +99,7 @@ class ShopUser extends Customer implements UserInterface, \Serializable, Equatab
     {
         list(
             $this->id,
-            $this->username,
+            $this->email,
             $this->password
             ) = unserialize($serialized);
     }
@@ -89,7 +119,7 @@ class ShopUser extends Customer implements UserInterface, \Serializable, Equatab
             return false;
         }
 
-        if ($this->getUsername() !== $user->getUsername()) {
+        if ($this->getEmail() !== $user->getEmail()) {
             return false;
         }
 

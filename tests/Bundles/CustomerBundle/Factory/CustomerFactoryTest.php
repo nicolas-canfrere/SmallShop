@@ -5,6 +5,7 @@ namespace Tests\Bundles\CustomerBundle\Factory;
 use Bundles\CustomerBundle\Command\CustomerCreateCommand;
 use Bundles\CustomerBundle\Factory\CustomerFactory;
 use Bundles\CustomerBundle\Model\ShopUser;
+use Domain\Customer\Exception\CustomerMissingEmailOrIdException;
 use PHPUnit\Framework\TestCase;
 
 class CustomerFactoryTest extends TestCase
@@ -24,5 +25,28 @@ class CustomerFactoryTest extends TestCase
         $shopuser = (new CustomerFactory())->createFromCommand('id', $command);
 
         $this->assertInstanceOf(ShopUser::class, $shopuser);
+    }
+
+    /**
+     * @test
+     */
+    public function shopUserCanBeCreatedOnlyWithEmailAndId()
+    {
+        $command = new CustomerCreateCommand();
+        $command
+            ->setEmail('a');
+        $shopuser = (new CustomerFactory())->createFromCommand('id', $command);
+
+        $this->assertInstanceOf(ShopUser::class, $shopuser);
+    }
+
+    /**
+     * @test
+     */
+    public function shopUserCannotBeCreatedWithoutEmailAndId()
+    {
+        $this->expectException(\TypeError::class);
+        $command = new CustomerCreateCommand();
+        $shopuser = (new CustomerFactory())->createFromCommand('id', $command);
     }
 }

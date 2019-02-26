@@ -4,19 +4,43 @@ namespace Domain\Customer\Signature;
 
 use Domain\Core\Signature\EntityInterface;
 
+/**
+ * Interface CustomerInterface
+ */
 interface CustomerInterface extends EntityInterface
 {
-    public function getFirstname(): string;
+    /**
+     * @return string|null
+     */
+    public function getFirstname(): ?string;
 
-    public function getLastname(): string;
+    /**
+     * @return string|null
+     */
+    public function getLastname(): ?string;
 
-    public function getUsername(): string;
+    /**
+     * @return string|null
+     */
+    public function getUsername(): ?string;
 
+    /**
+     * @return string
+     */
     public function getEmail(): string;
 
+    /**
+     * @return string
+     */
     public function getCanonicalEmail(): string;
 
-    public function getCanonicalUsername(): string;
+    /**
+     * @return string|null
+     */
+    public function getCanonicalUsername(): ?string;
 
-    public function getPassword(): string;
+    /**
+     * @return string|null
+     */
+    public function getPassword(): ?string;
 }

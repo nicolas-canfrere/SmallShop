@@ -91,7 +91,7 @@ class CustomerCreateCommandHandlerTest extends TestCase
         $canonicalEmail = Urlizer::urlize($email);
         $canonicalUsername = Urlizer::urlize($username);
 
-        return ShopUser::create($id, $firstname, $lastname, $username, $email, $password, $canonicalUsername, $canonicalEmail);
+        return ShopUser::create($id, $email, $canonicalEmail, $firstname, $lastname, $username, $password, $canonicalUsername);
     }
 
     protected function setUp(): void

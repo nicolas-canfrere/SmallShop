@@ -4,25 +4,68 @@ namespace Domain\Customer\Command;
 
 use Domain\Core\CommandBus\CommandInterface;
 
+/**
+ * Interface CustomerCreateCommandInterface
+ */
 interface CustomerCreateCommandInterface extends CommandInterface
 {
-    public function getFirstname(): string;
+    /**
+     * @return string|null
+     */
+    public function getFirstname(): ?string;
 
-    public function setFirstname(string $firstname): CustomerCreateCommandInterface;
+    /**
+     * @param string|null $firstname
+     *
+     * @return CustomerCreateCommandInterface
+     */
+    public function setFirstname(?string $firstname = ''): CustomerCreateCommandInterface;
 
-    public function getLastname(): string;
+    /**
+     * @return string|null
+     */
+    public function getLastname(): ?string;
 
-    public function setLastname(string $lastname): CustomerCreateCommandInterface;
+    /**
+     * @param string|null $lastname
+     *
+     * @return CustomerCreateCommandInterface
+     */
+    public function setLastname(?string $lastname = ''): CustomerCreateCommandInterface;
 
+    /**
+     * @return string
+     */
     public function getEmail(): string;
 
+    /**
+     * @param string $email
+     *
+     * @return CustomerCreateCommandInterface
+     */
     public function setEmail(string $email): CustomerCreateCommandInterface;
 
-    public function getUsername(): string;
+    /**
+     * @return string|null
+     */
+    public function getUsername(): ?string;
 
-    public function setUsername(string $username): CustomerCreateCommandInterface;
+    /**
+     * @param string|null $username
+     *
+     * @return CustomerCreateCommandInterface
+     */
+    public function setUsername(?string $username = ''): CustomerCreateCommandInterface;
 
-    public function getPassword(): string;
+    /**
+     * @return string|null
+     */
+    public function getPassword(): ?string;
 
-    public function setPassword(string $password): CustomerCreateCommandInterface;
+    /**
+     * @param string|null $password
+     *
+     * @return CustomerCreateCommandInterface
+     */
+    public function setPassword(?string $password = ''): CustomerCreateCommandInterface;
 }

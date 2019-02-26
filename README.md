@@ -110,6 +110,8 @@ admin accessible par http://smallshop.local/back-office
 - du panier à la commande
 - créer les admin users
 - sécuriser l'admin
+- différents roles d'admin (-> utilisation des voters)
+- page 404
 
 ### moins
 

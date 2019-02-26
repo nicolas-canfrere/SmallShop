@@ -9,8 +9,16 @@ use Behat\Transliterator\Transliterator;
  */
 class Urlizer
 {
-    public static function urlize(string $string)
+    /**
+     * @param string|null $string
+     *
+     * @return string
+     */
+    public static function urlize(?string $string = '')
     {
+        if(!$string) {
+            return '';
+        }
         return Transliterator::urlize(Transliterator::transliterate($string));
     }
 }
