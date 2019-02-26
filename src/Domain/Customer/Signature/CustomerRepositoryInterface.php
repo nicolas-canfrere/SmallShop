@@ -5,7 +5,7 @@ namespace Domain\Customer\Signature;
 use Domain\Core\Signature\RepositoryInterface;
 
 /**
- * Interface CustomerRepositoryInterface
+ * Interface CustomerRepositoryInterface.
  */
 interface CustomerRepositoryInterface extends RepositoryInterface
 {

@@ -5,12 +5,12 @@ namespace Domain\Customer\Signature;
 use Domain\Customer\Command\CustomerCreateCommandInterface;
 
 /**
- * Interface CustomerFactoryInterface
+ * Interface CustomerFactoryInterface.
  */
 interface CustomerFactoryInterface
 {
     /**
-     * @param string $id
+     * @param string                         $id
      * @param CustomerCreateCommandInterface $command
      *
      * @return mixed

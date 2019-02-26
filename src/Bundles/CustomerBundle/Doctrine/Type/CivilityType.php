@@ -6,13 +6,12 @@ use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\Type;
 use Domain\Customer\ValueObject\Civility;
 
-
 class CivilityType extends Type
 {
     const NAME = 'civility';
 
     /**
-     * @param Civility      $value
+     * @param Civility         $value
      * @param AbstractPlatform $platform
      *
      * @return mixed|string

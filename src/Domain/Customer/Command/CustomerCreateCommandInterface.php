@@ -6,7 +6,7 @@ use Domain\Core\CommandBus\CommandInterface;
 use Domain\Customer\ValueObject\Civility;
 
 /**
- * Interface CustomerCreateCommandInterface
+ * Interface CustomerCreateCommandInterface.
  */
 interface CustomerCreateCommandInterface extends CommandInterface
 {

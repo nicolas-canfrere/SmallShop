@@ -6,7 +6,7 @@ use Domain\Core\Signature\EntityInterface;
 use Domain\Customer\ValueObject\Civility;
 
 /**
- * Interface CustomerInterface
+ * Interface CustomerInterface.
  */
 interface CustomerInterface extends EntityInterface
 {

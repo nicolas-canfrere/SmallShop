@@ -99,7 +99,6 @@ class Customer implements CustomerInterface
         return $this->civility;
     }
 
-
     /**
      * @return string|null
      */

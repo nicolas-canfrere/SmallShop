@@ -2,7 +2,6 @@
 
 namespace Domain\Core\Signature;
 
-
 interface EqualInterface
 {
     /**

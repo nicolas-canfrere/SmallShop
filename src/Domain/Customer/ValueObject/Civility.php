@@ -6,13 +6,10 @@ use Domain\Core\Signature\EqualInterface;
 use Webmozart\Assert\Assert;
 
 /**
- * Class Civility
+ * Class Civility.
  */
 final class Civility implements EqualInterface
 {
-    /**
-     *
-     */
     const DEFAULT = 'unknown';
 
     /**
@@ -46,7 +43,6 @@ final class Civility implements EqualInterface
     {
         return $this->civility;
     }
-
 
     /**
      * @param Civility $object

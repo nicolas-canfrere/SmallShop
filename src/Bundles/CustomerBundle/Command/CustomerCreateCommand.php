@@ -7,7 +7,7 @@ use Domain\Customer\Command\CustomerCreateCommandInterface;
 use Domain\Customer\ValueObject\Civility;
 
 /**
- * Class CustomerCreateCommand
+ * Class CustomerCreateCommand.
  */
 class CustomerCreateCommand implements CustomerCreateCommandInterface
 {

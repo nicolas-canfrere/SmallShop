@@ -8,13 +8,10 @@ use Symfony\Component\Security\Core\User\EquatableInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * Class ShopUser
+ * Class ShopUser.
  */
 class ShopUser extends Customer implements UserInterface, \Serializable, EquatableInterface
 {
-    /**
-     *
-     */
     const ROLE = 'ROLE_CUSTOMER';
 
     /**
@@ -23,10 +20,10 @@ class ShopUser extends Customer implements UserInterface, \Serializable, Equatab
     protected $roles = [ShopUser::ROLE];
 
     /**
-     * @param string $id
-     * @param string $email
-     * @param string $canonicalEmail
-     * @param Civility $civility
+     * @param string      $id
+     * @param string      $email
+     * @param string      $canonicalEmail
+     * @param Civility    $civility
      * @param string|null $firstname
      * @param string|null $lastname
      * @param string|null $username
@@ -75,9 +72,7 @@ class ShopUser extends Customer implements UserInterface, \Serializable, Equatab
         return null;
     }
 
-    /**
-     *
-     */
+
     public function eraseCredentials()
     {
     }

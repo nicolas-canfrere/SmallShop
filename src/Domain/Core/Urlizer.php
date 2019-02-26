@@ -16,9 +16,10 @@ class Urlizer
      */
     public static function urlize(?string $string = '')
     {
-        if(!$string) {
+        if (!$string) {
             return '';
         }
+
         return Transliterator::urlize(Transliterator::transliterate($string));
     }
 }
