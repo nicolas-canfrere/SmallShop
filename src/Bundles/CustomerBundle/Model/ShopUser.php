@@ -87,6 +87,7 @@ class ShopUser extends Customer implements UserInterface, \Serializable, Equatab
             [
                 $this->id,
                 $this->email,
+                $this->username,
                 $this->password,
             ]
         );
@@ -100,6 +101,7 @@ class ShopUser extends Customer implements UserInterface, \Serializable, Equatab
         list(
             $this->id,
             $this->email,
+            $this->username,
             $this->password
             ) = unserialize($serialized);
     }
@@ -120,6 +122,10 @@ class ShopUser extends Customer implements UserInterface, \Serializable, Equatab
         }
 
         if ($this->getEmail() !== $user->getEmail()) {
+            return false;
+        }
+
+        if ($this->getUsername() !== $user->getUsername()) {
             return false;
         }
 

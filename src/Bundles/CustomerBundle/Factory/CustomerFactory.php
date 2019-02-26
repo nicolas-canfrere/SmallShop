@@ -21,6 +21,7 @@ class CustomerFactory implements CustomerFactoryInterface
      */
     public function createFromCommand(string $id, CustomerCreateCommandInterface $command)
     {
+        $username = $command->getUsername() ?: $command->getEmail();
 
         return ShopUser::create(
             $id,
@@ -28,9 +29,9 @@ class CustomerFactory implements CustomerFactoryInterface
             Urlizer::urlize($command->getEmail()),
             $command->getFirstname(),
             $command->getLastname(),
-            $command->getUsername(),
+            $username,
             $command->getPassword(),
-            Urlizer::urlize($command->getUsername())
+            Urlizer::urlize($username)
         );
     }
 }
