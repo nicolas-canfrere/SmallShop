@@ -49,6 +49,10 @@ class CustomerPasswordHashListener implements EventSubscriber
 
     private function encodePassword(ShopUser $customer)
     {
+        if (!$customer->getPlainPassword()) {
+            return;
+        }
+
         $encoded = $this->userPasswordEncoder->encodePassword($customer, $customer->getPlainPassword());
         $customer->setPassword($encoded);
     }

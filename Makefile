@@ -1,4 +1,4 @@
-.PHONY: help clear_cache cc fixtures schema_update su schema_create sc db_drop db_create db_reset_dev dbr test security_check phpcsfixer messdetector composer_require_checker docker_up docker_down docker_php
+.PHONY: help clear_cache cc fixtures schema_update su schema_create sc db_drop db_create db_diff db_migrate db_reset_dev dbr test security_check phpcsfixer messdetector composer_require_checker docker_up docker_down docker_php
 .DEFAULT_GOAL=help
 VBIN=./vendor/bin
 CBIN=./bin
@@ -6,6 +6,7 @@ PHP=php
 CONSOLE=$(PHP) $(CBIN)/console
 SCHEMA=doctrine:schema
 DB=doctrine:database
+MIGRE=doctrine:migration
 ENV?=dev
 
 
@@ -35,6 +36,12 @@ db_drop: ## détruire la base de données
 
 db_create: ## créer la base de données
 	$(CONSOLE) $(DB):create
+
+db_diff:
+	$(CONSOLE) $(MIGRE):diff
+
+db_migrate:
+	$(CONSOLE) $(MIGRE):migrate --no-interaction
 
 db_reset_dev: db_drop db_create schema_create fixtures ## recharger la base de données à neuf
 

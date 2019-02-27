@@ -11,6 +11,9 @@ use Domain\Customer\Exception\NonUniqueCustomerUsernameException;
 use Domain\Customer\Signature\CustomerFactoryInterface;
 use Domain\Customer\Signature\CustomerRepositoryInterface;
 
+/**
+ * Class CustomerCreateCommandHandler.
+ */
 class CustomerCreateCommandHandler implements CommandHandlerInterface
 {
     /**

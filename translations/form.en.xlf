@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="form.email">
+                <source>form.email</source>
+                <target>Email</target>
+            </trans-unit>
+            <trans-unit id="form.civility">
+                <source>form.civility</source>
+                <target>Civility</target>
+            </trans-unit>
+            <trans-unit id="form.firstname">
+                <source>form.firstname</source>
+                <target>Firstname</target>
+            </trans-unit>
+            <trans-unit id="form.lastname">
+                <source>form.lastname</source>
+                <target>Lastname</target>
+            </trans-unit>
+            <trans-unit id="form.save">
+                <source>form.save</source>
+                <target>Save</target>
+            </trans-unit>
+            <trans-unit id="Madame">
+                <source>Madame</source>
+                <target>Madam</target>
+            </trans-unit>
+            <trans-unit id="Monsieur">
+                <source>Monsieur</source>
+                <target>Mister</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

@@ -174,4 +174,23 @@ class Customer implements CustomerInterface
     {
         return $this->plainPassword;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function updateInfos(
+        string $email,
+        string $canonicalEmail,
+        Civility $civility,
+        string $lastname,
+        string $firstname
+    ): CustomerInterface {
+        $this->email = $email;
+        $this->canonicalEmail = $canonicalEmail;
+        $this->civility = $civility;
+        $this->lastname = $lastname;
+        $this->firstname = $firstname;
+
+        return $this;
+    }
 }

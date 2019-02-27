@@ -49,4 +49,21 @@ interface CustomerInterface extends EntityInterface
      * @return string|null
      */
     public function getPassword(): ?string;
+
+    /**
+     * @param string   $email
+     * @param string   $canonicalEmail
+     * @param Civility $civility
+     * @param string   $lastname
+     * @param string   $firstname
+     *
+     * @return CustomerInterface
+     */
+    public function updateInfos(
+        string $email,
+        string $canonicalEmail,
+        Civility $civility,
+        string $lastname,
+        string $firstname
+    ): CustomerInterface;
 }

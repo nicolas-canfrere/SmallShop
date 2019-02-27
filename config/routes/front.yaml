@@ -42,4 +42,4 @@ front_customer_index:
     fr: /{_locale}/votre-compte
     en: /{_locale}/your-account
   controller: Application\Front\Controller\CustomerAccountController::index
-  methods: ['get']
+  methods: ['get', 'post']

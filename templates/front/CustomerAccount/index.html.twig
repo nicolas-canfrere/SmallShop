@@ -2,6 +2,42 @@
 
 {% block content %}
     <div class="container">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-md-8">
+                {{ form_start(form, {attr:{novalidate: 'novalidate'}}) }}
+                {{ form_errors(form) }}
 
+                <div class="form-group">
+                    {{ form_label(form.civility.civility) }}
+                    {{ form_widget(form.civility.civility, {attr:{class: 'form-control'}}) }}
+                    {{ form_errors(form.civility.civility) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.lastname) }}
+                    {{ form_widget(form.lastname, {attr:{class: 'form-control'}}) }}
+                    {{ form_errors(form.lastname) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.firstname) }}
+                    {{ form_widget(form.firstname, {attr:{class: 'form-control'}}) }}
+                    {{ form_errors(form.firstname) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.email) }}
+                    {{ form_widget(form.email, {attr:{class: 'form-control'}}) }}
+                    {{ form_errors(form.email) }}
+                </div>
+
+                <div class="form-group mt-3">
+                    {{ form_widget(form.submit, {attr:{class: 'btn btn-primary'}}) }}
+                </div>
+                {{ form_end(form) }}
+            </div>
+            <div class="col"></div>
+        </div>
     </div>
 {% endblock %}
