@@ -1,12 +1,15 @@
 default:
-    suites:
-        default:
-            contexts:
-                - FeatureContext:
-                    kernel: '@kernel'
-
-    extensions:
-        Behat\Symfony2Extension:
-            kernel:
-                bootstrap: features/bootstrap/bootstrap.php
-                class: App\Kernel
+  autoload:
+    '': "%paths.base%/behat/features/bootstrap"
+  suites:
+    default:
+      paths: [ "%paths.base%/behat/features" ]
+      contexts:
+        - FeatureContext:
+            kernel: '@kernel'
+        - Behat\MinkExtension\Context\MinkContext
+  extensions:
+    Behat\Symfony2Extension:
+      kernel:
+        bootstrap: behat/features/bootstrap/bootstrap.php
+        class: Application\Kernel
