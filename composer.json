@@ -101,6 +101,11 @@
         }
     },
     "require-dev": {
+      "behat/behat": "^3.5",
+      "behat/mink": "dev-master",
+      "behat/mink-browserkit-driver": "^1.3",
+      "behat/mink-extension": "^2.3",
+      "behat/symfony2-extension": "^2.1",
         "doctrine/doctrine-fixtures-bundle": "^3.1",
         "escapestudios/symfony2-coding-standard": "3.5.2",
         "friendsofphp/php-cs-fixer": "^2.14",
