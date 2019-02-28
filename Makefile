@@ -1,4 +1,4 @@
-.PHONY: help clear_cache cc fixtures schema_update su schema_create sc db_drop db_create db_diff db_migrate db_reset_dev dbr test security_check phpcsfixer messdetector composer_require_checker docker_up docker_down docker_php
+.PHONY: help clear_cache cc fixtures schema_update su schema_create sc db_drop db_create db_diff db_migrate db_reset_dev dbr test security_check phpcsfixer messdetector composer_require_checker docker_up docker_down docker_php behat
 .DEFAULT_GOAL=help
 VBIN=./vendor/bin
 CBIN=./bin
@@ -73,3 +73,6 @@ docker_down: ## stop docker services
 
 docker_php: ## enter in smallshop_php container
 	docker-compose exec smallshop_php /bin/bash
+
+behat:
+	$(PHP) $(VBIN)/behat
