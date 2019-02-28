@@ -5,6 +5,8 @@ namespace Domain\Customer\Command;
 use Domain\Core\CommandBus\CommandHandlerInterface;
 use Domain\Core\CommandBus\CommandInterface;
 use Domain\Core\Event\EventBus;
+use Domain\Customer\Event\CustomerInfosUpdatedEvent;
+use Domain\Customer\Exception\NonUniqueCustomerEmailException;
 use Domain\Customer\Signature\CustomerFactoryInterface;
 use Domain\Customer\Signature\CustomerRepositoryInterface;
 
@@ -33,8 +35,11 @@ class CustomerUpdateInfosCommandHandler implements CommandHandlerInterface
      * @param CustomerFactoryInterface    $customerFactory
      * @param EventBus                    $eventBus
      */
-    public function __construct(CustomerRepositoryInterface $customerRepository, CustomerFactoryInterface $customerFactory, EventBus $eventBus)
-    {
+    public function __construct(
+        CustomerFactoryInterface $customerFactory,
+        CustomerRepositoryInterface $customerRepository,
+        EventBus $eventBus
+    ) {
         $this->customerRepository = $customerRepository;
         $this->eventBus = $eventBus;
         $this->customerFactory = $customerFactory;
@@ -44,17 +49,23 @@ class CustomerUpdateInfosCommandHandler implements CommandHandlerInterface
      * @param CommandInterface|CustomerUpdateInfosCommandInterface $command
      *
      * @return mixed
+     *
+     * @throws NonUniqueCustomerEmailException
      */
     public function handle(CommandInterface $command)
     {
         $original = $command->getCustomer();
 
-        // TODO verify Email ...
+
+        $testCustomer = $this->customerRepository->oneByEmail($command->getEmail());
+        if ($testCustomer && $testCustomer->getId() !== $original->getId()) {
+            throw new NonUniqueCustomerEmailException($command->getEmail());
+        }
 
         $original = $this->customerFactory->updateInfosFromCommand($command);
 
         $this->customerRepository->save($original);
 
-        // TODO dispatch event
+        $this->eventBus->dispatch(new CustomerInfosUpdatedEvent($original));
     }
 }

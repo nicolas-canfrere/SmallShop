@@ -8,6 +8,7 @@ use Domain\Customer\Command\CustomerCreateCommandInterface;
 use Domain\Customer\Command\CustomerUpdateInfosCommandInterface;
 use Domain\Customer\Signature\CustomerFactoryInterface;
 use Domain\Customer\Signature\CustomerInterface;
+use Domain\Customer\ValueObject\Civility;
 
 /**
  * Class CustomerFactory.
@@ -15,10 +16,7 @@ use Domain\Customer\Signature\CustomerInterface;
 class CustomerFactory implements CustomerFactoryInterface
 {
     /**
-     * @param string                         $id
-     * @param CustomerCreateCommandInterface $command
-     *
-     * @return CustomerInterface
+     * {@inheritdoc}
      */
     public function createFromCommand(string $id, CustomerCreateCommandInterface $command): CustomerInterface
     {
@@ -38,9 +36,7 @@ class CustomerFactory implements CustomerFactoryInterface
     }
 
     /**
-     * @param CustomerUpdateInfosCommandInterface $command
-     *
-     * @return CustomerInterface
+     * {@inheritdoc}
      */
     public function updateInfosFromCommand(CustomerUpdateInfosCommandInterface $command): CustomerInterface
     {
@@ -54,5 +50,17 @@ class CustomerFactory implements CustomerFactoryInterface
         );
 
         return $original;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function createNew(string $id, string $email, ?Civility $civility = null): CustomerInterface
+    {
+        if (!$civility) {
+            $civility = new Civility(Civility::DEFAULT);
+        }
+
+        return ShopUser::create($id, $email, Urlizer::urlize($email), $civility);
     }
 }

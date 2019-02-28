@@ -7,9 +7,13 @@ use Bundles\CustomerBundle\Factory\CustomerFactory;
 use Bundles\CustomerBundle\Model\ShopUser;
 use Bundles\CustomerBundle\Repository\InMemoryCustomerRepository;
 use Domain\Core\Event\EventBus;
+use Domain\Core\Event\EventBusInterface;
 use Domain\Core\Event\EventListenerProvider;
+use Domain\Core\Event\EventListenerProviderInterface;
+use Domain\Core\Event\ListenerInterface;
 use Domain\Core\Urlizer;
 use Domain\Customer\Command\CustomerCreateCommandHandler;
+use Domain\Customer\Event\CustomerCreatedEvent;
 use Domain\Customer\Exception\NonUniqueCustomerEmailException;
 use Domain\Customer\Exception\NonUniqueCustomerUsernameException;
 use Domain\Customer\Signature\CustomerRepositoryInterface;
@@ -26,6 +30,15 @@ class CustomerCreateCommandHandlerTest extends TestCase
      * @var CustomerCreateCommandHandler
      */
     protected $handler;
+    /**
+     * @var EventListenerProviderInterface
+     */
+    protected $provider;
+    /**
+     * @var EventBusInterface
+     */
+    protected $eventBus;
+
 
     /**
      * @test
@@ -102,11 +115,39 @@ class CustomerCreateCommandHandlerTest extends TestCase
     protected function setUp(): void
     {
         $this->customerRepository = new InMemoryCustomerRepository();
-
+        $this->provider = new EventListenerProvider();
+        $this->eventBus = new EventBus($this->provider);
         $this->handler = new CustomerCreateCommandHandler(
             new CustomerFactory(),
             $this->customerRepository,
-            $eventBus = new EventBus(new EventListenerProvider())
+            $this->eventBus
         );
+    }
+
+    /**
+     * @test
+     */
+    public function emitCustomerCreatedEvent()
+    {
+        $listener = $this->getMockBuilder(ListenerInterface::class)
+                         ->setMethods(['handle', 'listenTo'])
+                         ->getMock();
+        $listener->method('listenTo')->willReturn(CustomerCreatedEvent::class);
+        $listener->expects($this->once())
+                 ->method('handle')->with($this->isInstanceOf(CustomerCreatedEvent::class));
+
+        $this->provider->addListener($listener);
+
+
+        $command = new CustomerCreateCommand();
+        $command
+            ->setUsername('username')
+            ->setCivility(new Civility(Civility::DEFAULT))
+            ->setFirstname('firstname')
+            ->setLastname('lastname')
+            ->setEmail('email@example.org')
+            ->setPassword('password');
+
+        $this->handler->handle($command);
     }
 }
