@@ -3,7 +3,7 @@
 namespace Domain\Core\QueryBus;
 
 /**
- * Interface QueryBusInterface
+ * Interface QueryBusInterface.
  */
 interface QueryBusInterface
 {

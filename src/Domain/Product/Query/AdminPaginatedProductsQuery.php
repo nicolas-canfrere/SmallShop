@@ -2,15 +2,13 @@
 
 namespace Domain\Product\Query;
 
-
 use Domain\Core\QueryBus\QueryInterface;
 
 /**
- * Class AdminPaginatedProductsQuery
+ * Class AdminPaginatedProductsQuery.
  */
 class AdminPaginatedProductsQuery implements QueryInterface
 {
-
     /**
      * @var int
      */

@@ -49,7 +49,33 @@ final class AddressBook
     {
         $this->customer = $customer;
         $this->addresses = $this->addressRepository->getAllByCustomerId($this->customer->getId());
+        $this->sort();
         $this->isLoaded = true;
+    }
+
+    private function sort()
+    {
+        if (!$this->addresses) {
+            return;
+        }
+
+        $addresses = $this->addresses;
+        array_filter($addresses, function (AddressInterface $address) {
+            return !$address->isDelivery() || !$address->isBilling();
+        });
+
+        $delivery = $this->retrieveDefaultDeliveryAddress();
+        $billing = $this->retrieveBillingAddress();
+
+        if ($billing && $billing !== $delivery) {
+            array_unshift($addresses, $billing);
+        }
+
+        if ($delivery) {
+            array_unshift($addresses, $delivery);
+        }
+
+        $this->addresses = $addresses;
     }
 
     /**
@@ -95,9 +121,9 @@ final class AddressBook
             $currentDefaultDeliveryAddress->unsetAsDefaultDelivery();
             $this->addressRepository->save($currentDefaultDeliveryAddress);
         }
-
-        $this->addresses[] = $this->newAddress;
-        $this->addressRepository->save($this->newAddress);
+        $address = $this->newAddress;
+        array_unshift($this->addresses, $address);
+        $this->addressRepository->save($address);
         $this->newAddress = null;
     }
 
@@ -113,5 +139,24 @@ final class AddressBook
         }
 
         return null;
+    }
+
+    /**
+     * @return AddressInterface|null
+     */
+    public function retrieveBillingAddress(): ?AddressInterface
+    {
+        foreach ($this->addresses as $address) {
+            if ($address->isBilling()) {
+                return $address;
+            }
+        }
+
+        return null;
+    }
+
+    public function getAddresses()
+    {
+        return $this->addresses;
     }
 }

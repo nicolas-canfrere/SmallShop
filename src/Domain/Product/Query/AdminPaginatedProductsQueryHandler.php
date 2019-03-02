@@ -2,14 +2,13 @@
 
 namespace Domain\Product\Query;
 
-
 use Domain\Core\QueryBus\QueryHandlerInterface;
 use Domain\Core\QueryBus\QueryInterface;
 use Domain\Product\Signature\ProductRepositoryInterface;
 use Knp\Component\Pager\PaginatorInterface;
 
 /**
- * Class AdminPaginatedProductsQueryHandler
+ * Class AdminPaginatedProductsQueryHandler.
  */
 class AdminPaginatedProductsQueryHandler implements QueryHandlerInterface
 {
@@ -28,6 +27,7 @@ class AdminPaginatedProductsQueryHandler implements QueryHandlerInterface
         $this->productRepository = $productRepository;
         $this->paginator = $paginator;
     }
+
     /**
      * @param QueryInterface|AdminPaginatedProductsQuery $query
      *

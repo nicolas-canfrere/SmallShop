@@ -39,9 +39,7 @@ interface AddressInterface extends EntityInterface
      */
     public function isOwnedBy(string $id): bool;
 
-
     public function setAsDefaultDelivery(): void;
-
 
     public function unsetAsDefaultDelivery(): void;
 
@@ -49,6 +47,11 @@ interface AddressInterface extends EntityInterface
      * @return bool
      */
     public function isDelivery(): bool;
+
+    /**
+     * @return bool
+     */
+    public function isBilling(): bool;
 
     /**
      * @return string

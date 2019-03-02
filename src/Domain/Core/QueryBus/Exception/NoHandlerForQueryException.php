@@ -5,7 +5,7 @@ namespace Domain\Core\QueryBus\Exception;
 use Throwable;
 
 /**
- * Class NoHandlerForQueryException
+ * Class NoHandlerForQueryException.
  */
 class NoHandlerForQueryException extends \Exception
 {

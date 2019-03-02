@@ -10,16 +10,14 @@ use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Reference;
 
 /**
- * Class QueryBusPass
+ * Class QueryBusPass.
  */
 class QueryBusPass implements CompilerPassInterface
 {
-
-
     public function process(ContainerBuilder $container)
     {
         if (
-        ! $container->has(QueryHandlerProviderInterface::class)
+        !$container->has(QueryHandlerProviderInterface::class)
         ) {
             return;
         }

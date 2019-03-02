@@ -1,12 +1,12 @@
 <?php
 
-namespace Domain\Customer\Query;
+namespace Domain\Address\Query;
 
 use Domain\Core\QueryBus\QueryInterface;
 use Domain\Customer\Signature\CustomerInterface;
 
 /**
- * Class CustomerAddressesQuery
+ * Class CustomerAddressesQuery.
  */
 class CustomerAddressesQuery implements QueryInterface
 {
@@ -25,6 +25,13 @@ class CustomerAddressesQuery implements QueryInterface
         $this->customer = $customer;
     }
 
+    /**
+     * @return CustomerInterface
+     */
+    public function getCustomer(): CustomerInterface
+    {
+        return $this->customer;
+    }
 
     /**
      * @return string

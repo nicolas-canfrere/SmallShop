@@ -5,13 +5,13 @@ namespace Domain\Core\QueryBus;
 use Domain\Core\QueryBus\Exception\NoHandlerForQueryException;
 
 /**
- * Interface QueryHandlerProviderInterface
+ * Interface QueryHandlerProviderInterface.
  */
 interface QueryHandlerProviderInterface
 {
     /**
      * @param QueryHandlerInterface $handler
-     * @param string|null $customId
+     * @param string|null           $customId
      */
     public function registerHandler(QueryHandlerInterface $handler, ?string $customId = ''): void;
 
@@ -19,6 +19,7 @@ interface QueryHandlerProviderInterface
      * @param QueryInterface $query
      *
      * @return QueryHandlerInterface
+     *
      * @throws NoHandlerForQueryException
      */
     public function getHandlerForQuery(QueryInterface $query): QueryHandlerInterface;

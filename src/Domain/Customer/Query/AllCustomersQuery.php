@@ -2,11 +2,10 @@
 
 namespace Domain\Customer\Query;
 
-
 use Domain\Core\QueryBus\QueryInterface;
 
 /**
- * Class AllCustomersQuery
+ * Class AllCustomersQuery.
  */
 class AllCustomersQuery implements QueryInterface
 {

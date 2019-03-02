@@ -3,7 +3,7 @@
 namespace Domain\Core\QueryBus;
 
 /**
- * Interface QueryHandlerInterface
+ * Interface QueryHandlerInterface.
  */
 interface QueryHandlerInterface
 {

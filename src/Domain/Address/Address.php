@@ -111,11 +111,19 @@ class Address implements AddressInterface
     }
 
     /**
-     * @return bool
+     * {@inheritdoc}
      */
     public function isDelivery(): bool
     {
         return $this->isDelivery;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isBilling(): bool
+    {
+        return $this->isBilling;
     }
 
     /**

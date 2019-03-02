@@ -19,6 +19,7 @@ return [
     Bundles\ProductBundle\ProductBundle::class => ['all' => true],
     Bundles\CartBundle\CartBundle::class => ['all' => true],
     Bundles\CustomerBundle\CustomerBundle::class => ['all' => true],
+    Bundles\AddressBundle\AddressBundle::class => ['all' => true],
     Bundles\StockBundle\StockBundle::class => ['all' => true],
     Knp\Bundle\PaginatorBundle\KnpPaginatorBundle::class => ['all' => true],
     KnpU\OAuth2ClientBundle\KnpUOAuth2ClientBundle::class => ['all' => true],

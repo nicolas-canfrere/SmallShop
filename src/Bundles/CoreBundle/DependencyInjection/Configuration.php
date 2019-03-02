@@ -27,9 +27,11 @@ class Configuration implements ConfigurationInterface
                             ->validate()
                                 ->ifTrue(function ($config) {
                                     $isPresent = in_array('domain.command_handler_provider', $config);
-                                    $isLast = end($config) == 'domain.command_handler_provider';
+                                    $isLast = 'domain.command_handler_provider' == end($config);
 
-                                    if(!$isPresent) { return true; }
+                                    if (!$isPresent) {
+                                        return true;
+                                    }
 
                                     return $isPresent && !$isLast;
                                 })
@@ -44,11 +46,13 @@ class Configuration implements ConfigurationInterface
                             ->requiresAtLeastOneElement()
                             ->scalarPrototype()->end()
                             ->validate()
-                                ->ifTrue(function ($config){
+                                ->ifTrue(function ($config) {
                                     $isPresent = in_array('domain.query_handler_provider', $config);
-                                    $isLast = end($config) == 'domain.query_handler_provider';
+                                    $isLast = 'domain.query_handler_provider' == end($config);
 
-                                    if(!$isPresent) { return true; }
+                                    if (!$isPresent) {
+                                        return true;
+                                    }
 
                                     return $isPresent && !$isLast;
                                 })

@@ -24,8 +24,6 @@ class ProductController extends AbstractController
         return $this->render('@admin/Product/list.html.twig', ['paginatedProducts' => $paginatedProducts]);
     }
 
-
-
     public function add(Request $request, DomainCommandBus $commandBus)
     {
         $createProductCommand = new ProductCreateCommand();

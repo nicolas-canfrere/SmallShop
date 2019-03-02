@@ -9,9 +9,8 @@ use Bundles\CoreBundle\DependencyInjection\CoreExtension;
 use Doctrine\Bundle\DoctrineBundle\DependencyInjection\Compiler\DoctrineOrmMappingsPass;
 use Domain\Core\CommandBus\CommandHandlerInterface as DomainCommandHandler;
 use Domain\Core\Event\ListenerInterface;
-use Domain\Core\QueryBus\QueryHandlerInterface as DomainQueryHandler;
+use Domain\Core\QueryBus\QueryHandlerInterface;
 use Domain\Core\Signature\CommandHandlerInterface;
-use Domain\Core\Signature\QueryHandlerInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
@@ -28,15 +27,13 @@ class CoreBundle extends Bundle
 
         $container->registerForAutoconfiguration(CommandHandlerInterface::class)
             ->addTag('tactician.handler', ['typehints' => true, 'bus' => 'default']);
-        $container->registerForAutoconfiguration(QueryHandlerInterface::class)
-            ->addTag('tactician.handler', ['typehints' => true, 'bus' => 'query']);
 
         $container->registerForAutoconfiguration(ListenerInterface::class)
             ->addTag('eventbus.listener');
         $container->registerForAutoconfiguration(DomainCommandHandler::class)
             ->addTag('domain.command.handler');
 
-        $container->registerForAutoconfiguration(DomainQueryHandler::class)
+        $container->registerForAutoconfiguration(QueryHandlerInterface::class)
                   ->addTag('domain.query.handler');
 
         $container->addCompilerPass(new EventBusPass());

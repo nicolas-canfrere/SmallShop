@@ -1,0 +1,12 @@
+services:
+
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  Bundles\AddressBundle\:
+    resource: '../../../../../src/Bundles/AddressBundle/*'
+    exclude: '../../../../../src/Bundles/AddressBundle/{Resources}'
+  Domain\Address\:
+    resource: '../../../../../src/Domain/Address/*'

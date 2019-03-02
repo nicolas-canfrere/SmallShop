@@ -5,11 +5,10 @@ namespace Domain\Core\QueryBus;
 use Domain\Core\QueryBus\Exception\NoHandlerForQueryException;
 
 /**
- * Class QueryHandlerProvider
+ * Class QueryHandlerProvider.
  */
 class QueryHandlerProvider implements QueryHandlerProviderInterface, QueryBusMiddlewareInterface
 {
-
     /**
      * @var QueryHandlerInterface[]
      */

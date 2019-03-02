@@ -10,14 +10,14 @@ use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Reference;
 
 /**
- * Class CommandBusPass
+ * Class CommandBusPass.
  */
 class CommandBusPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container)
     {
         if (
-        ! $container->has(CommandHandlerProviderInterface::class)
+        !$container->has(CommandHandlerProviderInterface::class)
         ) {
             return;
         }

@@ -4,9 +4,9 @@ namespace Application\Front\Controller;
 
 use Bundles\CustomerBundle\Command\CustomerUpdateInfosCommand;
 use Bundles\CustomerBundle\Form\UpdateInfosForm;
+use Domain\Address\Query\CustomerAddressesQuery;
 use Domain\Core\CommandBus\CommandBus;
 use Domain\Core\QueryBus\QueryBus;
-use Domain\Customer\Query\CustomerAddressesQuery;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -36,11 +36,10 @@ class CustomerAccountController extends AbstractController
         $query = new CustomerAddressesQuery($customer);
 
         try {
-            $addresses = $queryBus->handle($query);
+            $addressBook = $queryBus->handle($query);
         } catch (\Exception $e) {
-
         }
 
-        return $this->render('@front/CustomerAccount/addresses.html.twig');
+        return $this->render('@front/CustomerAccount/addresses.html.twig', ['addressBook' => $addressBook]);
     }
 }
