@@ -5,6 +5,8 @@ namespace Application\Front\Controller;
 use Bundles\CustomerBundle\Command\CustomerUpdateInfosCommand;
 use Bundles\CustomerBundle\Form\UpdateInfosForm;
 use Domain\Core\CommandBus\CommandBus;
+use Domain\Core\QueryBus\QueryBus;
+use Domain\Customer\Query\CustomerAddressesQuery;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -13,8 +15,6 @@ class CustomerAccountController extends AbstractController
     public function index(Request $request, CommandBus $commandBus)
     {
         $customer = $this->getUser();
-
-        dump($customer);
 
         $command = new CustomerUpdateInfosCommand($customer);
         $form = $this->createForm(UpdateInfosForm::class, $command);
@@ -27,5 +27,20 @@ class CustomerAccountController extends AbstractController
         }
 
         return $this->render('@front/CustomerAccount/index.html.twig', ['form' => $form->createView()]);
+    }
+
+    public function addresses(QueryBus $queryBus)
+    {
+        $customer = $this->getUser();
+
+        $query = new CustomerAddressesQuery($customer);
+
+        try {
+            $addresses = $queryBus->handle($query);
+        } catch (\Exception $e) {
+
+        }
+
+        return $this->render('@front/CustomerAccount/addresses.html.twig');
     }
 }

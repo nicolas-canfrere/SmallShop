@@ -4,10 +4,12 @@ namespace Bundles\CoreBundle;
 
 use Bundles\CoreBundle\DependencyInjection\Compiler\CommandBusPass;
 use Bundles\CoreBundle\DependencyInjection\Compiler\EventBusPass;
+use Bundles\CoreBundle\DependencyInjection\Compiler\QueryBusPass;
 use Bundles\CoreBundle\DependencyInjection\CoreExtension;
 use Doctrine\Bundle\DoctrineBundle\DependencyInjection\Compiler\DoctrineOrmMappingsPass;
 use Domain\Core\CommandBus\CommandHandlerInterface as DomainCommandHandler;
 use Domain\Core\Event\ListenerInterface;
+use Domain\Core\QueryBus\QueryHandlerInterface as DomainQueryHandler;
 use Domain\Core\Signature\CommandHandlerInterface;
 use Domain\Core\Signature\QueryHandlerInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -34,8 +36,12 @@ class CoreBundle extends Bundle
         $container->registerForAutoconfiguration(DomainCommandHandler::class)
             ->addTag('domain.command.handler');
 
+        $container->registerForAutoconfiguration(DomainQueryHandler::class)
+                  ->addTag('domain.query.handler');
+
         $container->addCompilerPass(new EventBusPass());
         $container->addCompilerPass(new CommandBusPass());
+        $container->addCompilerPass(new QueryBusPass());
 
         $this->addRegisterMappingsPass($container);
     }

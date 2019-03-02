@@ -2,7 +2,8 @@
 
 namespace Domain\Product\Query;
 
-use Domain\Core\Signature\QueryHandlerInterface;
+use Domain\Core\QueryBus\QueryHandlerInterface;
+use Domain\Core\QueryBus\QueryInterface;
 use Domain\Product\Signature\ProductRepositoryInterface;
 use Knp\Component\Pager\PaginatorInterface;
 
@@ -24,7 +25,12 @@ class FrontPaginatedProductsQueryHandler implements QueryHandlerInterface
         $this->paginator = $paginator;
     }
 
-    public function handle(FrontPaginatedProductsQuery $query)
+    /**
+     * @param QueryInterface|FrontPaginatedProductsQuery $query
+     *
+     * @return \Knp\Component\Pager\Pagination\PaginationInterface|mixed
+     */
+    public function handle(QueryInterface $query)
     {
         $paginatedProducts = $this->paginator->paginate(
             $this->productRepository

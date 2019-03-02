@@ -2,8 +2,15 @@
 
 namespace Domain\Product\Query;
 
-class PaginatedProductsQuery
+
+use Domain\Core\QueryBus\QueryInterface;
+
+/**
+ * Class AdminPaginatedProductsQuery
+ */
+class AdminPaginatedProductsQuery implements QueryInterface
 {
+
     /**
      * @var int
      */
@@ -24,5 +31,13 @@ class PaginatedProductsQuery
     {
         $this->page = $page;
         $this->limit = $limit;
+    }
+
+    /**
+     * @return string
+     */
+    public function handleBy(): string
+    {
+        return AdminPaginatedProductsQueryHandler::class;
     }
 }

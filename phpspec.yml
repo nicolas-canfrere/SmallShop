@@ -1,0 +1,4 @@
+suites:
+  domain_core:
+    spec_path: '%paths.config%'
+

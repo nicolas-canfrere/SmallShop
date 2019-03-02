@@ -7,22 +7,24 @@ use Application\Admin\Form\ProductUpdateForm;
 use Bundles\ProductBundle\Command\ProductCreateCommand;
 use Bundles\ProductBundle\Command\ProductUpdateCommand;
 use Domain\Core\CommandBus\CommandBus as DomainCommandBus;
-use Domain\Product\Query\PaginatedProductsQuery;
+use Domain\Core\QueryBus\QueryBus;
+use Domain\Product\Query\AdminPaginatedProductsQuery;
 use Domain\Product\Signature\ProductRepositoryInterface;
-use League\Tactician\CommandBus;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 
 class ProductController extends AbstractController
 {
-    public function list(Request $request, CommandBus $queryBus)
+    public function list(Request $request, QueryBus $queryBus)
     {
-        $query = new PaginatedProductsQuery($request->query->getInt('page', 1));
+        $query = new AdminPaginatedProductsQuery($request->query->getInt('page', 1));
         $paginatedProducts = $queryBus->handle($query);
 
         return $this->render('@admin/Product/list.html.twig', ['paginatedProducts' => $paginatedProducts]);
     }
+
+
 
     public function add(Request $request, DomainCommandBus $commandBus)
     {

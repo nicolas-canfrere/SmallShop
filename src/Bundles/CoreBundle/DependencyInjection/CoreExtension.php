@@ -27,6 +27,7 @@ class CoreExtension extends Extension
         $loader->load('services.yaml');
 
         $container->setParameter('core.commandbus', $config['commandbus']);
+        $container->setParameter('core.querybus', $config['querybus']);
     }
 
     /**

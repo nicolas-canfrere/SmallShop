@@ -2,7 +2,13 @@
 
 namespace Domain\Customer\Query;
 
-class AllCustomersQuery
+
+use Domain\Core\QueryBus\QueryInterface;
+
+/**
+ * Class AllCustomersQuery
+ */
+class AllCustomersQuery implements QueryInterface
 {
     /**
      * @var int
@@ -24,5 +30,13 @@ class AllCustomersQuery
     {
         $this->page = $page;
         $this->limit = $limit;
+    }
+
+    /**
+     * @return string
+     */
+    public function handleBy(): string
+    {
+        return AllCustomersQueryHandler::class;
     }
 }

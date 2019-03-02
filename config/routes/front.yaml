@@ -43,3 +43,10 @@ front_customer_index:
     en: /{_locale}/your-account
   controller: Application\Front\Controller\CustomerAccountController::index
   methods: ['get', 'post']
+
+front_customer_addresses:
+  path:
+    fr: /{_locale}/vos-adresses
+    en: /{_locale}/your-addresses
+  controller: Application\Front\Controller\CustomerAccountController::addresses
+  methods: ['get', 'post']

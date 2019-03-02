@@ -11,11 +11,23 @@ services:
 
   Domain\Core\:
     resource: '../../../../../src/Domain/Core/*'
+
   Domain\Core\Event\EventListenerProviderInterface:
     class: Domain\Core\Event\EventListenerProvider
+
   Domain\Core\Event\EventBusInterface:
     class: Domain\Core\Event\EventBus
+
   Domain\Core\CommandBus\CommandHandlerProviderInterface:
     class: Domain\Core\CommandBus\CommandHandlerProvider
-    #Domain\Core\CommandBus\CommandBusInterface:
-    #class: Domain\Core\CommandBus\CommandBus
+
+  Domain\Core\QueryBus\QueryHandlerProviderInterface:
+    class: Domain\Core\QueryBus\QueryHandlerProvider
+
+  ## alias
+
+  domain.command_handler_provider:
+    alias: Domain\Core\CommandBus\CommandHandlerProviderInterface
+
+  domain.query_handler_provider:
+    alias: Domain\Core\QueryBus\QueryHandlerProviderInterface

@@ -28,6 +28,3 @@ services:
     tags: ['controller.service_arguments']
   # add more service definitions when explicit configuration is needed
   # please note that last definitions always *replace* previous ones
-
-  League\Tactician\CommandBus $commandBus: '@tactician.commandbus.default'
-  League\Tactician\CommandBus $queryBus: '@tactician.commandbus.query'

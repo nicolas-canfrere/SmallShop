@@ -1,4 +1,7 @@
 core:
   commandbus:
     middlewares:
-    - Domain\Core\CommandBus\CommandHandlerProviderInterface
+      - domain.command_handler_provider
+  querybus:
+    middlewares:
+      - domain.query_handler_provider

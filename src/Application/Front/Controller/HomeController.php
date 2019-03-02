@@ -2,14 +2,14 @@
 
 namespace Application\Front\Controller;
 
+use Domain\Core\QueryBus\QueryBus;
 use Domain\Product\Query\FrontPaginatedProductsQuery;
-use League\Tactician\CommandBus;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 
 class HomeController extends AbstractController
 {
-    public function default(Request $request, CommandBus $queryBus)
+    public function default(Request $request, QueryBus $queryBus)
     {
         $query = new FrontPaginatedProductsQuery($request->query->getInt('page', 1), 8);
         $paginatedProducts = $queryBus->handle($query);

@@ -2,7 +2,9 @@
 
 namespace Domain\Product\Query;
 
-class FrontPaginatedProductsQuery
+use Domain\Core\QueryBus\QueryInterface;
+
+class FrontPaginatedProductsQuery implements QueryInterface
 {
     /**
      * @var int
@@ -24,5 +26,13 @@ class FrontPaginatedProductsQuery
     {
         $this->page = $page;
         $this->limit = $limit;
+    }
+
+    /**
+     * @return string
+     */
+    public function handleBy(): string
+    {
+        return FrontPaginatedProductsQueryHandler::class;
     }
 }
