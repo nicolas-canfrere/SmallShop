@@ -18,6 +18,26 @@
                 <source>form.lastname</source>
                 <target>Nom</target>
             </trans-unit>
+            <trans-unit id="form.fullname">
+                <source>form.fullname</source>
+                <target>Nom prénom</target>
+            </trans-unit>
+            <trans-unit id="form.street">
+                <source>form.street</source>
+                <target>adresse</target>
+            </trans-unit>
+            <trans-unit id="form.postalcode">
+                <source>form.postalcode</source>
+                <target>Code postal</target>
+            </trans-unit>
+            <trans-unit id="form.city">
+                <source>form.city</source>
+                <target>Ville</target>
+            </trans-unit>
+            <trans-unit id="form.country">
+                <source>form.country</source>
+                <target>Pays</target>
+            </trans-unit>
             <trans-unit id="form.save">
                 <source>form.save</source>
                 <target>Enregistrer</target>

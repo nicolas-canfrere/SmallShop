@@ -50,3 +50,10 @@ front_customer_addresses:
     en: /{_locale}/your-addresses
   controller: Application\Front\Controller\CustomerAccountController::addresses
   methods: ['get', 'post']
+
+front_customer_add_addresse:
+  path:
+    fr: /{_locale}/ajouter-une-adresse
+    en: /{_locale}/add-an-address
+  controller: Application\Front\Controller\CustomerAccountController::addAddress
+  methods: ['get', 'post']

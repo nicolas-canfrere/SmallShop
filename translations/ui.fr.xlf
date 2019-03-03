@@ -22,6 +22,23 @@
                 <source>link-sign-out</source>
                 <target>déconnexion</target>
             </trans-unit>
+
+            <trans-unit id="tabs-infos">
+                <source>tabs-infos</source>
+                <target>Vos informations</target>
+            </trans-unit>
+            <trans-unit id="tabs-addresses">
+                <source>tabs-addresses</source>
+                <target>Vos adresses</target>
+            </trans-unit>
+            <trans-unit id="tabs-no-addresses">
+                <source>tabs-no-addresses</source>
+                <target>Vous n'avez aucune adresse enregistrée !</target>
+            </trans-unit>
+            <trans-unit id="tabs-add-address">
+                <source>tabs-add-address</source>
+                <target>ajouter une adresse</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

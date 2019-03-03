@@ -10,3 +10,6 @@ services:
     exclude: '../../../../../src/Bundles/AddressBundle/{Resources}'
   Domain\Address\:
     resource: '../../../../../src/Domain/Address/*'
+
+  Domain\Address\Signature\AddressRepositoryInterface:
+    class: Bundles\AddressBundle\Repository\AddressRepository

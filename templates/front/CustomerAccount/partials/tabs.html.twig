@@ -1,0 +1,15 @@
+{% set active = active|default('infos') %}
+<div class="row">
+    <div class="col"></div>
+    <div class="col-md-8 mb-5 mt-5">
+        <ul class="nav nav-pills">
+            <li class="nav-item">
+                <a class="nav-link {% if active == 'infos' %}active{% endif %}" href="{{ path('front_customer_index') }}">{% trans from 'ui' %}tabs-infos{% endtrans %}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {% if active == 'addresses' %}active{% endif %}" href="{{ path('front_customer_addresses') }}">{% trans from 'ui' %}tabs-addresses{% endtrans %}</a>
+            </li>
+        </ul>
+    </div>
+    <div class="col"></div>
+</div>

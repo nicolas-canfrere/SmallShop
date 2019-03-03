@@ -2,6 +2,7 @@
 
 {% block content %}
     <div class="container">
+        {{ include('@front/CustomerAccount/partials/tabs.html.twig', {active: 'infos'}) }}
         <div class="row">
             <div class="col"></div>
             <div class="col-md-8">
@@ -36,6 +37,7 @@
                     {{ form_widget(form.submit, {attr:{class: 'btn btn-primary'}}) }}
                 </div>
                 {{ form_end(form) }}
+
             </div>
             <div class="col"></div>
         </div>

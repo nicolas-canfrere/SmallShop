@@ -1,6 +1,47 @@
 {% extends '@front/master.html.twig' %}
 
 {% block content %}
-
+<div class="container">
+    {{ include('@front/CustomerAccount/partials/tabs.html.twig', {active: 'addresses'}) }}
+    <div class="row mb-3">
+        <div class="col"></div>
+        <div class="col-md-8">
+            <p>
+                <a href="{{ path('front_customer_add_addresse') }}" class="btn btn-primary">{% trans from 'ui' %}tabs-add-address{% endtrans %}</a>
+            </p>
+        </div>
+        <div class="col"></div>
+    </div>
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-md-8">
+            {% for address in addressBook.addresses %}
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Card title</h4>
+                        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="card-link">Card link</a>
+                        <a href="#" class="card-link">Another link</a>
+                    </div>
+                </div>
+                {% else %}
+                <p>
+                    {% trans from 'ui' %}tabs-no-addresses{% endtrans %}
+                </p>
+            {% endfor %}
+        </div>
+        <div class="col"></div>
+    </div>
+    <div class="row mt-3">
+        <div class="col"></div>
+        <div class="col-md-8">
+            <p>
+                <a href="{{ path('front_customer_add_addresse') }}" class="btn btn-primary">{% trans from 'ui' %}tabs-add-address{% endtrans %}</a>
+            </p>
+        </div>
+        <div class="col"></div>
+    </div>
+</div>
 {% endblock %}
 
