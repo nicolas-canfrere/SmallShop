@@ -2,35 +2,14 @@
 
 namespace Bundles\ProductBundle\Repository;
 
-use Doctrine\ORM\EntityManagerInterface;
+use Bundles\CoreBundle\Traits\BaseRepositoryTrait;
 use Doctrine\ORM\QueryBuilder;
-use Domain\Core\Signature\EntityInterface;
 use Domain\Product\Product;
 use Domain\Product\Signature\ProductRepositoryInterface;
-use Ramsey\Uuid\Uuid;
 
 class ProductRepository implements ProductRepositoryInterface
 {
-    /**
-     * @var EntityManagerInterface
-     */
-    private $entityManager;
-
-    public function __construct(EntityManagerInterface $entityManager)
-    {
-        $this->entityManager = $entityManager;
-    }
-
-    public function nextIdentity(): string
-    {
-        return Uuid::uuid4()->toString();
-    }
-
-    public function save(EntityInterface $entity): void
-    {
-        $this->entityManager->persist($entity);
-        $this->entityManager->flush();
-    }
+    use BaseRepositoryTrait;
 
     public function oneById(string $id)
     {

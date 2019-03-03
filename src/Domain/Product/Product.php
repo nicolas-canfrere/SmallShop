@@ -2,10 +2,15 @@
 
 namespace Domain\Product;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Domain\Product\Signature\ProductInterface;
+use Domain\Product\Signature\TagInterface;
 use Domain\Product\ValueObject\ProductName;
 use Money\Money;
 
+/**
+ * Class Product
+ */
 class Product implements ProductInterface
 {
     /**
@@ -38,6 +43,11 @@ class Product implements ProductInterface
      */
     protected $onSale = false;
 
+    /**
+     * @var ArrayCollection
+     */
+    protected $tags;
+
     public static function create(string $id, ProductName $name, Money $price, string $alias, string $description)
     {
         $product = new static();
@@ -46,6 +56,7 @@ class Product implements ProductInterface
         $product->price = $price;
         $product->alias = $alias;
         $product->description = $description;
+        $product->tags = new ArrayCollection();
 
         return $product;
     }
@@ -60,7 +71,7 @@ class Product implements ProductInterface
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getId(): string
     {
@@ -68,7 +79,7 @@ class Product implements ProductInterface
     }
 
     /**
-     * @return ProductName
+     * {@inheritdoc}
      */
     public function getName(): ProductName
     {
@@ -76,7 +87,7 @@ class Product implements ProductInterface
     }
 
     /**
-     * @return Money
+     * {@inheritdoc}
      */
     public function getPrice(): Money
     {
@@ -84,7 +95,7 @@ class Product implements ProductInterface
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getAlias(): string
     {
@@ -92,7 +103,7 @@ class Product implements ProductInterface
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getDescription(): string
     {
@@ -100,10 +111,59 @@ class Product implements ProductInterface
     }
 
     /**
-     * @return bool
+     * {@inheritdoc}
      */
     public function isOnSale(): bool
     {
         return $this->onSale;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addTag(TagInterface $tag): ProductInterface
+    {
+        if(!$this->tags->contains($tag)) {
+            $this->tags->add($tag);
+            $tag->addProduct($this);
+        }
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function removeTag(TagInterface $tag): ProductInterface
+    {
+        if($this->tags->contains($tag)) {
+            $this->tags->removeElement($tag);
+            $tag->removeProduct($this);
+        }
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getTags(): ArrayCollection
+    {
+        return $this->tags;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setTags($tags): ProductInterface
+    {
+        $this->tags = $tags;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->name->getName();
+    }
+
+
 }

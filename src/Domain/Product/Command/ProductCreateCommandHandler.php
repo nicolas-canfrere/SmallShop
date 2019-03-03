@@ -53,6 +53,7 @@ class ProductCreateCommandHandler implements CommandHandlerInterface
             $alias,
             $command->getDescription()
         );
+        $product->setTags($command->getTags());
         $this->productRepository->save($product);
 
         $command->setUuid($identity);

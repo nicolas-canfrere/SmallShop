@@ -1,5 +1,11 @@
 {% extends '@admin/master.html.twig' %}
 
+{% form_theme form _self %}
+
+{% block choice_widget %}
+    {{ form_widget(form) }}
+{% endblock %}
+
 {% block headLink %}
     {{ parent() }}
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css" rel="stylesheet">
@@ -46,6 +52,12 @@
                     {{ form_errors(form.description) }}
                 </div>
 
+                <div class="form-group">
+                    {{ form_label(form.tags) }}
+                    {{ form_widget(form.tags, {attr:{class: 'form-control'}}) }}
+                    {{ form_errors(form.tags) }}
+                </div>
+
                 {{ form_label(form.price) }}
                 <div class="row">
                     <div class="col-md-6">
@@ -56,6 +68,9 @@
                     </div>
                 </div>
                 {{ form_errors(form.price) }}
+
+
+
                 <div class="form-group mt-3">
                     {{ form_widget(form.submit, {attr:{class: 'btn btn-primary'}}) }}
                 </div>

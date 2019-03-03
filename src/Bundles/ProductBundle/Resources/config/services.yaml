@@ -13,3 +13,5 @@ services:
 
   Domain\Product\Signature\ProductRepositoryInterface:
     class: Bundles\ProductBundle\Repository\ProductRepository
+  Domain\Product\Signature\TagRepositoryInterface:
+    class: Bundles\ProductBundle\Repository\TagRepository
