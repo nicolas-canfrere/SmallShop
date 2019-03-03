@@ -14,6 +14,8 @@
         <field name="postalCode" column="postal_code" type="string" nullable="false" />
         <field name="city" column="city" type="string" nullable="false" />
         <field name="country" column="country" type="string" nullable="false" />
+        <field name="isDelivery" column="is_delivery" type="boolean"/>
+        <field name="isBilling" column="is_billing" type="boolean"/>
         <many-to-one field="owner" target-entity="Bundles\CustomerBundle\Model\ShopUser">
             <join-column name="customer_id" referenced-column-name="id"/>
         </many-to-one>

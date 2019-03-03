@@ -53,7 +53,7 @@ class AddressCreateCommand implements AddressCreateCommandInterface
     }
 
     /**
-     * @return string|null
+     * {@inheritdoc}
      */
     public function getFullname(): ?string
     {
@@ -73,7 +73,7 @@ class AddressCreateCommand implements AddressCreateCommandInterface
     }
 
     /**
-     * @return string|null
+     * {@inheritdoc}
      */
     public function getStreet(): ?string
     {
@@ -93,7 +93,7 @@ class AddressCreateCommand implements AddressCreateCommandInterface
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getPostalCode(): ?string
     {
@@ -113,7 +113,7 @@ class AddressCreateCommand implements AddressCreateCommandInterface
     }
 
     /**
-     * @return string|null
+     * {@inheritdoc}
      */
     public function getCity(): ?string
     {
@@ -133,7 +133,7 @@ class AddressCreateCommand implements AddressCreateCommandInterface
     }
 
     /**
-     * @return string|null
+     * {@inheritdoc}
      */
     public function getCountry(): ?string
     {
@@ -153,7 +153,7 @@ class AddressCreateCommand implements AddressCreateCommandInterface
     }
 
     /**
-     * @return CustomerInterface
+     * {@inheritdoc}
      */
     public function getOwner(): CustomerInterface
     {

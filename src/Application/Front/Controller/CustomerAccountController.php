@@ -10,6 +10,7 @@ use Domain\Address\Query\CustomerAddressesQuery;
 use Domain\Core\CommandBus\CommandBus;
 use Domain\Core\QueryBus\QueryBus;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 
 class CustomerAccountController extends AbstractController
@@ -40,7 +41,9 @@ class CustomerAccountController extends AbstractController
         try {
             $addressBook = $queryBus->handle($query);
         } catch (\Exception $e) {
-            die($e->getMessage());
+            $this->addFlash('danger', 'Oups ! une erreur est survenue !');
+
+            return $this->redirectToRoute('front_customer_index');
         }
 
         return $this->render('@front/CustomerAccount/addresses.html.twig', ['addressBook' => $addressBook]);
@@ -53,8 +56,38 @@ class CustomerAccountController extends AbstractController
         $form = $this->createForm(ShopUserAddAddressForm::class, $newAddress);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            try {
+                $commandBus->handle($newAddress);
+
+                return $this->redirectToRoute('front_customer_addresses');
+            } catch (\Exception $e) {
+                $form->addError(new FormError($e->getMessage()));
+            }
         }
 
         return $this->render('@front/CustomerAccount/add_ddresses.html.twig', ['form' => $form->createView()]);
+    }
+
+    public function removeAddress($id, Request $request, CommandBus $commandBus)
+    {
+        $owner = $this->getUser();
+
+        // TODO remove address
+
+        return $this->redirectToRoute('front_customer_addresses');
+    }
+
+    public function makeAddressAsDelivery($id, Request $request, CommandBus $commandBus)
+    {
+        $owner = $this->getUser();
+        // TODO
+        return $this->redirectToRoute('front_customer_addresses');
+    }
+
+    public function makeAddressAsBilling($id, Request $request, CommandBus $commandBus)
+    {
+        $owner = $this->getUser();
+        // TODO
+        return $this->redirectToRoute('front_customer_addresses');
     }
 }

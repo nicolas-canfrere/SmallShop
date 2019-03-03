@@ -7,7 +7,7 @@
         <div class="col"></div>
         <div class="col-md-8">
             <p>
-                <a href="{{ path('front_customer_add_addresse') }}" class="btn btn-primary">{% trans from 'ui' %}tabs-add-address{% endtrans %}</a>
+                <a href="{{ path('front_customer_add_address') }}" class="btn btn-primary">{% trans from 'ui' %}tabs-add-address{% endtrans %}</a>
             </p>
         </div>
         <div class="col"></div>
@@ -16,13 +16,24 @@
         <div class="col"></div>
         <div class="col-md-8">
             {% for address in addressBook.addresses %}
-                <div class="card">
+                <div class="card mb-3">
                     <div class="card-body">
-                        <h4 class="card-title">Card title</h4>
-                        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="card-link">Card link</a>
-                        <a href="#" class="card-link">Another link</a>
+                        <h4 class="card-title">{{ address.fullname }}</h4>
+                        <h6 class="card-subtitle mb-2 text-muted">
+                            {% if address.isDelivery %}Adresse de livraison{% endif %} {% if address.isBilling %}Adresse de facturation{% endif %}
+                        </h6>
+                        <p class="card-text">
+                            {{ address.street }} <br>
+                            {{ address.postalCode }} {{ address.city }} <br>
+                            {{ address.country }}
+                        </p>
+                        <a href="{{ path('front_customer_remove_address', {id: address.id}) }}" class="card-link"><i class="fas fa-trash-alt"></i> supprimer</a>
+                        {% if address.isBilling == false %}
+                            <a href="{{ path('front_customer_mark_address_billing', {id: address.id}) }}" class="card-link">nouvelle adresse de facturation</a>
+                        {% endif %}
+                        {% if address.isDelivery == false %}
+                            <a href="{{ path('front_customer_mark_address_delivery', {id: address.id}) }}" class="card-link">nouvelle adresse de livraison</a>
+                        {% endif %}
                     </div>
                 </div>
                 {% else %}
@@ -37,7 +48,7 @@
         <div class="col"></div>
         <div class="col-md-8">
             <p>
-                <a href="{{ path('front_customer_add_addresse') }}" class="btn btn-primary">{% trans from 'ui' %}tabs-add-address{% endtrans %}</a>
+                <a href="{{ path('front_customer_add_address') }}" class="btn btn-primary">{% trans from 'ui' %}tabs-add-address{% endtrans %}</a>
             </p>
         </div>
         <div class="col"></div>

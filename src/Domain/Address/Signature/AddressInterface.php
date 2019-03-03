@@ -43,6 +43,10 @@ interface AddressInterface extends EntityInterface
 
     public function unsetAsDefaultDelivery(): void;
 
+    public function setAsDefaultBilling(): void;
+
+    public function unsetAsDefaultBilling(): void;
+
     /**
      * @return bool
      */

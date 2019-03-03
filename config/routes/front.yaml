@@ -51,9 +51,36 @@ front_customer_addresses:
   controller: Application\Front\Controller\CustomerAccountController::addresses
   methods: ['get', 'post']
 
-front_customer_add_addresse:
+front_customer_add_address:
   path:
     fr: /{_locale}/ajouter-une-adresse
     en: /{_locale}/add-an-address
   controller: Application\Front\Controller\CustomerAccountController::addAddress
   methods: ['get', 'post']
+
+front_customer_remove_address:
+  path:
+    fr: /{_locale}/supprimer-une-adresse/{id}
+    en: /{_locale}/remove-an-address/{id}
+  controller: Application\Front\Controller\CustomerAccountController::removeAddress
+  methods: ['get']
+  requirements:
+    id: '[a-z0-9]{8,8}-[a-z0-9]{4,4}-[a-z0-9]{4,4}-[a-z0-9]{4,4}-[a-z0-9]{12,12}'
+
+front_customer_mark_address_billing:
+  path:
+    fr: /{_locale}/nouvelle-adresse-de-facturation/{id}
+    en: /{_locale}/new-billing-address/{id}
+  controller: Application\Front\Controller\CustomerAccountController::makeAddressAsBilling
+  methods: ['get']
+  requirements:
+    id: '[a-z0-9]{8,8}-[a-z0-9]{4,4}-[a-z0-9]{4,4}-[a-z0-9]{4,4}-[a-z0-9]{12,12}'
+
+front_customer_mark_address_delivery:
+  path:
+    fr: /{_locale}/nouvelle-adresse-de-livraison/{id}
+    en: /{_locale}/new-delivery-address/{id}
+  controller: Application\Front\Controller\CustomerAccountController::makeAddressAsDelivery
+  methods: ['get']
+  requirements:
+    id: '[a-z0-9]{8,8}-[a-z0-9]{4,4}-[a-z0-9]{4,4}-[a-z0-9]{4,4}-[a-z0-9]{12,12}'

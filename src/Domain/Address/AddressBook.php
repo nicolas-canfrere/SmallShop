@@ -53,16 +53,26 @@ final class AddressBook
         $this->isLoaded = true;
     }
 
-    private function sort()
+    public function sort()
     {
         if (!$this->addresses) {
             return;
         }
 
         $addresses = $this->addresses;
-        array_filter($addresses, function (AddressInterface $address) {
-            return !$address->isDelivery() || !$address->isBilling();
+
+        $addresses = array_filter($addresses, function (AddressInterface $address) {
+            if ($address->isBilling()) {
+                return false;
+            }
+            if ($address->isDelivery()) {
+                return false;
+            }
+
+            return true;
         });
+
+
 
         $delivery = $this->retrieveDefaultDeliveryAddress();
         $billing = $this->retrieveBillingAddress();
@@ -116,15 +126,29 @@ final class AddressBook
             throw new AddressBookNewAddressNotCreated();
         }
         $this->newAddress->setAsDefaultDelivery();
+        $this->unsetDefaultDeliveryAddress();
+        $address = $this->newAddress;
+        array_unshift($this->addresses, $address);
+        $this->addressRepository->save($address);
+        $this->newAddress = null;
+    }
+
+    public function unsetDefaultDeliveryAddress()
+    {
         $currentDefaultDeliveryAddress = $this->retrieveDefaultDeliveryAddress();
         if ($currentDefaultDeliveryAddress) {
             $currentDefaultDeliveryAddress->unsetAsDefaultDelivery();
             $this->addressRepository->save($currentDefaultDeliveryAddress);
         }
-        $address = $this->newAddress;
-        array_unshift($this->addresses, $address);
-        $this->addressRepository->save($address);
-        $this->newAddress = null;
+    }
+
+    public function unsetDefaultBillingAddress()
+    {
+        $currentDefaultBillingAddress = $this->retrieveBillingAddress();
+        if ($currentDefaultBillingAddress) {
+            $currentDefaultBillingAddress->unsetAsDefaultBilling();
+            $this->addressRepository->save($currentDefaultBillingAddress);
+        }
     }
 
     /**
@@ -155,8 +179,30 @@ final class AddressBook
         return null;
     }
 
+    /**
+     * @return AddressInterface[]
+     */
     public function getAddresses()
     {
         return $this->addresses;
+    }
+
+    /**
+     * @param AddressInterface $address
+     *
+     * @return AddressBook
+     */
+    public function addAddress(AddressInterface $address): AddressBook
+    {
+        if ($address->isDelivery()) {
+            $this->unsetDefaultDeliveryAddress();
+        }
+        if ($address->isBilling()) {
+            $this->unsetDefaultBillingAddress();
+        }
+        $this->addresses[] = $address;
+        $this->sort();
+
+        return $this;
     }
 }

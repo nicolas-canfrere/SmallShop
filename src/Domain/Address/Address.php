@@ -110,6 +110,16 @@ class Address implements AddressInterface
         $this->isDelivery = false;
     }
 
+    public function setAsDefaultBilling(): void
+    {
+        $this->isBilling = true;
+    }
+
+    public function unsetAsDefaultBilling(): void
+    {
+        $this->isBilling = false;
+    }
+
     /**
      * {@inheritdoc}
      */
