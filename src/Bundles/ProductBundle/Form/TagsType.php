@@ -1,6 +1,6 @@
 <?php
 
-namespace Bundles\ProductBundle\Doctrine\Type;
+namespace Bundles\ProductBundle\Form;
 
 use Domain\Product\Signature\TagInterface;
 use Domain\Product\Signature\TagRepositoryInterface;
@@ -136,7 +136,6 @@ class TagsType extends AbstractType implements ChoiceLoaderInterface, DataTransf
             return $this->choiceList->getValuesForChoices($choices);
         }
 
-        dump($choices);
 
         return array_map(function (TagInterface $tag) { return (string)$tag; }, $choices);
     }

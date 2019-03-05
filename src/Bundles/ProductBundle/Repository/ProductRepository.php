@@ -22,7 +22,12 @@ class ProductRepository implements ProductRepositoryInterface
 
     public function queryBuilder(): QueryBuilder
     {
-        return $this->entityManager->createQueryBuilder()->select('product')->from(Product::class, 'product');
+        return $this->entityManager
+            ->createQueryBuilder()
+            ->select('product')
+            ->from(Product::class, 'product')
+            ->leftJoin('product.tags', 'tags')->addSelect('tags')
+            ;
     }
 
     public function all()

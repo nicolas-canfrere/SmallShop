@@ -118,7 +118,7 @@ admin accessible par http://smallshop.local/back-office
 - decoupler le cryptage des mots de passe ( trop lié à Doctrine+Symfony Security)
 - continuer le stock (limite d'alerte - mettre à jour onSale, etc)
 - ~~pouvoir ajouter des middlewares au CommandBus~~
-- créer un QueryBus interne sur le modèle du CommandBus ( et se libérer de Tactician )
+- ~~créer un QueryBus interne sur le modèle du CommandBus ( et se libérer de Tactician )~~
 
 
 

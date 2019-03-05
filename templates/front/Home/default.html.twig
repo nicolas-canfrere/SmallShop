@@ -10,6 +10,14 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ product.name }}</h5>
                             <p class="card-text">{{ product.description|raw }}</p>
+                            {% if product.tags|length %}
+                                <p>
+                                    {% for tag in product.tags %}
+                                        {{ tag }}{% if loop.revindex0 > 0 %}, {% endif %}
+                                    {% endfor %}
+
+                                </p>
+                            {% endif %}
 
                             <p class="card-text text-center"><strong>{{ product.price|format_price }}</strong></p>
                         </div>
