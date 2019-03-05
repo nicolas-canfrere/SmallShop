@@ -10,7 +10,7 @@ use Domain\Product\ValueObject\ProductName;
 use Money\Money;
 
 /**
- * Class Product
+ * Class Product.
  */
 class Product implements ProductInterface
 {
@@ -125,10 +125,11 @@ class Product implements ProductInterface
      */
     public function addTag(TagInterface $tag): ProductInterface
     {
-        if(!$this->tags->contains($tag)) {
+        if (!$this->tags->contains($tag)) {
             $this->tags->add($tag);
             $tag->addProduct($this);
         }
+
         return $this;
     }
 
@@ -137,10 +138,11 @@ class Product implements ProductInterface
      */
     public function removeTag(TagInterface $tag): ProductInterface
     {
-        if($this->tags->contains($tag)) {
+        if ($this->tags->contains($tag)) {
             $this->tags->removeElement($tag);
             $tag->removeProduct($this);
         }
+
         return $this;
     }
 
@@ -166,6 +168,4 @@ class Product implements ProductInterface
     {
         return $this->name->getName();
     }
-
-
 }

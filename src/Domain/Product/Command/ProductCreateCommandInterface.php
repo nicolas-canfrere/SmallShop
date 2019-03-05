@@ -9,7 +9,7 @@ use Domain\Product\ValueObject\ProductName;
 use Money\Money;
 
 /**
- * Interface ProductCreateCommandInterface
+ * Interface ProductCreateCommandInterface.
  */
 interface ProductCreateCommandInterface extends CommandInterface
 {

@@ -2,12 +2,11 @@
 
 namespace Domain\Product\Signature;
 
-
 use Doctrine\Common\Collections\ArrayCollection;
 use Domain\Core\Signature\EntityInterface;
 
 /**
- * Interface TagInterface
+ * Interface TagInterface.
  */
 interface TagInterface extends EntityInterface
 {

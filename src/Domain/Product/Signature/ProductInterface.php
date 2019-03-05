@@ -9,11 +9,10 @@ use Domain\Product\ValueObject\ProductName;
 use Money\Money;
 
 /**
- * Interface ProductInterface
+ * Interface ProductInterface.
  */
 interface ProductInterface extends EntityInterface
 {
-
     /**
      * @return ProductName
      */
@@ -38,6 +37,7 @@ interface ProductInterface extends EntityInterface
      * @return bool
      */
     public function isOnSale(): bool;
+
     /**
      * @param TagInterface $tag
      *

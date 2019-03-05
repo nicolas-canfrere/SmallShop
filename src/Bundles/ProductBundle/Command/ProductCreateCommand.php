@@ -92,9 +92,10 @@ class ProductCreateCommand implements ProductCreateCommandInterface
      */
     public function getTags(): Collection
     {
-        if(!$this->tags) {
+        if (!$this->tags) {
             $this->tags = new ArrayCollection();
         }
+
         return $this->tags;
     }
 
@@ -109,8 +110,6 @@ class ProductCreateCommand implements ProductCreateCommandInterface
 
         return $this;
     }
-
-
 
     /**
      * @return string

@@ -7,8 +7,7 @@ use Domain\Core\Signature\EntityInterface;
 use Ramsey\Uuid\Uuid;
 
 /**
- * Trait BaseRepositoryTrait
- * @package Bundles\CoreBundle\Traits
+ * Trait BaseRepositoryTrait.
  */
 trait BaseRepositoryTrait
 {

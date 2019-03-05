@@ -9,7 +9,7 @@ use Domain\Product\Signature\TagRepositoryInterface;
 use Domain\Product\Tag;
 
 /**
- * Class TagRepository
+ * Class TagRepository.
  */
 class TagRepository implements TagRepositoryInterface
 {

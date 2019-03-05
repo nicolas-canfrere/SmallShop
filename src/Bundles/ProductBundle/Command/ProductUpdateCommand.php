@@ -227,6 +227,7 @@ class ProductUpdateCommand implements ProductUpdateCommandInterface
     public function setTags(Collection $tags): ProductUpdateCommandInterface
     {
         $this->tags = $tags;
+
         return $this;
     }
 }

@@ -7,7 +7,7 @@ use Domain\Product\Signature\ProductInterface;
 use Domain\Product\Signature\TagInterface;
 
 /**
- * Class Tag
+ * Class Tag.
  */
 class Tag implements TagInterface
 {
@@ -51,9 +51,10 @@ class Tag implements TagInterface
      */
     public function addProduct(ProductInterface $product): TagInterface
     {
-        if(!$this->products->contains($product)) {
+        if (!$this->products->contains($product)) {
             $this->products->add($product);
         }
+
         return $this;
     }
 
@@ -62,9 +63,10 @@ class Tag implements TagInterface
      */
     public function removeProduct(ProductInterface $product): TagInterface
     {
-        if($this->products->contains($product)) {
+        if ($this->products->contains($product)) {
             $this->products->removeElement($product);
         }
+
         return $this;
     }
 
@@ -90,6 +92,4 @@ class Tag implements TagInterface
     {
         return $this->name;
     }
-
-
 }

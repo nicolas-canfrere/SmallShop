@@ -19,7 +19,7 @@ use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class TagsType
+ * Class TagsType.
  */
 class TagsType extends AbstractType implements ChoiceLoaderInterface, DataTransformerInterface
 {
@@ -53,18 +53,15 @@ class TagsType extends AbstractType implements ChoiceLoaderInterface, DataTransf
         $view->vars['full_name'] = substr($view->vars['full_name'], 0, -2);
     }
 
-
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(['choice_loader'=>$this, 'multiple'=>true]);
+        $resolver->setDefaults(['choice_loader' => $this, 'multiple' => true]);
     }
-
 
     public function getParent()
     {
         return ChoiceType::class;
     }
-
 
     /**
      * @param null $value
@@ -73,14 +70,14 @@ class TagsType extends AbstractType implements ChoiceLoaderInterface, DataTransf
      */
     public function loadChoiceList($value = null)
     {
-        if(!null === $this->choiceList) {
+        if (!null === $this->choiceList) {
             return $this->choiceList;
         }
 
         $tags = $this->tagRepository->all();
 
         $closure = function (TagInterface $tag) {
-          return null === $tag ? '' : (string)$tag;
+            return null === $tag ? '' : (string) $tag;
         };
 
         return new ArrayChoiceList($tags, $closure);
@@ -88,17 +85,18 @@ class TagsType extends AbstractType implements ChoiceLoaderInterface, DataTransf
 
     /**
      * @param array $values
-     * @param null $value
+     * @param null  $value
      *
      * @return array
+     *
      * @throws \Exception
      */
     public function loadChoicesForValues(array $values, $value = null)
     {
-        if(empty($values)) {
+        if (empty($values)) {
             return [];
         }
-        if(null !== $this->choiceList) {
+        if (null !== $this->choiceList) {
             return $this->choiceList->getChoicesForValues($values);
         }
         //return $this->tagRepository->getTags($values);
@@ -123,21 +121,23 @@ class TagsType extends AbstractType implements ChoiceLoaderInterface, DataTransf
 
     /**
      * @param array $choices
-     * @param null $value
+     * @param null  $value
      *
      * @return array|string[]
      */
     public function loadValuesForChoices(array $choices, $value = null)
     {
-        if(empty($choices)) {
+        if (empty($choices)) {
             return [];
         }
-        if(null !== $this->choiceList) {
+        if (null !== $this->choiceList) {
             return $this->choiceList->getValuesForChoices($choices);
         }
 
 
-        return array_map(function (TagInterface $tag) { return (string)$tag; }, $choices);
+        return array_map(function (TagInterface $tag) {
+            return (string) $tag;
+        }, $choices);
     }
 
     /**
@@ -147,7 +147,7 @@ class TagsType extends AbstractType implements ChoiceLoaderInterface, DataTransf
      */
     public function transform($value)
     {
-        if(empty($value)) {
+        if (empty($value)) {
             return '';
         }
 
@@ -161,10 +161,13 @@ class TagsType extends AbstractType implements ChoiceLoaderInterface, DataTransf
      */
     public function reverseTransform($value)
     {
-        if(null === $value) {
+        if (null === $value) {
             return [];
         }
         $value = explode(',', $value);
-        return array_map(function ($str) { return trim($str); }, $value);
+
+        return array_map(function ($str) {
+            return trim($str);
+        }, $value);
     }
 }
