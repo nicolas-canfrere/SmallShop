@@ -2,9 +2,11 @@
 
 namespace Domain\Cart\Command;
 
+use Domain\Cart\Event\CartClearEvent;
 use Domain\Cart\Signature\CartInterface;
-use Domain\Core\Signature\CommandHandlerInterface;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Domain\Core\CommandBus\CommandHandlerInterface;
+use Domain\Core\CommandBus\CommandInterface;
+use Domain\Core\Event\EventBus;
 
 /**
  * Class ClearCartCommandHandler.
@@ -12,36 +14,37 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 class ClearCartCommandHandler implements CommandHandlerInterface
 {
     /**
-     * @var EventDispatcherInterface
-     */
-    private $eventDispatcher;
-
-    /**
      * @var CartInterface
      */
     private $cart;
+    /**
+     * @var EventBus
+     */
+    private $eventBus;
 
     /**
      * ClearCartCommandHandler constructor.
      *
-     * @param EventDispatcherInterface $eventDispatcher
-     * @param CartInterface            $cart
+     * @param CartInterface $cart
+     * @param EventBus $eventBus
      */
     public function __construct(
-        EventDispatcherInterface $eventDispatcher,
-        CartInterface $cart
+        CartInterface $cart,
+        EventBus $eventBus
     ) {
-        $this->eventDispatcher = $eventDispatcher;
         $this->cart = $cart;
+        $this->eventBus = $eventBus;
     }
 
     /**
-     * @param ClearCartCommand $command
+     * @param ClearCartCommandInterface|CommandInterface $command
+     *
+     * @throws \Exception
      */
-    public function handle(ClearCartCommand $command)
+    public function handle(CommandInterface $command)
     {
         $this->cart->clear();
 
-        // TODO dispatch event !
+        $this->eventBus->dispatch(new CartClearEvent($command->getCustomer()));
     }
 }

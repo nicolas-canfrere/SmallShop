@@ -2,10 +2,10 @@
 
 namespace Application\Front\Controller;
 
-use Domain\Cart\Command\AddProductToCartCommand;
-use Domain\Cart\Command\ClearCartCommand;
-use Domain\Cart\Command\RemoveProductFromCartCommand;
-use League\Tactician\CommandBus;
+use Bundles\CartBundle\Command\AddProductToCartCommand;
+use Bundles\CartBundle\Command\ClearCartCommand;
+use Bundles\CartBundle\Command\RemoveProductFromCartCommand;
+use Domain\Core\CommandBus\CommandBus;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -17,13 +17,11 @@ class CartController extends AbstractController
     public function addToCart(Request $request, CommandBus $commandBus)
     {
         $params = $request->request->all();
+        $params['customer'] = $this->getUser();
         $addToCartCommand = AddProductToCartCommand::fromArray($params);
         try {
             $commandBus->handle($addToCartCommand);
         } catch (\Exception $e) {
-
-            // TODO remove this !!
-            die($e->getMessage());
         }
 
         return $this->redirectToRoute('front_cart_page');
@@ -32,6 +30,7 @@ class CartController extends AbstractController
     public function removeFromCart(Request $request, CommandBus $commandBus)
     {
         $params = $request->request->all();
+        $params['customer'] = $this->getUser();
         $removeFromCartCommand = RemoveProductFromCartCommand::fromArray($params);
         try {
             $commandBus->handle($removeFromCartCommand);
@@ -43,7 +42,7 @@ class CartController extends AbstractController
 
     public function clearCart(CommandBus $commandBus)
     {
-        $commandBus->handle(new ClearCartCommand());
+        $commandBus->handle(new ClearCartCommand($this->getUser()));
 
         return $this->redirectToRoute('front_cart_page');
     }

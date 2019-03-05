@@ -3,21 +3,20 @@
 namespace Domain\Cart\Command;
 
 use Domain\Cart\Cart;
+use Domain\Cart\Event\ProductAllRemovedFromCartEvent;
+use Domain\Cart\Event\ProductRemovedFromCartEvent;
 use Domain\Cart\Signature\CartInterface;
-use Domain\Core\Signature\CommandHandlerInterface;
+use Domain\Core\CommandBus\CommandHandlerInterface;
+use Domain\Core\CommandBus\CommandInterface;
+use Domain\Core\Event\EventBus;
 use Domain\Product\Exception\ProductNotFoundException;
 use Domain\Product\Signature\ProductRepositoryInterface;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
  * Class RemoveProductFromCartCommandHandler.
  */
 class RemoveProductFromCartCommandHandler implements CommandHandlerInterface
 {
-    /**
-     * @var EventDispatcherInterface
-     */
-    private $eventDispatcher;
 
     /**
      * @var ProductRepositoryInterface
@@ -28,44 +27,51 @@ class RemoveProductFromCartCommandHandler implements CommandHandlerInterface
      * @var CartInterface
      */
     private $cart;
+    /**
+     * @var EventBus
+     */
+    private $eventBus;
 
     /**
      * RemoveProductFromCartCommandHandler constructor.
      *
-     * @param EventDispatcherInterface   $eventDispatcher
      * @param ProductRepositoryInterface $productRepository
-     * @param CartInterface              $cart
+     * @param CartInterface $cart
+     * @param EventBus $eventBus
      */
     public function __construct(
-        EventDispatcherInterface $eventDispatcher,
         ProductRepositoryInterface $productRepository,
-        CartInterface $cart
+        CartInterface $cart,
+        EventBus $eventBus
     ) {
-        $this->eventDispatcher = $eventDispatcher;
         $this->productRepository = $productRepository;
         $this->cart = $cart;
+        $this->eventBus = $eventBus;
     }
 
     /**
-     * @param RemoveProductFromCartCommand $command
+     * @param RemoveProductFromCartCommandInterface|CommandInterface $command
      *
      * @throws ProductNotFoundException
      * @throws \Domain\Cart\Exception\CartException
      */
-    public function handle(RemoveProductFromCartCommand $command)
+    public function handle(CommandInterface $command)
     {
-        $product = $this->productRepository->oneById($command->productId);
+        $product = $this->productRepository->oneById($command->getProductId());
 
         if (!$product) {
             throw new ProductNotFoundException('product not found');
         }
 
-        if (Cart::ALL_PRODUCTS_IN_ROW == $command->quantity) {
-            $this->cart->deleteRow($command->productId);
-        // TODO dispatch event !
+        if (Cart::ALL_PRODUCTS_IN_ROW == $command->getQuantity()) {
+            $this->cart->deleteRow($command->getProductId());
+            $event = new ProductAllRemovedFromCartEvent($product, $command->getCustomer());
+
         } else {
-            $this->cart->removeItem($product, $command->quantity);
-            // TODO dispatch event !
+            $this->cart->removeItem($product, $command->getQuantity());
+            $event = new ProductRemovedFromCartEvent($product, $command->getQuantity(), $command->getCustomer());
         }
+
+        $this->eventBus->dispatch($event);
     }
 }

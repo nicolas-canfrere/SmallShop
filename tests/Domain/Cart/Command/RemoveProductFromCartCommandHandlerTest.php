@@ -2,15 +2,16 @@
 
 namespace Tests\Domain\Cart\Command;
 
+use Bundles\CartBundle\Command\RemoveProductFromCartCommand;
 use Bundles\ProductBundle\Repository\InMemoryProductRepository;
 use Domain\Cart\Cart;
-use Domain\Cart\Command\RemoveProductFromCartCommand;
 use Domain\Cart\Command\RemoveProductFromCartCommandHandler;
 use Domain\Cart\Signature\CartInterface;
+use Domain\Core\Event\EventBus;
+use Domain\Core\Event\EventListenerProvider;
 use Domain\Product\Exception\ProductNotFoundException;
 use Domain\Product\Signature\ProductInterface;
 use Domain\Product\Signature\ProductRepositoryInterface;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Tests\Domain\Cart\CartTestCase;
 
 class RemoveProductFromCartCommandHandlerTest extends CartTestCase
@@ -39,9 +40,13 @@ class RemoveProductFromCartCommandHandlerTest extends CartTestCase
     {
         $this->assertEquals(2, count($this->cart));
 
-        $command            = new RemoveProductFromCartCommand();
-        $command->productId = $this->product->getId();
-        $command->quantity  = 1;
+        $command            = RemoveProductFromCartCommand::fromArray(
+            [
+                'id'       => $this->product->getId(),
+                'quantity' => 1,
+                'customer'=>null,
+            ]
+        );
 
         $this->handler->handle($command);
 
@@ -56,9 +61,13 @@ class RemoveProductFromCartCommandHandlerTest extends CartTestCase
     {
         $this->assertEquals(2, count($this->cart));
 
-        $command            = new RemoveProductFromCartCommand();
-        $command->productId = $this->product->getId();
-        $command->quantity  = 2;
+        $command            = RemoveProductFromCartCommand::fromArray(
+            [
+                'id'       => $this->product->getId(),
+                'quantity' => 2,
+                'customer'=>null,
+            ]
+        );
 
         $this->handler->handle($command);
 
@@ -74,8 +83,13 @@ class RemoveProductFromCartCommandHandlerTest extends CartTestCase
         $this->expectException(ProductNotFoundException::class);
         $this->expectExceptionMessage('product not found');
 
-        $command            = new RemoveProductFromCartCommand();
-        $command->productId = 'throw-exception!';
+        $command            = RemoveProductFromCartCommand::fromArray(
+            [
+                'id'       => 'throw-exception!',
+                'quantity' => 1,
+                'customer'=>null,
+            ]
+        );
         $this->handler->handle($command);
     }
 
@@ -89,9 +103,8 @@ class RemoveProductFromCartCommandHandlerTest extends CartTestCase
         $this->cart->addItem($this->product, 2);
 
         $this->handler = new RemoveProductFromCartCommandHandler(
-            $this->createMock(EventDispatcherInterface::class),
             $this->productRepository,
-            $this->cart
+            $this->cart, new EventBus(new EventListenerProvider())
         );
     }
 }

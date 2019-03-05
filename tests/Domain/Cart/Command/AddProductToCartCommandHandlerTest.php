@@ -2,15 +2,16 @@
 
 namespace Tests\Domain\Cart\Command;
 
+use Bundles\CartBundle\Command\AddProductToCartCommand;
 use Bundles\ProductBundle\Repository\InMemoryProductRepository;
 use Domain\Cart\Cart;
-use Domain\Cart\Command\AddProductToCartCommand;
 use Domain\Cart\Command\AddProductToCartCommandHandler;
 use Domain\Cart\Signature\CartInterface;
+use Domain\Core\Event\EventBus;
+use Domain\Core\Event\EventListenerProvider;
 use Domain\Product\Exception\ProductNotFoundException;
 use Domain\Product\Signature\ProductInterface;
 use Domain\Product\Signature\ProductRepositoryInterface;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Tests\Domain\Cart\CartTestCase;
 
 class AddProductToCartCommandHandlerTest extends CartTestCase
@@ -39,9 +40,13 @@ class AddProductToCartCommandHandlerTest extends CartTestCase
     {
         $this->assertEquals(0, count($this->cart));
 
-        $command            = new AddProductToCartCommand();
-        $command->quantity  = 1;
-        $command->productId = 'abc';
+        $command = AddProductToCartCommand::fromArray(
+            [
+                'id'       => 'abc',
+                'quantity' => 1,
+                'customer'=>null,
+            ]
+        );
 
         $this->handler->handle($command);
 
@@ -57,8 +62,13 @@ class AddProductToCartCommandHandlerTest extends CartTestCase
         $this->expectException(ProductNotFoundException::class);
         $this->expectExceptionMessage('product not found');
 
-        $command            = new AddProductToCartCommand();
-        $command->productId = 'throw-exception!';
+        $command = AddProductToCartCommand::fromArray(
+            [
+                'id'       => 'throw-exception!',
+                'quantity' => 1,
+                'customer'=>null,
+            ]
+        );
         $this->handler->handle($command);
     }
 
@@ -70,9 +80,9 @@ class AddProductToCartCommandHandlerTest extends CartTestCase
         $this->cart = new Cart();
 
         $this->handler = new AddProductToCartCommandHandler(
-            $this->createMock(EventDispatcherInterface::class),
             $this->productRepository,
-            $this->cart
+            $this->cart,
+            new EventBus(new EventListenerProvider())
         );
     }
 }

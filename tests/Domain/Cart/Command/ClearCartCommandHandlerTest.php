@@ -2,11 +2,12 @@
 
 namespace Tests\Domain\Cart\Command;
 
+use Bundles\CartBundle\Command\ClearCartCommand;
 use Domain\Cart\Cart;
-use Domain\Cart\Command\ClearCartCommand;
 use Domain\Cart\Command\ClearCartCommandHandler;
 use Domain\Cart\Signature\CartInterface;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Domain\Core\Event\EventBus;
+use Domain\Core\Event\EventListenerProvider;
 use Tests\Domain\Cart\CartTestCase;
 
 class ClearCartCommandHandlerTest extends CartTestCase
@@ -29,7 +30,7 @@ class ClearCartCommandHandlerTest extends CartTestCase
         $this->assertTrue($this->cart->itemIsRegistred('abc'));
         $this->assertTrue($this->cart->itemIsRegistred('def'));
 
-        $this->handler->handle(new ClearCartCommand());
+        $this->handler->handle(new ClearCartCommand(null));
 
         $this->assertEquals(0, count($this->cart));
         $this->assertFalse($this->cart->itemIsRegistred('abc'));
@@ -47,8 +48,8 @@ class ClearCartCommandHandlerTest extends CartTestCase
         $this->cart->addItem($productB, 10);
 
         $this->handler = new ClearCartCommandHandler(
-            $this->createMock(EventDispatcherInterface::class),
-            $this->cart
+            $this->cart,
+            new EventBus(new EventListenerProvider())
         );
     }
 }

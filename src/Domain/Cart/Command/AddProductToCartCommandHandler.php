@@ -2,21 +2,20 @@
 
 namespace Domain\Cart\Command;
 
+use Domain\Cart\Event\ProductAddedToCartEvent;
 use Domain\Cart\Signature\CartInterface;
-use Domain\Core\Signature\CommandHandlerInterface;
+use Domain\Core\CommandBus\CommandHandlerInterface;
+use Domain\Core\CommandBus\CommandInterface;
+use Domain\Core\Event\EventBus;
 use Domain\Product\Exception\ProductNotFoundException;
 use Domain\Product\Signature\ProductRepositoryInterface;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
  * Class AddProductToCartCommandHandler.
  */
 class AddProductToCartCommandHandler implements CommandHandlerInterface
 {
-    /**
-     * @var EventDispatcherInterface
-     */
-    private $eventDispatcher;
+
 
     /**
      * @var ProductRepositoryInterface
@@ -27,40 +26,46 @@ class AddProductToCartCommandHandler implements CommandHandlerInterface
      * @var CartInterface
      */
     private $cart;
+    /**
+     * @var EventBus
+     */
+    private $eventBus;
 
     /**
      * AddProductToCartCommandHandler constructor.
      *
-     * @param EventDispatcherInterface   $eventDispatcher
      * @param ProductRepositoryInterface $productRepository
-     * @param CartInterface              $cart
+     * @param CartInterface $cart
+     * @param EventBus $eventBus
      */
     public function __construct(
-        EventDispatcherInterface $eventDispatcher,
         ProductRepositoryInterface $productRepository,
-        CartInterface $cart
+        CartInterface $cart,
+        EventBus $eventBus
     ) {
-        $this->eventDispatcher = $eventDispatcher;
         $this->productRepository = $productRepository;
         $this->cart = $cart;
+        $this->eventBus = $eventBus;
     }
 
     /**
-     * @param AddProductToCartCommand $command
+     * @param AddProductToCartCommandInterface|CommandInterface $command
      *
      * @throws ProductNotFoundException
      * @throws \Domain\Cart\Exception\CartException
      */
-    public function handle(AddProductToCartCommand $command)
+    public function handle(CommandInterface $command)
     {
-        $product = $this->productRepository->oneById($command->productId);
+        $product = $this->productRepository->oneById($command->getProductId());
 
         if (!$product) {
             throw new ProductNotFoundException('product not found');
         }
 
-        $this->cart->addItem($product, $command->quantity);
+        $this->cart->addItem($product, $command->getQuantity());
 
-        // TODO dispatch event !
+        $event = new ProductAddedToCartEvent($product, $command->getQuantity(), $command->getCustomer());
+
+        $this->eventBus->dispatch($event);
     }
 }
