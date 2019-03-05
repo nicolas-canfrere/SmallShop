@@ -4,6 +4,7 @@ namespace Bundles\ProductBundle\Repository;
 
 use Bundles\CoreBundle\Traits\BaseRepositoryTrait;
 use Doctrine\ORM\QueryBuilder;
+use Domain\Product\Signature\TagInterface;
 use Domain\Product\Signature\TagRepositoryInterface;
 use Domain\Product\Tag;
 
@@ -42,5 +43,14 @@ class TagRepository implements TagRepositoryInterface
             ->setParameter('names', $names)
             ->getQuery()
             ->getResult();
+    }
+
+    public function oneByName(string $name): ?TagInterface
+    {
+        return $this->queryBuilder()
+            ->andWhere('tag.name = :name')
+            ->setParameter('name', $name)
+            ->getQuery()
+            ->getOneOrNullResult();
     }
 }

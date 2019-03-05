@@ -2,6 +2,8 @@
 
 namespace Bundles\ProductBundle\Command;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Domain\Product\Command\ProductUpdateCommandHandler;
 use Domain\Product\Command\ProductUpdateCommandInterface;
 use Domain\Product\Product;
@@ -44,6 +46,10 @@ class ProductUpdateCommand implements ProductUpdateCommandInterface
      * @var Product|null
      */
     public $original;
+    /**
+     * @var ArrayCollection
+     */
+    public $tags;
 
     public static function fromProduct(Product $product)
     {
@@ -54,6 +60,7 @@ class ProductUpdateCommand implements ProductUpdateCommandInterface
         $static->uuid = $product->getId();
         $static->alias = $product->getAlias();
         $static->onSale = $product->isOnSale();
+        $static->tags = $product->getTags();
         $static->original = $product;
 
         return $static;
@@ -202,5 +209,24 @@ class ProductUpdateCommand implements ProductUpdateCommandInterface
     public function handleBy(): string
     {
         return ProductUpdateCommandHandler::class;
+    }
+
+    /**
+     * @return Collection|ArrayCollection
+     */
+    public function getTags(): Collection
+    {
+        return $this->tags;
+    }
+
+    /**
+     * @param Collection|ArrayCollection $tags
+     *
+     * @return ProductUpdateCommandInterface
+     */
+    public function setTags(Collection $tags): ProductUpdateCommandInterface
+    {
+        $this->tags = $tags;
+        return $this;
     }
 }

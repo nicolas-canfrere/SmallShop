@@ -4,6 +4,7 @@ namespace Application\Admin\Form;
 
 use Bundles\CoreBundle\Form\PhpMoneyType;
 use Bundles\ProductBundle\Command\ProductUpdateCommand;
+use Bundles\ProductBundle\Doctrine\Type\TagsType;
 use Bundles\ProductBundle\Form\ProductNameType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -20,6 +21,7 @@ class ProductUpdateForm extends AbstractType
             ->add('name', ProductNameType::class, ['label' => 'Name'])
             ->add('description', TextareaType::class, ['label' => 'Description'])
             ->add('price', PhpMoneyType::class, ['label' => 'Price'])
+            ->add('tags', TagsType::class, ['label' => 'Mots-clefs'])
             ->add('onSale', CheckboxType::class, ['label' => 'On sale'])
             ->add('submit', SubmitType::class, ['label' => 'Save']);
     }

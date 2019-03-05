@@ -3,6 +3,7 @@
 namespace Domain\Product;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Domain\Product\Signature\ProductInterface;
 use Domain\Product\Signature\TagInterface;
 use Domain\Product\ValueObject\ProductName;
@@ -61,13 +62,14 @@ class Product implements ProductInterface
         return $product;
     }
 
-    public function update(ProductName $name, Money $price, string $alias, string $description, bool $onSale)
+    public function update(ProductName $name, Money $price, string $alias, string $description, bool $onSale, ArrayCollection $tags)
     {
         $this->name = $name;
         $this->alias = $alias;
         $this->price = $price;
         $this->description = $description;
         $this->onSale = $onSale;
+        $this->tags = $tags;
     }
 
     /**
@@ -145,7 +147,7 @@ class Product implements ProductInterface
     /**
      * {@inheritdoc}
      */
-    public function getTags(): ArrayCollection
+    public function getTags(): Collection
     {
         return $this->tags;
     }

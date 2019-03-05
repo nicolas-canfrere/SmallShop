@@ -9,7 +9,7 @@
         <id name="id" type="guid">
             <generator strategy="NONE"/>
         </id>
-        <field name="name" column="name" type="product_name" nullable="false" unique="true"/>
+        <field name="name" column="name" type="string" nullable="false" unique="true"/>
 
         <many-to-many field="products"  target-entity="Domain\Product\Product" mapped-by="tags"/>
 

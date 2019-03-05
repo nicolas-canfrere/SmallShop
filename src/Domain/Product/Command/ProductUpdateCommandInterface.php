@@ -2,6 +2,8 @@
 
 namespace Domain\Product\Command;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Domain\Core\CommandBus\CommandInterface;
 use Domain\Product\Product;
 use Domain\Product\ValueObject\ProductName;
@@ -38,4 +40,16 @@ interface ProductUpdateCommandInterface extends CommandInterface
     public function getOriginal(): ?Product;
 
     public function setOriginal(?Product $original): ProductUpdateCommandInterface;
+
+    /**
+     * @return Collection|ArrayCollection
+     */
+    public function getTags(): Collection;
+
+    /**
+     * @param Collection|ArrayCollection $tags
+     *
+     * @return ProductUpdateCommandInterface
+     */
+    public function setTags(Collection $tags): ProductUpdateCommandInterface;
 }

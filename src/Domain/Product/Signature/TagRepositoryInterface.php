@@ -11,4 +11,6 @@ use Domain\Core\Signature\RepositoryInterface;
 interface TagRepositoryInterface extends RepositoryInterface
 {
     public function getTags(array $names): array ;
+
+    public function oneByName(string $name): ?TagInterface;
 }

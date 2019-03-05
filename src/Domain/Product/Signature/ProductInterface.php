@@ -3,6 +3,7 @@
 namespace Domain\Product\Signature;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Domain\Core\Signature\EntityInterface;
 use Domain\Product\ValueObject\ProductName;
 use Money\Money;
@@ -52,12 +53,12 @@ interface ProductInterface extends EntityInterface
     public function removeTag(TagInterface $tag): ProductInterface;
 
     /**
-     * @return ArrayCollection
+     * @return Collection|ArrayCollection
      */
-    public function getTags(): ArrayCollection;
+    public function getTags(): Collection;
 
     /**
-     * @param ArrayCollection $tags
+     * @param Collection|ArrayCollection $tags
      *
      * @return ProductInterface
      */

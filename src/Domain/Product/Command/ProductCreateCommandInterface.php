@@ -3,6 +3,7 @@
 namespace Domain\Product\Command;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Domain\Core\CommandBus\CommandInterface;
 use Domain\Product\ValueObject\ProductName;
 use Money\Money;
@@ -53,14 +54,14 @@ interface ProductCreateCommandInterface extends CommandInterface
     public function setUuid(string $uuid): void;
 
     /**
-     * @return ArrayCollection
+     * @return Collection|ArrayCollection
      */
-    public function getTags(): ArrayCollection;
+    public function getTags(): Collection;
 
     /**
-     * @param ArrayCollection $tags
+     * @param Collection|ArrayCollection $tags
      *
      * @return ProductCreateCommandInterface
      */
-    public function setTags(ArrayCollection $tags): ProductCreateCommandInterface;
+    public function setTags(Collection $tags): ProductCreateCommandInterface;
 }

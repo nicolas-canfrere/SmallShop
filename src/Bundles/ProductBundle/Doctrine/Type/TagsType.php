@@ -4,6 +4,8 @@ namespace Bundles\ProductBundle\Doctrine\Type;
 
 use Domain\Product\Signature\TagInterface;
 use Domain\Product\Signature\TagRepositoryInterface;
+use Domain\Product\Tag;
+use Ramsey\Uuid\Uuid;
 use Symfony\Bridge\Doctrine\Form\DataTransformer\CollectionToArrayTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\ChoiceList\ArrayChoiceList;
@@ -89,6 +91,7 @@ class TagsType extends AbstractType implements ChoiceLoaderInterface, DataTransf
      * @param null $value
      *
      * @return array
+     * @throws \Exception
      */
     public function loadChoicesForValues(array $values, $value = null)
     {
@@ -98,7 +101,24 @@ class TagsType extends AbstractType implements ChoiceLoaderInterface, DataTransf
         if(null !== $this->choiceList) {
             return $this->choiceList->getChoicesForValues($values);
         }
-        return $this->tagRepository->getTags($values);
+        //return $this->tagRepository->getTags($values);
+
+        $tags = [];
+
+        foreach ($values as $name) {
+            if (empty($name)) {
+                continue;
+            }
+            $tag = $this->tagRepository->oneByName($name);
+
+            if (null === $tag) {
+                $tag = new Tag(Uuid::uuid4()->toString(), $name);
+            }
+
+            $tags[] = $tag;
+        }
+
+        return $tags;
     }
 
     /**
@@ -115,6 +135,8 @@ class TagsType extends AbstractType implements ChoiceLoaderInterface, DataTransf
         if(null !== $this->choiceList) {
             return $this->choiceList->getValuesForChoices($choices);
         }
+
+        dump($choices);
 
         return array_map(function (TagInterface $tag) { return (string)$tag; }, $choices);
     }

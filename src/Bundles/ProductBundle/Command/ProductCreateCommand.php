@@ -4,6 +4,7 @@ namespace Bundles\ProductBundle\Command;
 
 use Bundles\ProductBundle\Validator\Constraints as CustomAssert;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Domain\Product\Command\ProductCreateCommandHandler;
 use Domain\Product\Command\ProductCreateCommandInterface;
 use Domain\Product\ValueObject\ProductName;
@@ -87,9 +88,9 @@ class ProductCreateCommand implements ProductCreateCommandInterface
     }
 
     /**
-     * @return ArrayCollection
+     * @return Collection|ArrayCollection
      */
-    public function getTags(): ArrayCollection
+    public function getTags(): Collection
     {
         if(!$this->tags) {
             $this->tags = new ArrayCollection();
@@ -98,11 +99,11 @@ class ProductCreateCommand implements ProductCreateCommandInterface
     }
 
     /**
-     * @param ArrayCollection $tags
+     * @param Collection|ArrayCollection $tags
      *
      * @return ProductCreateCommand
      */
-    public function setTags(ArrayCollection $tags): ProductCreateCommandInterface
+    public function setTags(Collection $tags): ProductCreateCommandInterface
     {
         $this->tags = $tags;
 

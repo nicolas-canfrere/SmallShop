@@ -54,7 +54,8 @@ class ProductUpdateCommandHandler implements CommandHandlerInterface
             $command->getPrice(),
             $alias,
             $command->getDescription(),
-            $command->isOnSale()
+            $command->isOnSale(),
+            $command->getTags()
         );
         $this->productRepository->save($original);
 
