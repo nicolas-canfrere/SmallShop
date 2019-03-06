@@ -30,7 +30,7 @@ interface CustomerFactoryInterface
 
     /**
      * @param string        $id
-     * @param Email        $email
+     * @param Email         $email
      * @param Civility|null $civility
      *
      * @return CustomerInterface

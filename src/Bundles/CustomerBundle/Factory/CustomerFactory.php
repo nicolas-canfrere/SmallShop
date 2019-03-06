@@ -27,7 +27,7 @@ class CustomerFactory implements CustomerFactoryInterface
         return ShopUser::create(
             $id,
             $command->getEmail(),
-            Urlizer::urlize((string)$command->getEmail()),
+            Urlizer::urlize((string) $command->getEmail()),
             $command->getCivility(),
             $command->getFirstname(),
             $command->getLastname(),
@@ -45,7 +45,7 @@ class CustomerFactory implements CustomerFactoryInterface
         $original = $command->getCustomer();
         $original->updateInfos(
             $command->getEmail(),
-            Urlizer::urlize((string)$command->getEmail()),
+            Urlizer::urlize((string) $command->getEmail()),
             $command->getCivility(),
             $command->getLastname(),
             $command->getFirstname()
@@ -74,7 +74,7 @@ class CustomerFactory implements CustomerFactoryInterface
         return ShopUser::create(
             $id,
             $command->getEmail(),
-            Urlizer::urlize((string)$command->getEmail()),
+            Urlizer::urlize((string) $command->getEmail()),
             new Civility(Civility::DEFAULT),
             $command->getFirstname(),
             $command->getLastname()

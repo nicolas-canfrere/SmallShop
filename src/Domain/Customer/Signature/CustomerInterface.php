@@ -52,7 +52,7 @@ interface CustomerInterface extends EntityInterface
     public function getPassword(): ?string;
 
     /**
-     * @param Email   $email
+     * @param Email    $email
      * @param string   $canonicalEmail
      * @param Civility $civility
      * @param string   $lastname

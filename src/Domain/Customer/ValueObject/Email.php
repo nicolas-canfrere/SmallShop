@@ -74,6 +74,4 @@ final class Email implements EqualInterface, \Serializable
     {
         $this->email = unserialize($serialized);
     }
-
-
 }

@@ -22,7 +22,7 @@ class ShopUser extends Customer implements UserInterface, \Serializable, Equatab
 
     /**
      * @param string      $id
-     * @param Email      $email
+     * @param Email       $email
      * @param string      $canonicalEmail
      * @param Civility    $civility
      * @param string|null $firstname
@@ -72,7 +72,6 @@ class ShopUser extends Customer implements UserInterface, \Serializable, Equatab
     {
         return null;
     }
-
 
     public function eraseCredentials()
     {

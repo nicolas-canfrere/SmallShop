@@ -14,7 +14,7 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class EmailType
+ * Class EmailType.
  */
 class EmailType extends AbstractType implements DataMapperInterface, DataTransformerInterface
 {
@@ -29,7 +29,7 @@ class EmailType extends AbstractType implements DataMapperInterface, DataTransfo
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'empty_data'=>null,
+            'empty_data' => null,
         ]);
     }
 
@@ -39,7 +39,7 @@ class EmailType extends AbstractType implements DataMapperInterface, DataTransfo
     }
 
     /**
-     * @param mixed $data
+     * @param mixed                        $data
      * @param FormInterface[]|\Traversable $forms
      */
     public function mapDataToForms($data, $forms)
@@ -50,7 +50,7 @@ class EmailType extends AbstractType implements DataMapperInterface, DataTransfo
 
     /**
      * @param FormInterface[]|\Traversable $forms
-     * @param mixed $data
+     * @param mixed                        $data
      */
     public function mapFormsToData($forms, &$data)
     {
@@ -81,9 +81,8 @@ class EmailType extends AbstractType implements DataMapperInterface, DataTransfo
             throw new TransformationFailedException('Expected a Email object.');
         }
 
-        return (string)$value;
+        return (string) $value;
     }
-
 
     /**
      * @param mixed $value
@@ -95,11 +94,10 @@ class EmailType extends AbstractType implements DataMapperInterface, DataTransfo
         if ('' === $value || null === $value) {
             throw new TransformationFailedException('Email can not be empty!');
         }
-        if(!\is_string($value)) {
+        if (!\is_string($value)) {
             throw new TransformationFailedException('Email must be a string!');
         }
 
         return new Email($value);
-
     }
 }

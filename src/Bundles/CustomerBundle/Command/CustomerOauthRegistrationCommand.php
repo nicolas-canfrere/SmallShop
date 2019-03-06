@@ -33,7 +33,7 @@ class CustomerOauthRegistrationCommand implements CustomerOauthRegistrationComma
     /**
      * CustomerOauthRegistrationCommand constructor.
      *
-     * @param Email      $email
+     * @param Email       $email
      * @param string      $client
      * @param string|null $lastname
      * @param string|null $firstname

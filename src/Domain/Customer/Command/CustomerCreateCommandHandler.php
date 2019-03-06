@@ -60,7 +60,7 @@ class CustomerCreateCommandHandler implements CommandHandlerInterface
 
         if ($customer) {
             throw new NonUniqueCustomerEmailException(
-                (string)$command->getEmail()
+                (string) $command->getEmail()
             );
         }
 

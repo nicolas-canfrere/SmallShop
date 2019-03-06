@@ -7,14 +7,14 @@ use Doctrine\DBAL\Types\Type;
 use Domain\Customer\ValueObject\Email;
 
 /**
- * Class EmailType
+ * Class EmailType.
  */
 class EmailType extends Type
 {
     const NAME = 'email';
 
     /**
-     * @param Email         $value
+     * @param Email            $value
      * @param AbstractPlatform $platform
      *
      * @return mixed|string
