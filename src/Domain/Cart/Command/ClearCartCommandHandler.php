@@ -26,7 +26,7 @@ class ClearCartCommandHandler implements CommandHandlerInterface
      * ClearCartCommandHandler constructor.
      *
      * @param CartInterface $cart
-     * @param EventBus $eventBus
+     * @param EventBus      $eventBus
      */
     public function __construct(
         CartInterface $cart,

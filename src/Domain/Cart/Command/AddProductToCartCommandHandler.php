@@ -15,8 +15,6 @@ use Domain\Product\Signature\ProductRepositoryInterface;
  */
 class AddProductToCartCommandHandler implements CommandHandlerInterface
 {
-
-
     /**
      * @var ProductRepositoryInterface
      */
@@ -35,8 +33,8 @@ class AddProductToCartCommandHandler implements CommandHandlerInterface
      * AddProductToCartCommandHandler constructor.
      *
      * @param ProductRepositoryInterface $productRepository
-     * @param CartInterface $cart
-     * @param EventBus $eventBus
+     * @param CartInterface              $cart
+     * @param EventBus                   $eventBus
      */
     public function __construct(
         ProductRepositoryInterface $productRepository,

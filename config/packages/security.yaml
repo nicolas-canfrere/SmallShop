@@ -17,7 +17,7 @@ security:
       guard:
         authenticators:
           - Application\Front\Security\LoginFormAuthenticator
-          # - Application\Front\Security\GoogleConnectAuthenticator
+          - Application\Front\Security\GoogleConnectAuthenticator
       remember_me:
         secret: '%kernel.secret%'
         lifetime: 2592000 # 1 mois

@@ -3,6 +3,7 @@
 namespace Domain\Customer\Signature;
 
 use Domain\Customer\Command\CustomerCreateCommandInterface;
+use Domain\Customer\Command\CustomerOauthRegistrationCommandInterface;
 use Domain\Customer\Command\CustomerUpdateInfosCommandInterface;
 use Domain\Customer\ValueObject\Civility;
 
@@ -34,4 +35,12 @@ interface CustomerFactoryInterface
      * @return CustomerInterface
      */
     public function createNew(string $id, string $email, ?Civility $civility = null): CustomerInterface;
+
+    /**
+     * @param string                                    $id
+     * @param CustomerOauthRegistrationCommandInterface $command
+     *
+     * @return CustomerInterface
+     */
+    public function createFromOauth(string $id, CustomerOauthRegistrationCommandInterface $command): CustomerInterface;
 }

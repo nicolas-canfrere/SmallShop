@@ -15,3 +15,11 @@ framework:
   #fragments: true
   php_errors:
     log: true
+
+knpu_oauth2_client:
+  clients:
+    google_connect:
+      type: google
+      client_id: # haha !
+      client_secret: # haha !
+      redirect_route: front_security_google_connect_callback

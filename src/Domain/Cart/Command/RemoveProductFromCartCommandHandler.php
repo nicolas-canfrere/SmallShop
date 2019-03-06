@@ -17,7 +17,6 @@ use Domain\Product\Signature\ProductRepositoryInterface;
  */
 class RemoveProductFromCartCommandHandler implements CommandHandlerInterface
 {
-
     /**
      * @var ProductRepositoryInterface
      */
@@ -36,8 +35,8 @@ class RemoveProductFromCartCommandHandler implements CommandHandlerInterface
      * RemoveProductFromCartCommandHandler constructor.
      *
      * @param ProductRepositoryInterface $productRepository
-     * @param CartInterface $cart
-     * @param EventBus $eventBus
+     * @param CartInterface              $cart
+     * @param EventBus                   $eventBus
      */
     public function __construct(
         ProductRepositoryInterface $productRepository,
@@ -66,7 +65,6 @@ class RemoveProductFromCartCommandHandler implements CommandHandlerInterface
         if (Cart::ALL_PRODUCTS_IN_ROW == $command->getQuantity()) {
             $this->cart->deleteRow($command->getProductId());
             $event = new ProductAllRemovedFromCartEvent($product, $command->getCustomer());
-
         } else {
             $this->cart->removeItem($product, $command->getQuantity());
             $event = new ProductRemovedFromCartEvent($product, $command->getQuantity(), $command->getCustomer());

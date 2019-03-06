@@ -6,7 +6,7 @@ use Domain\Core\CommandBus\CommandInterface;
 use Domain\Customer\Signature\CustomerInterface;
 
 /**
- * Interface ClearCartCommandInterface
+ * Interface ClearCartCommandInterface.
  */
 interface ClearCartCommandInterface extends CommandInterface
 {

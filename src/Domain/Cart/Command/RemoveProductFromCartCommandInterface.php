@@ -6,7 +6,7 @@ use Domain\Core\CommandBus\CommandInterface;
 use Domain\Customer\Signature\CustomerInterface;
 
 /**
- * Interface RemoveProductFromCartCommandInterface
+ * Interface RemoveProductFromCartCommandInterface.
  */
 interface RemoveProductFromCartCommandInterface extends CommandInterface
 {

@@ -5,6 +5,7 @@ namespace Bundles\CustomerBundle\Factory;
 use Bundles\CustomerBundle\Model\ShopUser;
 use Domain\Core\Urlizer;
 use Domain\Customer\Command\CustomerCreateCommandInterface;
+use Domain\Customer\Command\CustomerOauthRegistrationCommandInterface;
 use Domain\Customer\Command\CustomerUpdateInfosCommandInterface;
 use Domain\Customer\Signature\CustomerFactoryInterface;
 use Domain\Customer\Signature\CustomerInterface;
@@ -62,5 +63,20 @@ class CustomerFactory implements CustomerFactoryInterface
         }
 
         return ShopUser::create($id, $email, Urlizer::urlize($email), $civility);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function createFromOauth(string $id, CustomerOauthRegistrationCommandInterface $command): CustomerInterface
+    {
+        return ShopUser::create(
+            $id,
+            $command->getEmail(),
+            Urlizer::urlize($command->getEmail()),
+            new Civility(Civility::DEFAULT),
+            $command->getFirstname(),
+            $command->getLastname()
+        );
     }
 }

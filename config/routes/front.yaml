@@ -3,8 +3,6 @@ front_home:
   controller: Application\Front\Controller\HomeController::default
   methods: ['get']
 
-
-
 front_cart_page:
   path:
     fr: /{_locale}/votre-panier
@@ -16,10 +14,12 @@ front_cart_add:
   path: /cart/add
   controller: Application\Front\Controller\CartController::addToCart
   methods: ['post']
+
 front_cart_remove:
   path: /cart/remove
   controller: Application\Front\Controller\CartController::removeFromCart
   methods: ['post']
+
 front_cart_clear:
   path: /cart/clear
   controller: Application\Front\Controller\CartController::clearCart
@@ -34,6 +34,16 @@ front_security_login:
 front_security_logout:
   path: /deconnexion
   controller: Application\Front\Controller\SecurityController::logout
+  methods: ['get']
+
+front_security_google_connect:
+  path: /connexion/google
+  controller: Application\Front\Controller\SecurityController::googleLogin
+  methods: ['get']
+
+front_security_google_connect_callback:
+  path: /connexion/google/callback
+  controller: Application\Front\Controller\SecurityController::googleLoginCallback
   methods: ['get']
 
 ########## customer account

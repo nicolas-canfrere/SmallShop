@@ -6,7 +6,7 @@ use Domain\Core\CommandBus\CommandInterface;
 use Domain\Customer\Signature\CustomerInterface;
 
 /**
- * Class AddProductToCartCommandInterface
+ * Class AddProductToCartCommandInterface.
  */
 interface AddProductToCartCommandInterface extends CommandInterface
 {

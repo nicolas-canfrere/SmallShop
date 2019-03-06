@@ -6,7 +6,7 @@ use Domain\Core\Event\Event;
 use Domain\Customer\Signature\CustomerInterface;
 
 /**
- * Class CartClearEvent
+ * Class CartClearEvent.
  */
 class CartClearEvent extends Event
 {

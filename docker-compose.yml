@@ -26,7 +26,7 @@ services:
       - ./docker/etc/nginx/conf.d:/etc/nginx/conf.d
       - ./:/SmallShop
     environment:
-      - 'VIRTUAL_HOST=smallshop.local'
+      - 'VIRTUAL_HOST=smallshop.org'
 
   smallshop_php:
     image: nicophp7.2:latest

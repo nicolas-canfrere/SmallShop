@@ -7,7 +7,7 @@ use Domain\Customer\Signature\CustomerInterface;
 use Domain\Product\Signature\ProductInterface;
 
 /**
- * Class ProductRemovedFromCartEvent
+ * Class ProductRemovedFromCartEvent.
  */
 final class ProductRemovedFromCartEvent extends Event
 {
@@ -34,15 +34,15 @@ final class ProductRemovedFromCartEvent extends Event
     /**
      * ProductRemovedFromCartEvent constructor.
      *
-     * @param ProductInterface $product
-     * @param int $quantity
+     * @param ProductInterface       $product
+     * @param int                    $quantity
      * @param CustomerInterface|null $customer
      *
      * @throws \Exception
      */
     public function __construct(ProductInterface $product, int $quantity, ?CustomerInterface $customer)
     {
-        $this->product  = $product;
+        $this->product = $product;
         $this->quantity = $quantity;
         $this->customer = $customer;
         $this->createdAt = new \DateTimeImmutable();

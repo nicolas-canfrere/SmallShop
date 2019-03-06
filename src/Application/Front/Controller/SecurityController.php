@@ -4,6 +4,7 @@ namespace Application\Front\Controller;
 
 use Application\Front\Form\ShopUserLoginForm;
 use Bundles\CustomerBundle\Model\ShopUser;
+use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
@@ -31,5 +32,17 @@ class SecurityController extends AbstractController
     public function logout()
     {
         throw new \Exception('nothing to do here');
+    }
+
+    public function googleLogin(ClientRegistry $clientRegistry)
+    {
+        return $clientRegistry->getClient('google_connect')->redirect();
+    }
+
+    /**
+     * géré par GoogleConnectAuthenticator.
+     */
+    public function googleLoginCallback()
+    {
     }
 }

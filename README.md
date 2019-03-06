@@ -106,7 +106,8 @@ admin accessible par http://smallshop.local/back-office
 
 ### Important
 
-- modifier code + database => pour connexion Oauth => seule l'email de l'utilisateur peut-être founie !!
+- ~~modifier code + database => pour connexion Oauth => seule l'email de l'utilisateur peut-être founie !!~~
+- ~~google connect~~
 - du panier à la commande
 - créer les admin users
 - sécuriser l'admin
@@ -121,4 +122,6 @@ admin accessible par http://smallshop.local/back-office
 - ~~créer un QueryBus interne sur le modèle du CommandBus ( et se libérer de Tactician )~~
 
 
+## google console
 
+https://console.developers.google.com

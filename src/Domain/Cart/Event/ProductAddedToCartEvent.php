@@ -2,13 +2,12 @@
 
 namespace Domain\Cart\Event;
 
-
 use Domain\Core\Event\Event;
 use Domain\Customer\Signature\CustomerInterface;
 use Domain\Product\Signature\ProductInterface;
 
 /**
- * Class ProductAddedToCartEvent
+ * Class ProductAddedToCartEvent.
  */
 final class ProductAddedToCartEvent extends Event
 {
@@ -32,8 +31,8 @@ final class ProductAddedToCartEvent extends Event
     /**
      * ProductAddedToCartEvent constructor.
      *
-     * @param ProductInterface $product
-     * @param int $quantity
+     * @param ProductInterface       $product
+     * @param int                    $quantity
      * @param CustomerInterface|null $customer
      *
      * @throws \Exception
@@ -41,8 +40,8 @@ final class ProductAddedToCartEvent extends Event
     public function __construct(ProductInterface $product, int $quantity, ?CustomerInterface $customer)
     {
         $this->product = $product;
-        $this->quantity  = $quantity;
-        $this->customer  = $customer;
+        $this->quantity = $quantity;
+        $this->customer = $customer;
         $this->createdAt = new \DateTimeImmutable();
     }
 
