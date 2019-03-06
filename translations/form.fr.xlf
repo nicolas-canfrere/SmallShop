@@ -42,6 +42,18 @@
                 <source>form.save</source>
                 <target>Enregistrer</target>
             </trans-unit>
+            <trans-unit id="form.password">
+                <source>form.password</source>
+                <target>Mot de passe</target>
+            </trans-unit>
+            <trans-unit id="form.repeat_password">
+                <source>form.repeat_password</source>
+                <target>Répétez votre mot de passe</target>
+            </trans-unit>
+            <trans-unit id="form.create_account">
+                <source>form.create_account</source>
+                <target>Créez votre compte</target>
+            </trans-unit>
             <trans-unit id="Madame">
                 <source>Madame</source>
                 <target>Madame</target>

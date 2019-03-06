@@ -44,4 +44,17 @@ interface CustomerFactoryInterface
      * @return CustomerInterface
      */
     public function createFromOauth(string $id, CustomerOauthRegistrationCommandInterface $command): CustomerInterface;
+
+    /**
+     * @param $id
+     * @param Email  $email
+     * @param string $plainPassword
+     *
+     * @return CustomerInterface
+     */
+    public function customerRegistration(
+        $id,
+        Email $email,
+        string $plainPassword
+    ): CustomerInterface;
 }

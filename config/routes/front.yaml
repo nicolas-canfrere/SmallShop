@@ -54,6 +54,13 @@ front_customer_index:
   controller: Application\Front\Controller\CustomerAccountController::index
   methods: ['get', 'post']
 
+front_customer_registration:
+  path:
+    fr: /{_locale}/creer-un-compte
+    en: /{_locale}/create-account
+  controller: Application\Front\Controller\CustomerRegistrationController
+  methods: ['get', 'post']
+
 front_customer_addresses:
   path:
     fr: /{_locale}/vos-adresses

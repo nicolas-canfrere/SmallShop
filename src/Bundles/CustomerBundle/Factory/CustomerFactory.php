@@ -77,7 +77,31 @@ class CustomerFactory implements CustomerFactoryInterface
             Urlizer::urlize((string) $command->getEmail()),
             new Civility(Civility::DEFAULT),
             $command->getFirstname(),
-            $command->getLastname()
+            $command->getLastname(),
+            (string) $command->getEmail(),
+            null,
+            Urlizer::urlize((string) $command->getEmail())
+        );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function customerRegistration(
+        $id,
+        Email $email,
+        string $plainPassword
+    ): CustomerInterface {
+        return ShopUser::create(
+            $id,
+            $email,
+            Urlizer::urlize((string) $email),
+            new Civility(Civility::DEFAULT),
+            '',
+            '',
+            (string) $email,
+            $plainPassword,
+            Urlizer::urlize((string) $email)
         );
     }
 }

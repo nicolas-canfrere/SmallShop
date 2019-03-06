@@ -54,7 +54,7 @@
                     </li>
                 {% else %}
                     <li class="nav-item">
-                        <a href="" class="nav-link">{% trans from 'ui' %}link-create-account{% endtrans %}</a>
+                        <a href="{{ path('front_customer_registration') }}" class="nav-link">{% trans from 'ui' %}link-create-account{% endtrans %}</a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ path('front_security_login') }}"
