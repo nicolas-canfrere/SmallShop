@@ -6,6 +6,7 @@ use Domain\Customer\Command\CustomerUpdateInfosCommandHandler;
 use Domain\Customer\Command\CustomerUpdateInfosCommandInterface;
 use Domain\Customer\Signature\CustomerInterface;
 use Domain\Customer\ValueObject\Civility;
+use Domain\Customer\ValueObject\Email;
 
 class CustomerUpdateInfosCommand implements CustomerUpdateInfosCommandInterface
 {
@@ -14,7 +15,7 @@ class CustomerUpdateInfosCommand implements CustomerUpdateInfosCommandInterface
      */
     protected $customer;
     /**
-     * @var string
+     * @var Email
      */
     protected $email;
     /**
@@ -65,7 +66,7 @@ class CustomerUpdateInfosCommand implements CustomerUpdateInfosCommandInterface
     /**
      * {@inheritdoc}
      */
-    public function getEmail(): string
+    public function getEmail(): Email
     {
         return $this->email;
     }
@@ -73,7 +74,7 @@ class CustomerUpdateInfosCommand implements CustomerUpdateInfosCommandInterface
     /**
      * {@inheritdoc}
      */
-    public function setEmail(string $email): CustomerUpdateInfosCommandInterface
+    public function setEmail(Email $email): CustomerUpdateInfosCommandInterface
     {
         $this->email = $email;
 

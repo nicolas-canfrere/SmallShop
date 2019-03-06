@@ -4,6 +4,7 @@ namespace Domain\Customer\Command;
 
 use Domain\Core\CommandBus\CommandInterface;
 use Domain\Customer\ValueObject\Civility;
+use Domain\Customer\ValueObject\Email;
 
 /**
  * Interface CustomerCreateCommandInterface.
@@ -47,16 +48,16 @@ interface CustomerCreateCommandInterface extends CommandInterface
     public function setLastname(?string $lastname = ''): CustomerCreateCommandInterface;
 
     /**
-     * @return string
+     * @return Email
      */
-    public function getEmail(): string;
+    public function getEmail(): Email;
 
     /**
-     * @param string $email
+     * @param Email $email
      *
      * @return CustomerCreateCommandInterface
      */
-    public function setEmail(string $email): CustomerCreateCommandInterface;
+    public function setEmail(Email $email): CustomerCreateCommandInterface;
 
     /**
      * @return string|null

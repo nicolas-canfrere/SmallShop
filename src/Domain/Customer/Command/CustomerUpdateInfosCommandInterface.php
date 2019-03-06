@@ -5,6 +5,7 @@ namespace Domain\Customer\Command;
 use Domain\Core\CommandBus\CommandInterface;
 use Domain\Customer\Signature\CustomerInterface;
 use Domain\Customer\ValueObject\Civility;
+use Domain\Customer\ValueObject\Email;
 
 /**
  * Interface CustomerUpdateInfosCommandInterface.
@@ -24,16 +25,16 @@ interface CustomerUpdateInfosCommandInterface extends CommandInterface
     public function setCustomer(CustomerInterface $customer): CustomerUpdateInfosCommandInterface;
 
     /**
-     * @return string
+     * @return Email
      */
-    public function getEmail(): string;
+    public function getEmail(): Email;
 
     /**
-     * @param string $email
+     * @param Email $email
      *
      * @return CustomerUpdateInfosCommandInterface
      */
-    public function setEmail(string $email): CustomerUpdateInfosCommandInterface;
+    public function setEmail(Email $email): CustomerUpdateInfosCommandInterface;
 
     /**
      * @return Civility

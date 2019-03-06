@@ -6,6 +6,7 @@ use Bundles\CustomerBundle\Command\CustomerOauthRegistrationCommand;
 use Bundles\CustomerBundle\Model\ShopUser;
 use Domain\Core\CommandBus\CommandBusInterface;
 use Domain\Customer\Signature\CustomerRepositoryInterface;
+use Domain\Customer\ValueObject\Email;
 use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
 use KnpU\OAuth2ClientBundle\Security\Authenticator\SocialAuthenticator;
 use League\OAuth2\Client\Provider\GoogleUser;
@@ -112,7 +113,7 @@ class GoogleConnectAuthenticator extends SocialAuthenticator
 
 
         $command = new CustomerOauthRegistrationCommand(
-            $googleUser->getEmail(),
+            new Email($googleUser->getEmail()),
             'google',
             $googleUser->getLastName(),
             $googleUser->getFirstName()

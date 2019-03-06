@@ -7,7 +7,7 @@ use Domain\Core\Signature\EqualInterface;
 /**
  * Class Email.
  */
-final class Email implements EqualInterface
+final class Email implements EqualInterface, \Serializable
 {
     private $email;
 
@@ -64,4 +64,16 @@ final class Email implements EqualInterface
     {
         return $this->email;
     }
+
+    public function serialize()
+    {
+        return serialize($this->email);
+    }
+
+    public function unserialize($serialized)
+    {
+        $this->email = unserialize($serialized);
+    }
+
+
 }

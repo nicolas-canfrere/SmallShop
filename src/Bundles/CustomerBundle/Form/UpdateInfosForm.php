@@ -21,7 +21,7 @@ class UpdateInfosForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email', TextType::class, ['label' => 'form.email', 'translation_domain' => 'form'])
+            ->add('email', EmailType::class, ['label' => 'form.email', 'translation_domain' => 'form'])
             ->add('civility', CivilityType::class, ['label' => 'form.civility', 'translation_domain' => 'form'])
             ->add('firstname', TextType::class, ['label' => 'form.firstname', 'translation_domain' => 'form'])
             ->add('lastname', TextType::class, ['label' => 'form.lastname', 'translation_domain' => 'form'])

@@ -18,6 +18,7 @@ use Domain\Customer\Exception\NonUniqueCustomerEmailException;
 use Domain\Customer\Exception\NonUniqueCustomerUsernameException;
 use Domain\Customer\Signature\CustomerRepositoryInterface;
 use Domain\Customer\ValueObject\Civility;
+use Domain\Customer\ValueObject\Email;
 use PHPUnit\Framework\TestCase;
 
 class CustomerCreateCommandHandlerTest extends TestCase
@@ -53,7 +54,7 @@ class CustomerCreateCommandHandlerTest extends TestCase
             ->setCivility(new Civility(Civility::DEFAULT))
             ->setFirstname('firstname')
             ->setLastname('lastname')
-            ->setEmail('email@example.org')
+            ->setEmail(new Email('email@example.org'))
             ->setPassword('password');
 
         $this->handler->handle($command);
@@ -78,7 +79,7 @@ class CustomerCreateCommandHandlerTest extends TestCase
             ->setCivility(new Civility(Civility::DEFAULT))
             ->setFirstname('firstname')
             ->setLastname('lastname')
-            ->setEmail('email@example.org')
+            ->setEmail(new Email('email@example.org'))
             ->setPassword('password');
         $this->handler->handle($command);
     }
@@ -98,7 +99,7 @@ class CustomerCreateCommandHandlerTest extends TestCase
             ->setCivility(new Civility(Civility::DEFAULT))
             ->setFirstname('firstname')
             ->setLastname('lastname')
-            ->setEmail('email2@example.org')
+            ->setEmail(new Email('email2@example.org'))
             ->setPassword('password');
         $this->handler->handle($command);
     }
@@ -109,7 +110,7 @@ class CustomerCreateCommandHandlerTest extends TestCase
         $canonicalUsername = Urlizer::urlize($username);
         $civility = new Civility(Civility::DEFAULT);
 
-        return ShopUser::create($id, $email, $canonicalEmail, $civility, $firstname, $lastname, $username, $password, $canonicalUsername);
+        return ShopUser::create($id, new Email($email), $canonicalEmail, $civility, $firstname, $lastname, $username, $password, $canonicalUsername);
     }
 
     protected function setUp(): void
@@ -145,7 +146,7 @@ class CustomerCreateCommandHandlerTest extends TestCase
             ->setCivility(new Civility(Civility::DEFAULT))
             ->setFirstname('firstname')
             ->setLastname('lastname')
-            ->setEmail('email@example.org')
+            ->setEmail(new Email('email@example.org'))
             ->setPassword('password');
 
         $this->handler->handle($command);

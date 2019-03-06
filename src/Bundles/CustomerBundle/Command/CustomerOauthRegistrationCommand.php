@@ -4,6 +4,7 @@ namespace Bundles\CustomerBundle\Command;
 
 use Domain\Customer\Command\CustomerOauthRegistrationCommandHandler;
 use Domain\Customer\Command\CustomerOauthRegistrationCommandInterface;
+use Domain\Customer\ValueObject\Email;
 
 /**
  * Class CustomerOauthRegistrationCommand.
@@ -15,7 +16,7 @@ class CustomerOauthRegistrationCommand implements CustomerOauthRegistrationComma
      */
     protected $client;
     /**
-     * @var string
+     * @var Email
      */
     protected $email;
 
@@ -32,12 +33,12 @@ class CustomerOauthRegistrationCommand implements CustomerOauthRegistrationComma
     /**
      * CustomerOauthRegistrationCommand constructor.
      *
-     * @param string      $email
+     * @param Email      $email
      * @param string      $client
      * @param string|null $lastname
      * @param string|null $firstname
      */
-    public function __construct(string $email, string $client, ?string $lastname, ?string $firstname)
+    public function __construct(Email $email, string $client, ?string $lastname, ?string $firstname)
     {
         $this->email = $email;
         $this->client = $client;
@@ -48,7 +49,7 @@ class CustomerOauthRegistrationCommand implements CustomerOauthRegistrationComma
     /**
      * {@inheritdoc}
      */
-    public function getEmail(): string
+    public function getEmail(): Email
     {
         return $this->email;
     }

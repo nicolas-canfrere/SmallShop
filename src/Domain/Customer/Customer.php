@@ -4,6 +4,7 @@ namespace Domain\Customer;
 
 use Domain\Customer\Signature\CustomerInterface;
 use Domain\Customer\ValueObject\Civility;
+use Domain\Customer\ValueObject\Email;
 
 class Customer implements CustomerInterface
 {
@@ -33,7 +34,7 @@ class Customer implements CustomerInterface
     protected $username;
 
     /**
-     * @var string
+     * @var Email
      */
     protected $email;
 
@@ -59,7 +60,7 @@ class Customer implements CustomerInterface
 
     public static function create(
         string $id,
-        string $email,
+        Email $email,
         string $canonicalEmail,
         Civility $civility,
         ?string $firstname = '',
@@ -126,7 +127,7 @@ class Customer implements CustomerInterface
     /**
      * @return string
      */
-    public function getEmail(): string
+    public function getEmail(): Email
     {
         return $this->email;
     }
@@ -179,7 +180,7 @@ class Customer implements CustomerInterface
      * {@inheritdoc}
      */
     public function updateInfos(
-        string $email,
+        Email $email,
         string $canonicalEmail,
         Civility $civility,
         string $lastname,

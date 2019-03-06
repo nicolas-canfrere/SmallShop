@@ -10,6 +10,7 @@ use Domain\Customer\Command\CustomerUpdateInfosCommandInterface;
 use Domain\Customer\Signature\CustomerFactoryInterface;
 use Domain\Customer\Signature\CustomerInterface;
 use Domain\Customer\ValueObject\Civility;
+use Domain\Customer\ValueObject\Email;
 
 /**
  * Class CustomerFactory.
@@ -21,12 +22,12 @@ class CustomerFactory implements CustomerFactoryInterface
      */
     public function createFromCommand(string $id, CustomerCreateCommandInterface $command): CustomerInterface
     {
-        $username = $command->getUsername() ?: $command->getEmail();
+        $username = $command->getUsername() ?: $command->getEmail()->getEmail();
 
         return ShopUser::create(
             $id,
             $command->getEmail(),
-            Urlizer::urlize($command->getEmail()),
+            Urlizer::urlize((string)$command->getEmail()),
             $command->getCivility(),
             $command->getFirstname(),
             $command->getLastname(),
@@ -44,7 +45,7 @@ class CustomerFactory implements CustomerFactoryInterface
         $original = $command->getCustomer();
         $original->updateInfos(
             $command->getEmail(),
-            Urlizer::urlize($command->getEmail()),
+            Urlizer::urlize((string)$command->getEmail()),
             $command->getCivility(),
             $command->getLastname(),
             $command->getFirstname()
@@ -56,7 +57,7 @@ class CustomerFactory implements CustomerFactoryInterface
     /**
      * {@inheritdoc}
      */
-    public function createNew(string $id, string $email, ?Civility $civility = null): CustomerInterface
+    public function createNew(string $id, Email $email, ?Civility $civility = null): CustomerInterface
     {
         if (!$civility) {
             $civility = new Civility(Civility::DEFAULT);
@@ -73,7 +74,7 @@ class CustomerFactory implements CustomerFactoryInterface
         return ShopUser::create(
             $id,
             $command->getEmail(),
-            Urlizer::urlize($command->getEmail()),
+            Urlizer::urlize((string)$command->getEmail()),
             new Civility(Civility::DEFAULT),
             $command->getFirstname(),
             $command->getLastname()

@@ -59,7 +59,7 @@ class CustomerUpdateInfosCommandHandler implements CommandHandlerInterface
 
         $testCustomer = $this->customerRepository->oneByEmail($command->getEmail());
         if ($testCustomer && $testCustomer->getId() !== $original->getId()) {
-            throw new NonUniqueCustomerEmailException($command->getEmail());
+            throw new NonUniqueCustomerEmailException((string)$command->getEmail());
         }
 
         $original = $this->customerFactory->updateInfosFromCommand($command);

@@ -7,6 +7,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Domain\Core\CommandBus\CommandBusInterface;
 use Domain\Customer\ValueObject\Civility;
+use Domain\Customer\ValueObject\Email;
 
 class CustomerFixtures extends Fixture
 {
@@ -35,7 +36,7 @@ class CustomerFixtures extends Fixture
                 ->setCivility(new Civility(Civility::DEFAULT))
                 ->setFirstname($faker->firstName)
                 ->setLastname($faker->lastName)
-                ->setEmail($faker->safeEmail)
+                ->setEmail(new Email($faker->safeEmail))
                 ->setUsername('username_'.$i)
                 ->setPassword('password_'.$i);
             $this->commandBus->handle($command);

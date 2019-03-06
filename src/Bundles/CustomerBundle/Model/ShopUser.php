@@ -4,6 +4,7 @@ namespace Bundles\CustomerBundle\Model;
 
 use Domain\Customer\Customer;
 use Domain\Customer\ValueObject\Civility;
+use Domain\Customer\ValueObject\Email;
 use Symfony\Component\Security\Core\User\EquatableInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -21,7 +22,7 @@ class ShopUser extends Customer implements UserInterface, \Serializable, Equatab
 
     /**
      * @param string      $id
-     * @param string      $email
+     * @param Email      $email
      * @param string      $canonicalEmail
      * @param Civility    $civility
      * @param string|null $firstname
@@ -34,7 +35,7 @@ class ShopUser extends Customer implements UserInterface, \Serializable, Equatab
      */
     public static function create(
         string $id,
-        string $email,
+        Email $email,
         string $canonicalEmail,
         Civility $civility,
         ?string $firstname = '',
@@ -120,7 +121,7 @@ class ShopUser extends Customer implements UserInterface, \Serializable, Equatab
             return false;
         }
 
-        if ($this->getEmail() !== $user->getEmail()) {
+        if (!$this->getEmail()->equals($user->getEmail())) {
             return false;
         }
 

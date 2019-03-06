@@ -12,7 +12,7 @@
         <field name="firstname" type="string" column="firstname" nullable="true"/>
         <field name="lastname" type="string" column="lastname" nullable="true"/>
         <field name="username" type="string" column="username" nullable="true"/>
-        <field name="email" type="string" column="email" nullable="false"/>
+        <field name="email" type="email" column="email" nullable="false"/>
         <field name="canonicalEmail" type="string" column="canonical_email" nullable="false"/>
         <field name="canonicalUsername" type="string" column="canonical_username" nullable="true"/>
         <field name="password" type="string" column="password" nullable="true"/>

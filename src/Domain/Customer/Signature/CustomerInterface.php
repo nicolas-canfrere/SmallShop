@@ -4,6 +4,7 @@ namespace Domain\Customer\Signature;
 
 use Domain\Core\Signature\EntityInterface;
 use Domain\Customer\ValueObject\Civility;
+use Domain\Customer\ValueObject\Email;
 
 /**
  * Interface CustomerInterface.
@@ -31,9 +32,9 @@ interface CustomerInterface extends EntityInterface
     public function getUsername(): ?string;
 
     /**
-     * @return string
+     * @return Email
      */
-    public function getEmail(): string;
+    public function getEmail(): Email;
 
     /**
      * @return string
@@ -51,7 +52,7 @@ interface CustomerInterface extends EntityInterface
     public function getPassword(): ?string;
 
     /**
-     * @param string   $email
+     * @param Email   $email
      * @param string   $canonicalEmail
      * @param Civility $civility
      * @param string   $lastname
@@ -60,7 +61,7 @@ interface CustomerInterface extends EntityInterface
      * @return CustomerInterface
      */
     public function updateInfos(
-        string $email,
+        Email $email,
         string $canonicalEmail,
         Civility $civility,
         string $lastname,

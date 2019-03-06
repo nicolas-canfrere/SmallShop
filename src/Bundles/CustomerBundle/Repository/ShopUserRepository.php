@@ -9,6 +9,7 @@ use Domain\Core\Signature\EntityInterface;
 use Domain\Core\Urlizer;
 use Domain\Customer\Signature\CustomerInterface;
 use Domain\Customer\Signature\CustomerRepositoryInterface;
+use Domain\Customer\ValueObject\Email;
 use Ramsey\Uuid\Uuid;
 
 class ShopUserRepository implements CustomerRepositoryInterface
@@ -62,9 +63,9 @@ class ShopUserRepository implements CustomerRepositoryInterface
         return $qb->getQuery()->getOneOrNullResult();
     }
 
-    public function oneByEmail(string $email): ?CustomerInterface
+    public function oneByEmail(Email $email): ?CustomerInterface
     {
-        $canonical = Urlizer::urlize($email);
+        $canonical = Urlizer::urlize($email->getEmail());
 
         $qb = $this->queryBuilder();
         $qb->andWhere('shop_user.canonicalEmail = :canonical')->setParameter('canonical', $canonical);

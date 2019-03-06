@@ -7,6 +7,7 @@ use Domain\Core\Signature\EntityInterface;
 use Domain\Core\Urlizer;
 use Domain\Customer\Signature\CustomerInterface;
 use Domain\Customer\Signature\CustomerRepositoryInterface;
+use Domain\Customer\ValueObject\Email;
 use Ramsey\Uuid\Uuid;
 
 class InMemoryCustomerRepository implements CustomerRepositoryInterface
@@ -58,9 +59,9 @@ class InMemoryCustomerRepository implements CustomerRepositoryInterface
         return null;
     }
 
-    public function oneByEmail(string $email): ?CustomerInterface
+    public function oneByEmail(Email $email): ?CustomerInterface
     {
-        $canonical = Urlizer::urlize($email);
+        $canonical = Urlizer::urlize($email->getEmail());
 
         foreach ($this->customers as $customer) {
             if ($customer->getCanonicalEmail() === $canonical) {

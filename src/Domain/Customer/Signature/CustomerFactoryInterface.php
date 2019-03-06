@@ -6,6 +6,7 @@ use Domain\Customer\Command\CustomerCreateCommandInterface;
 use Domain\Customer\Command\CustomerOauthRegistrationCommandInterface;
 use Domain\Customer\Command\CustomerUpdateInfosCommandInterface;
 use Domain\Customer\ValueObject\Civility;
+use Domain\Customer\ValueObject\Email;
 
 /**
  * Interface CustomerFactoryInterface.
@@ -29,12 +30,12 @@ interface CustomerFactoryInterface
 
     /**
      * @param string        $id
-     * @param string        $email
+     * @param Email        $email
      * @param Civility|null $civility
      *
      * @return CustomerInterface
      */
-    public function createNew(string $id, string $email, ?Civility $civility = null): CustomerInterface;
+    public function createNew(string $id, Email $email, ?Civility $civility = null): CustomerInterface;
 
     /**
      * @param string                                    $id

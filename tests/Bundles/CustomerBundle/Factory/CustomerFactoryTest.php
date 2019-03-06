@@ -6,6 +6,7 @@ use Bundles\CustomerBundle\Command\CustomerCreateCommand;
 use Bundles\CustomerBundle\Factory\CustomerFactory;
 use Bundles\CustomerBundle\Model\ShopUser;
 use Domain\Customer\ValueObject\Civility;
+use Domain\Customer\ValueObject\Email;
 use PHPUnit\Framework\TestCase;
 
 class CustomerFactoryTest extends TestCase
@@ -17,7 +18,7 @@ class CustomerFactoryTest extends TestCase
     {
         $command = new CustomerCreateCommand();
         $command
-            ->setEmail('a')
+            ->setEmail(new Email('email@example.org'))
             ->setCivility(new Civility(Civility::DEFAULT))
             ->setFirstname('a')
             ->setLastname('a')
@@ -35,7 +36,7 @@ class CustomerFactoryTest extends TestCase
     {
         $command = new CustomerCreateCommand();
         $command
-            ->setEmail('a')->setCivility(new Civility(Civility::DEFAULT));
+            ->setEmail(new Email('email@example.org'))->setCivility(new Civility(Civility::DEFAULT));
         $shopuser = (new CustomerFactory())->createFromCommand('id', $command);
 
         $this->assertInstanceOf(ShopUser::class, $shopuser);
@@ -58,11 +59,11 @@ class CustomerFactoryTest extends TestCase
     {
         $command = new CustomerCreateCommand();
         $command
-            ->setEmail('abc@example.org')->setCivility(new Civility(Civility::DEFAULT));
+            ->setEmail(new Email('email@example.org'))->setCivility(new Civility(Civility::DEFAULT));
         $shopuser = (new CustomerFactory())->createFromCommand('id', $command);
 
         $this->assertInstanceOf(ShopUser::class, $shopuser);
-        $this->assertEquals('abc@example.org', $shopuser->getUsername());
-        $this->assertEquals('abc-example-org', $shopuser->getCanonicalUsername());
+        $this->assertEquals('email@example.org', $shopuser->getUsername());
+        $this->assertEquals('email-example-org', $shopuser->getCanonicalUsername());
     }
 }

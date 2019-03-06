@@ -3,6 +3,7 @@
 namespace Domain\Customer\Command;
 
 use Domain\Core\CommandBus\CommandInterface;
+use Domain\Customer\ValueObject\Email;
 
 /**
  * Class CustomerOauthRegistrationCommandInterface.
@@ -15,9 +16,9 @@ interface CustomerOauthRegistrationCommandInterface extends CommandInterface
     public function getClient(): string;
 
     /**
-     * @return string
+     * @return Email
      */
-    public function getEmail(): string;
+    public function getEmail(): Email;
 
     /**
      * @return string|null

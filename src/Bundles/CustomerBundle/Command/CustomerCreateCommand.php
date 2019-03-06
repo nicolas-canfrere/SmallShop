@@ -5,6 +5,7 @@ namespace Bundles\CustomerBundle\Command;
 use Domain\Customer\Command\CustomerCreateCommandHandler;
 use Domain\Customer\Command\CustomerCreateCommandInterface;
 use Domain\Customer\ValueObject\Civility;
+use Domain\Customer\ValueObject\Email;
 
 /**
  * Class CustomerCreateCommand.
@@ -27,7 +28,7 @@ class CustomerCreateCommand implements CustomerCreateCommandInterface
     private $lastname;
 
     /**
-     * @var string
+     * @var Email
      */
     private $email;
 
@@ -80,7 +81,7 @@ class CustomerCreateCommand implements CustomerCreateCommandInterface
     /**
      * {@inheritdoc}
      */
-    public function getEmail(): string
+    public function getEmail(): Email
     {
         return $this->email;
     }
@@ -88,7 +89,7 @@ class CustomerCreateCommand implements CustomerCreateCommandInterface
     /**
      * {@inheritdoc}
      */
-    public function setEmail(string $email): CustomerCreateCommandInterface
+    public function setEmail(Email $email): CustomerCreateCommandInterface
     {
         $this->email = $email;
 

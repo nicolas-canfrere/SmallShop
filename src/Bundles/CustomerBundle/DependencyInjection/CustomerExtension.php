@@ -3,6 +3,7 @@
 namespace Bundles\CustomerBundle\DependencyInjection;
 
 use Bundles\CustomerBundle\Doctrine\Type\CivilityType;
+use Bundles\CustomerBundle\Doctrine\Type\EmailType;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
@@ -38,6 +39,14 @@ class CustomerExtension extends Extension implements PrependExtensionInterface
             $container->prependExtensionConfig(
                 'doctrine',
                 ['dbal' => ['mapping_types' => [CivilityType::NAME => 'string']]]
+            );
+            $container->prependExtensionConfig(
+                'doctrine',
+                ['dbal' => ['types' => [EmailType::NAME => EmailType::class]]]
+            );
+            $container->prependExtensionConfig(
+                'doctrine',
+                ['dbal' => ['mapping_types' => [EmailType::NAME => 'string']]]
             );
         }
     }

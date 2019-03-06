@@ -3,6 +3,7 @@
 namespace Domain\Customer\Signature;
 
 use Domain\Core\Signature\RepositoryInterface;
+use Domain\Customer\ValueObject\Email;
 
 /**
  * Interface CustomerRepositoryInterface.
@@ -17,11 +18,11 @@ interface CustomerRepositoryInterface extends RepositoryInterface
     public function oneByUsername(string $username): ?CustomerInterface;
 
     /**
-     * @param string $email
+     * @param Email $email
      *
      * @return CustomerInterface|null
      */
-    public function oneByEmail(string $email): ?CustomerInterface;
+    public function oneByEmail(Email $email): ?CustomerInterface;
 
     /**
      * @param string $username

@@ -16,6 +16,7 @@ use Domain\Customer\Event\CustomerInfosUpdatedEvent;
 use Domain\Customer\Exception\NonUniqueCustomerEmailException;
 use Domain\Customer\Signature\CustomerFactoryInterface;
 use Domain\Customer\Signature\CustomerRepositoryInterface;
+use Domain\Customer\ValueObject\Email;
 use PHPUnit\Framework\TestCase;
 
 class CustomerUpdateInfosCommandHandlerTest extends TestCase
@@ -66,8 +67,8 @@ class CustomerUpdateInfosCommandHandlerTest extends TestCase
     {
         $this->expectException(NonUniqueCustomerEmailException::class);
 
-        $uniqueEmail = 'email_2@example.org';
-        $customerToUpdate = $this->customerFactory->createNew('identity1', 'email_1@example.org');
+        $uniqueEmail = new Email('email_2@example.org');
+        $customerToUpdate = $this->customerFactory->createNew('identity1', new Email('email_1@example.org'));
         $otherCustomer = $this->customerFactory->createNew('identity2', $uniqueEmail);
         $this->customerRepository->save($customerToUpdate);
         $this->customerRepository->save($otherCustomer);
@@ -85,7 +86,7 @@ class CustomerUpdateInfosCommandHandlerTest extends TestCase
     public function updateWithoutChangingEmailMustPass()
     {
         $firstname = 'firstname_after';
-        $customerToUpdate = $this->customerFactory->createNew('identity1', 'email_1@example.org');
+        $customerToUpdate = $this->customerFactory->createNew('identity1', new Email('email_1@example.org'));
         $this->customerRepository->save($customerToUpdate);
         $command = new CustomerUpdateInfosCommand($customerToUpdate);
         $command->setFirstname($firstname);
@@ -107,7 +108,7 @@ class CustomerUpdateInfosCommandHandlerTest extends TestCase
                  ->method('handle')->with($this->isInstanceOf(CustomerInfosUpdatedEvent::class));
 
         $this->provider->addListener($listener);
-        $customerToUpdate = $this->customerFactory->createNew('identity1', 'email_1@example.org');
+        $customerToUpdate = $this->customerFactory->createNew('identity1', new Email('email_1@example.org'));
         $this->customerRepository->save($customerToUpdate);
         $command = new CustomerUpdateInfosCommand($customerToUpdate);
         $this->handler->handle($command);
