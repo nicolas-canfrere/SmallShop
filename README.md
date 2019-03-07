@@ -104,6 +104,10 @@ admin accessible par http://smallshop.local/back-office
 - traductions
 - continuer le compte utilisateur (login form, customer page, etc)
 
+### A tester
+
+Mercure component / bundle + messenger
+
 ### Important
 
 - ~~modifier code + database => pour connexion Oauth => seule l'email de l'utilisateur peut-être founie !!~~
