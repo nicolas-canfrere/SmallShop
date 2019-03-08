@@ -4,11 +4,11 @@ namespace Bundles\OrderBundle\Middlewares;
 
 
 use Bundles\OrderBundle\Middlewares\Exception\CustomerNotLoggedInException;
+use Domain\Order\Signature\OrderFlowMiddlewareInterface;
 use Domain\Order\Signature\OrderInterface;
-use Domain\Order\Signature\OrderManagerMiddlewareInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
-class CustomerIsLoggedMiddleware implements OrderManagerMiddlewareInterface
+class CustomerIsLoggedMiddleware implements OrderFlowMiddlewareInterface
 {
     /**
      * @var TokenStorageInterface

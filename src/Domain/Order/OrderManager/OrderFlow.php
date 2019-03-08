@@ -2,13 +2,13 @@
 
 namespace Domain\Order\OrderManager;
 
+use Domain\Order\Signature\OrderFlowInterface;
 use Domain\Order\Signature\OrderInterface;
-use Domain\Order\Signature\OrderManagerInterface;
 
 /**
- * Class OrderManager
+ * Class OrderFlow
  */
-class OrderManager implements OrderManagerInterface
+class OrderFlow implements OrderFlowInterface
 {
 
 

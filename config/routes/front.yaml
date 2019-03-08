@@ -106,5 +106,5 @@ front_order_checkout:
   path:
     fr: /{_locale}/passer-commande
     en: /{_locale}/order-checkout
-  controller: Application\Front\Controller\OrderController::start
+  controller: Application\Front\Controller\OrderController::index
   methods: ['get']

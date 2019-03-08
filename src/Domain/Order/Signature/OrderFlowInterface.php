@@ -3,9 +3,9 @@
 namespace Domain\Order\Signature;
 
 /**
- * Interface OrderManagerInterface
+ * Interface OrderFlowInterface
  */
-interface OrderManagerInterface
+interface OrderFlowInterface
 {
     /**
      * @param OrderInterface $order

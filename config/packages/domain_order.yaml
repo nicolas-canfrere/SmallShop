@@ -1,4 +1,8 @@
 order:
   middlewares:
+    - Bundles\OrderBundle\Middlewares\ValidateCartMiddleware
     - Bundles\OrderBundle\Middlewares\CustomerIsLoggedMiddleware
     - Bundles\OrderBundle\Middlewares\AddAddressMiddleware
+    - Bundles\OrderBundle\Middlewares\FillOrderMiddleware
+    - Bundles\OrderBundle\Middlewares\SaveOrderMiddleware
+    - Bundles\OrderBundle\Middlewares\CleanUpSessionMiddleware

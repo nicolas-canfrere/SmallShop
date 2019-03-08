@@ -5,14 +5,14 @@ namespace Bundles\OrderBundle\Middlewares;
 use Bundles\OrderBundle\Middlewares\Exception\NoDeliveryAddressException;
 use Domain\Address\AddressBook;
 use Domain\Address\Signature\AddressRepositoryInterface;
+use Domain\Order\Signature\OrderFlowMiddlewareInterface;
 use Domain\Order\Signature\OrderInterface;
-use Domain\Order\Signature\OrderManagerMiddlewareInterface;
 
 /**
  * Class AddAddressMiddleware
  * @package Bundles\OrderBundle\Middlewares
  */
-class AddAddressMiddleware implements OrderManagerMiddlewareInterface
+class AddAddressMiddleware implements OrderFlowMiddlewareInterface
 {
     /**
      * @var AddressRepositoryInterface

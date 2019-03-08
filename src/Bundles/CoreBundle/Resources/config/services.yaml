@@ -12,6 +12,10 @@ services:
   Domain\Core\:
     resource: '../../../../../src/Domain/Core/*'
 
+  Bundles\CoreBundle\EventListener\LocaleSubscriber:
+    arguments: ['%kernel.default_locale%']
+
+
   Domain\Core\Event\EventListenerProviderInterface:
     class: Domain\Core\Event\EventListenerProvider
 

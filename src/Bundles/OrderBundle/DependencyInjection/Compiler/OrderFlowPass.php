@@ -2,16 +2,17 @@
 
 namespace Bundles\OrderBundle\DependencyInjection\Compiler;
 
-use Domain\Order\OrderManager\OrderManager;
+use Domain\Order\OrderManager\OrderFlow;
+use Domain\Order\Signature\OrderFlowInterface;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Reference;
 
 /**
- * Class OrderManagerPass
+ * Class OrderFlowPass
  */
-class OrderManagerPass implements CompilerPassInterface
+class OrderFlowPass implements CompilerPassInterface
 {
 
     /**
@@ -23,9 +24,9 @@ class OrderManagerPass implements CompilerPassInterface
 
         $container
             ->setDefinition(
-                OrderManager::class,
+                OrderFlowInterface::class,
                 new Definition(
-                    OrderManager::class,
+                    OrderFlow::class,
                     [
                         array_map(
                             function ($id) {
