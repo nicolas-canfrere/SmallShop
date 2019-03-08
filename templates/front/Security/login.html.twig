@@ -10,6 +10,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h2 class="card-title text-center">connexion</h2>
+
                         <div class="row">
                             <div class="col">
                                 <h3 class="text-center">Avec votre compte</h3>
@@ -53,6 +54,16 @@
                                 <p>
                                     <a href="{{ path('front_security_google_connect') }}"
                                        class="btn btn-primary btn-lg btn-block">Se connecter avec Google</a>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <hr>
+                                <h3 class="text-center">Vous n'avez pas de compte ?</h3>
+                                <p class="text-center">
+                                    <a href="{{ path('front_customer_registration') }}" class="btn btn-primary btn-lg">créez un compte</a>
                                 </p>
                             </div>
                         </div>

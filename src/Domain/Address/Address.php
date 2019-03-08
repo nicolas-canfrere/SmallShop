@@ -4,6 +4,7 @@ namespace Domain\Address;
 
 use Domain\Address\Signature\AddressInterface;
 use Domain\Customer\Signature\CustomerInterface;
+use Symfony\Component\Intl\Intl;
 
 /**
  * Class Address.
@@ -95,6 +96,11 @@ class Address implements AddressInterface
         $this->country = $country;
     }
 
+    public function getCountryName()
+    {
+        return Intl::getRegionBundle()->getCountryName($this->country);
+    }
+
     public function isOwnedBy(string $id): bool
     {
         return $this->owner->getId() === $id;
@@ -174,5 +180,23 @@ class Address implements AddressInterface
     public function getCountry(): string
     {
         return $this->country;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function toArray(): array
+    {
+        return [
+            'fullname'=> $this->fullname,
+            'street' => $this->street,
+            'postalCode' => $this->postalCode,
+            'city' => $this->city,
+            'country' => $this->country,
+            'id'=>$this->id,
+            'isDelivery'=>$this->isDelivery,
+            'isBilling'=>$this->isBilling,
+            'ownerId'=>$this->owner->getId(),
+        ];
     }
 }

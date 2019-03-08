@@ -75,6 +75,14 @@
                         <td>{{ cart.totalPrice|format_price }}</td>
                         <td></td>
                     </tr>
+                    {% if cart.count > 0 %}
+                    <tr>
+                        <td colspan="3"></td>
+                        <td colspan="2">
+                            <a href="{{ path('front_order_checkout') }}" class="btn btn-success">{% trans from 'cart-page' %}cart-page-checkout{% endtrans %}</a>
+                        </td>
+                    </tr>
+                    {% endif %}
                     </tbody>
                 </table>
             </div>

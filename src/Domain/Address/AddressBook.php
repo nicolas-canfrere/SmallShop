@@ -8,6 +8,7 @@ use Domain\Address\Signature\AddressInterface;
 use Domain\Address\Signature\AddressRepositoryInterface;
 use Domain\Customer\Signature\CustomerInterface;
 use Ramsey\Uuid\Uuid;
+use Symfony\Component\Intl\Intl;
 
 /**
  * Class AddressBook.
@@ -204,5 +205,12 @@ final class AddressBook
         $this->sort();
 
         return $this;
+    }
+
+    public function stringify(AddressInterface $address)
+    {
+        $address = $address->toArray();
+        $address['country'] = Intl::getRegionBundle()->getCountryName($address['country']);
+        return vsprintf('%s, %s, %s %s, %s', $address);
     }
 }

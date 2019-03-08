@@ -21,7 +21,7 @@ class AddressCreateCommandHandler implements CommandHandlerInterface
     /**
      * @var EventBus
      */
-    protected $evetBus;
+    protected $eventBus;
 
     /**
      * AddressCreateCommandHandler constructor.
@@ -32,7 +32,7 @@ class AddressCreateCommandHandler implements CommandHandlerInterface
     public function __construct(AddressRepositoryInterface $addressRespository, EventBus $evetBus)
     {
         $this->addressRespository = $addressRespository;
-        $this->evetBus = $evetBus;
+        $this->eventBus           = $evetBus;
     }
 
     /**

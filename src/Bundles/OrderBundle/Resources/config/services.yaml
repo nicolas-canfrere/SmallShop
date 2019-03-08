@@ -1,0 +1,12 @@
+services:
+
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  Bundles\OrderBundle\:
+    resource: '../../../../../src/Bundles/OrderBundle/*'
+    exclude: '../../../../../src/Bundles/OrderBundle/{Resources}'
+  Domain\Order\:
+    resource: '../../../../../src/Domain/Order/*'

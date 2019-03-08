@@ -3,12 +3,12 @@
 namespace Tests\Domain\Product\Command;
 
 use Bundles\ProductBundle\Command\ProductCreateCommand;
-use Bundles\ProductBundle\Repository\InMemoryProductRepository;
 use Domain\Core\Event\EventBus;
 use Domain\Core\Event\EventListenerProvider;
 use Domain\Product\Command\ProductCreateCommandHandler;
 use Domain\Product\Exception\ProductAlreadyExistsException;
 use Domain\Product\Product;
+use Domain\Product\Repository\InMemoryProductRepository;
 use Domain\Product\Signature\ProductRepositoryInterface;
 use Domain\Product\ValueObject\ProductName;
 use Money\Currency;

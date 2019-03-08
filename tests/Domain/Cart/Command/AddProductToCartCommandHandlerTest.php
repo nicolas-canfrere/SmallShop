@@ -3,13 +3,13 @@
 namespace Tests\Domain\Cart\Command;
 
 use Bundles\CartBundle\Command\AddProductToCartCommand;
-use Bundles\ProductBundle\Repository\InMemoryProductRepository;
 use Domain\Cart\Cart;
 use Domain\Cart\Command\AddProductToCartCommandHandler;
 use Domain\Cart\Signature\CartInterface;
 use Domain\Core\Event\EventBus;
 use Domain\Core\Event\EventListenerProvider;
 use Domain\Product\Exception\ProductNotFoundException;
+use Domain\Product\Repository\InMemoryProductRepository;
 use Domain\Product\Signature\ProductInterface;
 use Domain\Product\Signature\ProductRepositoryInterface;
 use Tests\Domain\Cart\CartTestCase;

@@ -25,7 +25,7 @@
                         <p class="card-text">
                             {{ address.street }} <br>
                             {{ address.postalCode }} {{ address.city }} <br>
-                            {{ address.country }}
+                            {{ address.countryName }}
                         </p>
                         <a href="{{ path('front_customer_remove_address', {id: address.id}) }}" class="card-link"><i class="fas fa-trash-alt"></i> supprimer</a>
                         {% if address.isBilling == false %}

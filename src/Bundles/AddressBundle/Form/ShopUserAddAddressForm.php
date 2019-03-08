@@ -4,6 +4,7 @@ namespace Bundles\AddressBundle\Form;
 
 use Bundles\AddressBundle\Command\AddressCreateCommand;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -21,7 +22,7 @@ class ShopUserAddAddressForm extends AbstractType
             ->add('street', TextType::class, ['label' => 'form.street', 'translation_domain' => 'form'])
             ->add('postalCode', TextType::class, ['label' => 'form.postalcode', 'translation_domain' => 'form'])
             ->add('city', TextType::class, ['label' => 'form.city', 'translation_domain' => 'form'])
-            ->add('country', TextType::class, ['label' => 'form.country', 'translation_domain' => 'form'])
+            ->add('country', CountryType::class, ['label' => 'form.country', 'translation_domain' => 'form'])
             ->add('submit', SubmitType::class, ['label' => 'form.save', 'translation_domain' => 'form']);
     }
 

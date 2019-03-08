@@ -81,4 +81,9 @@ interface AddressInterface extends EntityInterface
      * @return string
      */
     public function getCountry(): string;
+
+    /**
+     * @return array
+     */
+    public function toArray(): array;
 }

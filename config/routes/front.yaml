@@ -101,3 +101,10 @@ front_customer_mark_address_delivery:
   methods: ['get']
   requirements:
     id: '[a-z0-9]{8,8}-[a-z0-9]{4,4}-[a-z0-9]{4,4}-[a-z0-9]{4,4}-[a-z0-9]{12,12}'
+
+front_order_checkout:
+  path:
+    fr: /{_locale}/passer-commande
+    en: /{_locale}/order-checkout
+  controller: Application\Front\Controller\OrderController::start
+  methods: ['get']

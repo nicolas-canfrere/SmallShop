@@ -1,0 +1,4 @@
+order:
+  middlewares:
+    - Bundles\OrderBundle\Middlewares\CustomerIsLoggedMiddleware
+    - Bundles\OrderBundle\Middlewares\AddAddressMiddleware

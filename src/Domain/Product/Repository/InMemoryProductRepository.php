@@ -1,6 +1,6 @@
 <?php
 
-namespace Bundles\ProductBundle\Repository;
+namespace Domain\Product\Repository;
 
 use Doctrine\ORM\QueryBuilder;
 use Domain\Core\Signature\EntityInterface;
